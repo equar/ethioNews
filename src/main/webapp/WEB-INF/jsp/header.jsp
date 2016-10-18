@@ -28,14 +28,15 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">agileBus</a>
+			<a class="navbar-brand" href="#">ethioNews</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="searchbus">Home</a></li>
-				<li><a href="ticketcancel">Cancel Ticket</a></li>
-				<li><a href="printcancel">Print/SMS Ticket</a></li>
-				<li><a href="writeus">Write to Us</a></li>
+				<li class="active"><a href="searchbus">News</a></li>
+				<li><a href="ticketcancel">Video</a></li>
+				<li><a href="printcancel">TV Channels</a></li>
+				<li><a href="writeus">Radio</a></li>
+				<li><a href="writeus">News Papers</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="createUser"><span

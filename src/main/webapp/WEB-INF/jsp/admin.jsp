@@ -1,5 +1,5 @@
 <%@include file="header.jsp"%>
-<%@include file="slidebus.jsp"%>
+<%@include file="adminPanel.jsp"%>
 
 <ul>
 	<li><a href="getAllUserRoles">Role Management</a></li>
@@ -14,5 +14,5 @@
 	<li><a href="addtrip">Trip Management</a></li>
 </ul>
 
-<%@include file="topbus.jsp"%>
+
 <%@include file="footer.jsp"%>

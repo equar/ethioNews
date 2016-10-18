@@ -1,9 +1,9 @@
 <div class="container-fluid text-center">
 	<footer class="container-fluid text-center">
-		<span><a href="searchbus">About agileBus</a></span> <span><a
-			href="searchbus">FAQ</a></span> <span><a href="searchbus">Site
-				Map</a></span> <span><a href="searchbus">Contact Us</a></span> <span><a
-			href="searchbus">Terms of Use</a></span> <span><a href="searchbus">Privacy
+		<span><a href="newsBoard">About ethioNews</a></span> <span><a
+			href="newsBoard">FAQ</a></span> <span><a href="newsBoard">Site
+				Map</a></span> <span><a href="newsBoard">Contact Us</a></span> <span><a
+			href="newsBoard">Terms of Use</a></span> <span><a href="newsBoard">Privacy
 				Policy</a></span>
 	</footer>
 </div>

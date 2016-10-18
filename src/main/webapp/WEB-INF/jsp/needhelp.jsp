@@ -1,5 +1,5 @@
 <%@include file="header.jsp"%>
-<%@include file="slidebus.jsp"%>
+<%@include file="adminPanel.jsp"%>
 <h3>How Can We Help You</h3>
 <form:form id="helpForm" method="post" action="writeus"
 	modelAttribute="helpBean">
@@ -25,5 +25,5 @@
 
 	<input type="submit" value="Submit Query" />
 </form:form>
-<%@include file="topbus.jsp"%>
+
 <%@include file="footer.jsp"%>

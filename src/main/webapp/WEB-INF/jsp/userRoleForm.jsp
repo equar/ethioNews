@@ -1,5 +1,5 @@
 <%@include file="header.jsp"%>
-<%@include file="slidebus.jsp"%>
+<%@include file="adminPanel.jsp"%>
 <div class="container myrow-container">
 	<div class="panel panel-success">
 		<div class="panel-heading">
@@ -64,5 +64,5 @@
 	};
 </script>
 
-<%@include file="topbus.jsp"%>
+
 <%@include file="footer.jsp"%>

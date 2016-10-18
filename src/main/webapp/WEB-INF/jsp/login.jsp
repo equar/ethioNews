@@ -1,5 +1,5 @@
 <%@include file="header.jsp"%>
-<%@include file="slidebus.jsp"%>
+<%@include file="adminPanel.jsp"%>
 <h3>Sign In</h3>
 <font color="red">${message}</font>
 <form:form id="loginForm" method="post" action="login"
@@ -16,5 +16,5 @@
 			href="signup">Sign Up</a>
 	</form:label>
 </form:form>
-<%@include file="topbus.jsp"%>
+
 <%@include file="footer.jsp"%>
