@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ethionews.model.UserRole;
+import com.ethionews.service.UserRoleService;
 
 @Controller
 public class UserRoleController {
@@ -38,7 +39,7 @@ public class UserRoleController {
 		logger.info("Saving the UserRole. Data : " + userRole);
 		// if userRole id is 0 then creating the userRole other updating the
 		// userRole
-		if (userRole.getRoleId() == 0) {
+		if (userRole.getId() == 0) {
 			userRoleService.createUserRole(userRole);
 		} else {
 			userRoleService.updateUserRole(userRole);

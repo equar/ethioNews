@@ -1,6 +1,8 @@
 package com.ethionews.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,8 +30,8 @@ public class User implements Serializable {
 	private String confirmPasword;
 	private String email;
 	private boolean enabled;
-	private UserRole userRole;
-	private Video video;
+	private Set<UserRole> userRole = new HashSet<>();
+	private Set<Video> video = new HashSet<>();
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -88,22 +90,22 @@ public class User implements Serializable {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "UserAndRole", joinColumns = { @JoinColumn(name = "id") }, inverseJoinColumns = {
-			@JoinColumn(name = "id") })
-	public UserRole getUserRole() {
+	@JoinTable(name = "UserAndRole", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = {
+			@JoinColumn(name = "roleId") })
+	public Set<UserRole> getUserRole() {
 		return userRole;
 	}
 
-	public void setUserRole(UserRole userRole) {
+	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Video getVideo() {
+	public Set<Video> getVideo() {
 		return video;
 	}
 
-	public void setVideo(Video video) {
+	public void setVideo(Set<Video> video) {
 		this.video = video;
 	}
 

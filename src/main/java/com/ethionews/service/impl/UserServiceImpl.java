@@ -12,6 +12,7 @@ import com.ethionews.dao.UserDao;
 import com.ethionews.model.User;
 import com.ethionews.model.UserRole;
 import com.ethionews.service.UserService;
+import com.ethionews.util.EthioUtil;
 
 @Service("userService")
 @Transactional
@@ -26,9 +27,9 @@ public class UserServiceImpl implements UserService {
 		userRole.setRoleType("roleTypes");
 
 		userRoles.add(userRole);
-		user.setUserRole(userRoles);
-		user.setPassword(AgileUtil.passwordEncoder(user.getPassword()));
+		//user.setUserRole(userRoles);
+		user.setPassword(EthioUtil.passwordEncoder(user.getPassword()));
 
-		return loginDao.createUser(user);
+		return userDao.createUser(user);
 	}
 }

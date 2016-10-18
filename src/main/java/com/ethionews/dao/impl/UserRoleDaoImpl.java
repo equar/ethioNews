@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ethionews.dao.UserRoleDao;
 import com.ethionews.model.User;
 import com.ethionews.model.UserRole;
+import com.ethionews.util.HibernateUtil;
 
 @Repository("userRoleDao")
 public class UserRoleDaoImpl implements UserRoleDao {
@@ -29,9 +30,9 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	@Override
 	public void deleteUserRole(long id) {
 		UserRole userRole = new UserRole();
-		userRole.setRoleId(id);
+		userRole.setId(id);
 		User user = new User();
-		user.setUserId(id);
+		user.setId(id);
 		hibernateUtil.delete(id, User.class);
 		hibernateUtil.delete(userRole);
 
@@ -57,7 +58,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 			UserRole userRole = new UserRole();
 			long roleId = ((long) userRoleObject[0]);
 			String roleName = (String) userRoleObject[1];
-			userRole.setRoleId(roleId);
+			userRole.setId(roleId);
 			userRole.setRoleType(roleName);
 			userRoles.add(userRole);
 		}

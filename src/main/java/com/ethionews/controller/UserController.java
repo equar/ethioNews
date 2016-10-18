@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ethionews.model.User;
+import com.ethionews.service.UserService;
 
 @Controller
 public class UserController {
 	private static final Logger logger = Logger.getLogger(UserController.class);
 
 	@Autowired
-	private LoginService loginService;
+	private UserService userService;
 
 	@RequestMapping("createUser")
 	public ModelAndView createUser(@ModelAttribute User user) {
@@ -27,12 +28,12 @@ public class UserController {
 		logger.info("Saving the User. Data : " + user);
 		// if User id is 0 then creating the User other updating the
 		// User
-		if (user.getUserId() == 0) {
-			loginService.createUser(user);
+		if (user.getId() == 0) {
+			userService.createUser(user);
 		} /*
 			 * else { busLevelService.updateBusLevel(busLevel); }
 			 */
 
-		return new ModelAndView("userSignupResult", "emailId", user.getEmailId());
+		return new ModelAndView("userSignupResult", "emailId", user.getEmail());
 	}
 }

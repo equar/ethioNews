@@ -75,7 +75,7 @@ public class Record implements Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false)
+	@JoinColumn(name = "mediaId", nullable = false)
 	public Media getMedia() {
 		return media;
 	}

@@ -64,7 +64,7 @@ public class Video implements Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", nullable = false)
+	@JoinColumn(name = "userId", nullable = false)
 	public User getUser() {
 		return user;
 	}
