@@ -3,7 +3,7 @@
 		<span><a href="getAllUserRoles">User Role Mgt</a></span> |
 		<span><a href="getAllUserRoles">User Mgt</a>|
 		</span> <span><a href="getAllVideos">Video Mgt</a></span>|
-		<span><a href="getAllUserRoles">Media Mgt</a>|
-		</span> <span><a href="getAllUserRoles">News Mgt</a></span>
+		<span><a href="getAllMedias">Media Mgt</a>|
+		</span> <span><a href="getAllRecords">News Mgt</a></span>
 	</footer>
 </div>

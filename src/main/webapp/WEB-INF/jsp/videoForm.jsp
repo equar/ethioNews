@@ -5,50 +5,42 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>TicketAgent Details</b>
+					<b>Video Details</b>
 				</div>
 				<div align="right">
-					<a href="getAllTicketAgents">TicketAgent List</a>
+					<a href="getAllVideos">Video List</a>
 				</div>
 			</h3>
 		</div>
 
 		<div class="panel-body">
-			<form:form id="ticketRegisterForm" cssClass="form-horizontal"
-				modelAttribute="ticketAgent" method="post" action="saveTicketAgent">
+			<form:form id="videoForm" cssClass="form-horizontal"
+				modelAttribute="video" method="post" action="saveVideo">
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">
-						<form:label path="contactName">Contact Name</form:label>
+						<form:label path="title">Title</form:label>
 					</div>
 					<div class="col-xs-6">
-						<form:hidden path="agentId" value="${ticketAgentObject.agentId}" />
-						<form:input cssClass="form-control" path="contactName"
-							value="${ticketAgentObject.contactName}" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="address" cssClass="control-label col-xs-3">Address</form:label>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="address"
-							value="${ticketAgentObject.address}" />
+						<form:hidden path="id" value="${videoObject.id}" />
+						<form:input cssClass="form-control" path="title"
+							value="${videoObject.title}" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<form:label path="emailId" cssClass="control-label col-xs-3">EmailId</form:label>
+					<form:label path="description" cssClass="control-label col-xs-3">Description</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="emailId"
-							value="${ticketAgentObject.emailId}" />
+						<form:input cssClass="form-control" path="description"
+							value="${videoObject.description}" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<form:label path="phoneNumber" cssClass="control-label col-xs-3">Phone Number</form:label>
+					<form:label path="category" cssClass="control-label col-xs-3">Category</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="phoneNumber"
-							value="${ticketAgentObject.phoneNumber}" />
+						<form:input cssClass="form-control" path="category"
+							value="${videoObject.category}" />
 					</div>
 				</div>
 
@@ -56,8 +48,8 @@
 					<div class="row">
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
-							<input type="submit" id="saveTicketAgent" class="btn btn-primary"
-								value="Save" onclick="return submitTicketAgentForm();" />
+							<input type="submit" id="saveVideo" class="btn btn-primary"
+								value="Save" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>
@@ -68,25 +60,7 @@
 	</div>
 </div>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-	function submitTicketAgentForm() {
-
-		// getting the UserRole form values
-		var name = $('#name').val().trim();
-		if (name.length == 0) {
-			alert('Please enter TicketAgent name');
-			$('#name').focus();
-			return false;
-		}
-
-		return true;
-	};
-</script>
 
 
 <%@include file="footer.jsp"%>

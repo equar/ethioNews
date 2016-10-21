@@ -5,24 +5,24 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>TicketAgent List</b>
+					<b>Video List</b>
 				</div>
 				<div align="right">
-					<a href="createTicketAgent">Add New TicketAgent</a>
+					<a href="createVideo">Add New Video</a>
 				</div>
 			</h3>
 		</div>
 		<div class="panel-body">
-			<c:if test="${empty ticketAgentList}">
-                There are no TicketAgent
+			<c:if test="${empty videoList}">
+                There are no Video
             </c:if>
-			<c:if test="${not empty ticketAgentList}">
+			<c:if test="${not empty videoList}">
 
-				<form action="searchTicketAgent">
+				<form action="searchVideo">
 					<div class="row">
 						<div class="col-md-4">
-							Search TicketAgent: <input type='text' name='contactName'
-								id='contactName' />
+							Search Video: <input type='text' name='title'
+								id='title' />
 						</div>
 						<div class="col-md-4">
 							<input class="btn btn-success" type='submit' value='Search' />
@@ -34,27 +34,28 @@
 					<thead style="background-color: #bce8f1;">
 						<tr>
 							<th>Id</th>
-							<th>Contact Name</th>
-							<th>EmailId</th>
-							<th>Address</th>
-							<th>EmailId</th>
-							<th>PhoneNumber</th>
+							<th>Title</th>
+							<th>Desc</th>
+							<th>Category</th>
+							<th>Uploader</th>
+							<th>Date</th>
 							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${ticketAgentList}" var="tick">
+						<c:forEach items="${videoList}" var="vid">
 							<tr>
-								<th><c:out value="${tick.agentId}" /></th>
-								<th><c:out value="${tick.contactName}" /></th>
-								<th><c:out value="${tick.address}" /></th>
-								<th><c:out value="${tick.emailId}" /></th>
-								<th><c:out value="${tick.phoneNumber}" /></th>
+								<th><c:out value="${vid.id}" /></th>
+								<th><c:out value="${vid.title}" /></th>
+								<th><c:out value="${vid.description}" /></th>
+								<th><c:out value="${vid.category}" /></th>
+								<th><c:out value="${vid.user}" /></th>
+								<th><c:out value="${vid.date}" /></th>
 								<th><a
-									href="editTicketAgent?id=<c:out value='${tick.agentId}'/>">Edit</a></th>
+									href="editTicketAgent?id=<c:out value='${vid.id}'/>">Edit</a></th>
 								<th><a
-									href="deleteTicketAgent?id=<c:out value='${tick.agentId}'/>">Delete</a></th>
+									href="deleteTicketAgent?id=<c:out value='${vid.id}'/>">Delete</a></th>
 							</tr>
 						</c:forEach>
 					</tbody>

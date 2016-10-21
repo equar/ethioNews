@@ -5,50 +5,66 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>Company Details</b>
+					<b>Media Details</b>
 				</div>
 				<div align="right">
-					<a href="getAllCompanys">Company List</a>
+					<a href="getAllMedias">Media List</a>
 				</div>
 			</h3>
 		</div>
 
 		<div class="panel-body">
-			<form:form id="companyRegisterForm" cssClass="form-horizontal"
-				modelAttribute="company" method="post" action="saveCompany">
+			<form:form id="mediaForm" cssClass="form-horizontal"
+				modelAttribute="media" method="post" action="saveMedia">
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">
-						<form:label path="companyName">Company Name</form:label>
+						<form:label path="name">Name</form:label>
 					</div>
 					<div class="col-xs-6">
-						<form:hidden path="companyId" value="${companyObject.companyId}" />
-						<form:input cssClass="form-control" path="companyName"
-							value="${companyObject.companyName}" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="address" cssClass="control-label col-xs-3">Address</form:label>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="address"
-							value="${companyObject.address}" />
+						<form:hidden path="id" value="${mediaObject.id}" />
+						<form:input cssClass="form-control" path="name"
+							value="${mediaObject.name}" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<form:label path="phoneNumber" cssClass="control-label col-xs-3">Phone Number</form:label>
+					<form:label path="url" cssClass="control-label col-xs-3">URL</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="phoneNumber"
-							value="${companyObject.phoneNumber}" />
+						<form:input cssClass="form-control" path="url"
+							value="${mediaObject.url}" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<form:label path="emailId" cssClass="control-label col-xs-3">EmailId</form:label>
+					<form:label path="type" cssClass="control-label col-xs-3">Type</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="emailId"
-							value="${companyObject.emailId}" />
+						<form:input cssClass="form-control" path="type"
+							value="${mediaObject.type}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="language" cssClass="control-label col-xs-3">Language</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="language"
+							value="${mediaObject.language}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="country" cssClass="control-label col-xs-3">Country</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="country"
+							value="${mediaObject.country}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="crawel" cssClass="control-label col-xs-3">Crawel</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="crawel"
+							value="${mediaObject.crawel}" />
 					</div>
 				</div>
 
@@ -57,7 +73,7 @@
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
 							<input type="submit" id="saveCompany" class="btn btn-primary"
-								value="Save" onclick="return submitCompanyForm();" />
+								value="Save" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>
@@ -67,26 +83,5 @@
 		</div>
 	</div>
 </div>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-	function submitCompanyForm() {
-
-		// getting the UserRole form values
-		var name = $('#companyName').val().trim();
-		if (name.length == 0) {
-			alert('Please enter Company name');
-			$('#companyName').focus();
-			return false;
-		}
-
-		return true;
-	};
-</script>
-
 
 <%@include file="footer.jsp"%>
