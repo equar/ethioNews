@@ -39,16 +39,24 @@
 				<div class="form-group">
 					<form:label path="type" cssClass="control-label col-xs-3">Type</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="type"
-							value="${mediaObject.type}" />
+						<form:select cssClass="form-control" path="type">
+							<option value="website">Website</option>
+							<option value="tv">TV</option>
+							<option value="radio">Radio</option>
+							<option value="paper">News Paper</option>
+						</form:select>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<form:label path="language" cssClass="control-label col-xs-3">Language</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="language"
-							value="${mediaObject.language}" />
+						<form:select cssClass="form-control" path="language">
+							<option value="english">English</option>
+							<option value="amharic">Amharic</option>
+							<option value="oromifa">Oromifa</option>
+							<option value="tigrigna">Tigrigna</option>
+						</form:select>
 					</div>
 				</div>
 
@@ -63,8 +71,10 @@
 				<div class="form-group">
 					<form:label path="crawel" cssClass="control-label col-xs-3">Crawel</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="crawel"
-							value="${mediaObject.crawel}" />
+						<form:radiobutton path="crawel" value="true" />
+						Yes
+						<form:radiobutton path="crawel" value="false" />
+						No
 					</div>
 				</div>
 
@@ -73,7 +83,7 @@
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
 							<input type="submit" id="saveCompany" class="btn btn-primary"
-								value="Save" />
+								value="Save" onclick="return submitMediaForm();" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>

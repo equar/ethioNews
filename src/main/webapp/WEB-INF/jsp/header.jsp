@@ -15,7 +15,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="<c:url value="/resources/css/agileBus.css" />"
+<link href="<c:url value="/resources/css/ethioNews.css" />"
 	rel="stylesheet">
 </head>
 
@@ -33,6 +33,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="searchbus">News</a></li>
+				<li><a href="getMediasToSubscribe">Subscribe Media's</a></li>
 				<li><a href="ticketcancel">Video</a></li>
 				<li><a href="printcancel">TV Channels</a></li>
 				<li><a href="writeus">Radio</a></li>

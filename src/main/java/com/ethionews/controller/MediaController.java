@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ethionews.model.Media;
+import com.ethionews.model.Subscription;
 import com.ethionews.service.MediaService;
+import com.ethionews.util.EnConstants;
 
 @Controller
 public class MediaController {
@@ -57,14 +59,34 @@ public class MediaController {
 	public ModelAndView getAllMedias() {
 		logger.info("Getting the all Medias.");
 		List<Media> mediaList = mediaService.getAllMedias();
-		return new ModelAndView("mediaList", "mediaList", mediaList);
+		return new ModelAndView(EnConstants.MEDIA_LIST, EnConstants.MEDIA_LIST, mediaList);
 	}
 
 	@RequestMapping("searchMedia")
 	public ModelAndView searchMedia(@RequestParam("roleType") String roleType) {
 		logger.info("Searching the Media. Media Names: " + roleType);
 		List<Media> mediaList = mediaService.getAllMedias(roleType);
-		return new ModelAndView("mediaList", "mediaList", mediaList);
+		return new ModelAndView(EnConstants.MEDIA_LIST, EnConstants.MEDIA_LIST, mediaList);
+	}
+
+	@RequestMapping("getMediasToSubscribe")
+	public ModelAndView getAllMediasToSubscribe(@ModelAttribute Subscription subscription) {
+		logger.info("Getting the all Medias to subscribe.");
+		List<Media> mediaList = mediaService.getAllMediasToSubscribe();
+		return new ModelAndView("subscribeList", "mediaList", mediaList);
+	}
+
+	@RequestMapping("subscribeToMedias")
+	public ModelAndView createSubscription(@ModelAttribute Subscription subscription) {
+		logger.info("Saving the subscription. Data : " + subscription);
+		// if subscription id is 0 then creating the subscription other updating
+		// the subscription
+		if (subscription.getId() == 0) {
+			mediaService.createSubscription(subscription);
+		} else {
+			mediaService.updateSubscription(subscription);
+		}
+		return new ModelAndView("redirect:getMediasToSubscribe");
 	}
 
 }

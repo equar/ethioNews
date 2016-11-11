@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,6 +29,7 @@ public class Media implements Serializable {
 	private String country;
 	private boolean crawel;
 	private Set<Record> record = new HashSet<>();
+	private Set<Subscription> subscription = new HashSet<>();
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -101,5 +104,23 @@ public class Media implements Serializable {
 	public void setRecord(Set<Record> record) {
 		this.record = record;
 	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "media", cascade = CascadeType.ALL)
+	public Set<Subscription> getSubscription() {
+		return subscription;
+	}
+
+	public void setSubscription(Set<Subscription> subscription) {
+		this.subscription = subscription;
+	}
+
+	@Override
+	public String toString() {
+		return "Media [id=" + id + ", name=" + name + ", url=" + url + ", type=" + type + ", language=" + language
+				+ ", country=" + country + ", crawel=" + crawel + ", record=" + record + ", subscription="
+				+ subscription + "]";
+	}
+	
+	
 
 }

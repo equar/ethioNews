@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ethionews.dao.MediaDao;
 import com.ethionews.model.Media;
+import com.ethionews.model.Subscription;
 import com.ethionews.service.MediaService;
 
 @Service("mediaService")
@@ -46,6 +47,18 @@ public class MediaServiceImpl implements MediaService {
 	@Override
 	public List<Media> getAllMedias(String search) {
 		return mediaDao.getAllMedias(search);
+	}
+
+	public List<Media> getAllMediasToSubscribe() {
+		return mediaDao.getAllMediasToSubscribe();
+	}
+
+	public long createSubscription(Subscription subscription) {
+		return mediaDao.createSubscription(subscription);
+	}
+
+	public Subscription updateSubscription(Subscription subscription) {
+		return mediaDao.updateSubscription(subscription);
 	}
 
 }

@@ -16,7 +16,7 @@
 			<c:if test="${empty mediaList}">
                 There are no Media
             </c:if>
-			<c:if test="${not empty companyList}">
+			<c:if test="${not empty mediaList}">
 
 				<form action="searchCompany">
 					<div class="row">
@@ -52,6 +52,7 @@
 								<th><c:out value="${med.type}" /></th>
 								<th><c:out value="${med.language}" /></th>
 								<th><c:out value="${med.country}" /></th>
+								<th><c:out value="${med.crawel}" /></th>
 								<th><a href="editMedia?id=<c:out value='${pass.id}'/>">Edit</a></th>
 								<th><a href="deleteMedia?id=<c:out value='${pass.id}'/>">Delete</a></th>
 							</tr>

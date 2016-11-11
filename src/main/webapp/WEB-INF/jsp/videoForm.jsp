@@ -39,8 +39,20 @@
 				<div class="form-group">
 					<form:label path="category" cssClass="control-label col-xs-3">Category</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="category"
-							value="${videoObject.category}" />
+						<form:select cssClass="form-control" path="category">
+							<option value="politics">Politics</option>
+							<option value="sports">Sports</option>
+							<option value="enter">Entertainments</option>
+							<option value="prank">Pranks</option>
+						</form:select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="filename" cssClass="control-label col-xs-3">Filename</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="filename"
+							value="${videoObject.filename}" />
 					</div>
 				</div>
 

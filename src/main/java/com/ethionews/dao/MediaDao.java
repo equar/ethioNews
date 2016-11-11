@@ -3,6 +3,7 @@ package com.ethionews.dao;
 import java.util.List;
 
 import com.ethionews.model.Media;
+import com.ethionews.model.Subscription;
 
 public interface MediaDao {
 	public long createMedia(Media media);
@@ -16,4 +17,10 @@ public interface MediaDao {
 	public Media getMedia(long id);
 
 	public List<Media> getAllMedias(String search);
+
+	public List<Media> getAllMediasToSubscribe();
+
+	public long createSubscription(Subscription subscription);
+
+	public Subscription updateSubscription(Subscription subscription);
 }

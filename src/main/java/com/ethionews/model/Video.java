@@ -24,6 +24,7 @@ public class Video implements Serializable {
 	private String category;
 	private User user;
 	private Date date;
+	private String filename;
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -80,6 +81,15 @@ public class Video implements Serializable {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	@Column(name = "filename", nullable = false)
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 }
