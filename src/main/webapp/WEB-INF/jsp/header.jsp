@@ -38,6 +38,7 @@
 				<li><a href="printcancel">TV Channels</a></li>
 				<li><a href="writeus">Radio</a></li>
 				<li><a href="writeus">News Papers</a></li>
+				<li><a href=createAdvert>AdSense</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="createUser"><span
