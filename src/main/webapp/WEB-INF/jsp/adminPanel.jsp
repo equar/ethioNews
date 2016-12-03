@@ -4,6 +4,7 @@
 		<span><a href="getAllUserRoles">User Mgt</a>|
 		</span> <span><a href="getAllVideos">Video Mgt</a></span>|
 		<span><a href="getAllMedias">Media Mgt</a>|
-		</span> <span><a href="getAllRecords">News Mgt</a></span>
+		</span> <span><a href="getAllRecords">News Mgt</a></span>|
+		<span><a href="getAllAdverts">Advert Mgt</a></span>
 	</footer>
 </div>

@@ -34,11 +34,12 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="searchbus">News</a></li>
 				<li><a href="getMediasToSubscribe">Subscribe Media's</a></li>
-				<li><a href="ticketcancel">Video</a></li>
+				<li><a href="getAllVideos">Video</a></li>
 				<li><a href="printcancel">TV Channels</a></li>
 				<li><a href="writeus">Radio</a></li>
 				<li><a href="writeus">News Papers</a></li>
-				<li><a href=createAdvert>AdSense</a></li>
+				<li><a href=createAdvert>Advert Apps</a></li>
+				<li><a href=createAdvert>Contact Us</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="createUser"><span

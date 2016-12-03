@@ -19,7 +19,7 @@ public class Advertisement implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private String phoneNUmber;
+	private String phoneNumber;
 	private String country;
 	private String city;
 	private String type;
@@ -65,12 +65,12 @@ public class Advertisement implements Serializable {
 	}
 
 	@Column(name = "phoneNumber", nullable = false)
-	public String getPhoneNUmber() {
-		return phoneNUmber;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setPhoneNUmber(String phoneNUmber) {
-		this.phoneNUmber = phoneNUmber;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	@Column(name = "country", nullable = false)

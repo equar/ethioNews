@@ -21,9 +21,9 @@ public class Record implements Serializable {
 
 	private long id;
 	private String title;
+	private String link;
 	private String description;
-	private String url;
-	private String category;
+	private String content;
 	private Date date;
 	private Media media;
 
@@ -56,24 +56,6 @@ public class Record implements Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "url", nullable = false)
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	@Column(name = "category", nullable = false)
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mediaId", nullable = false)
 	public Media getMedia() {
@@ -91,6 +73,22 @@ public class Record implements Serializable {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	@Column(name = "link", nullable = false)
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+	@Column(name = "content", nullable = false)
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }
