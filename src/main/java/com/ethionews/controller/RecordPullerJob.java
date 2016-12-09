@@ -4,23 +4,24 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import com.ethionews.model.Media;
 import com.ethionews.service.MediaService;
 import com.ethionews.service.RecordService;
-import com.ethionews.service.impl.MediaServiceImpl;
-import com.ethionews.service.impl.RecordServiceImpl;
 import com.sun.syndication.io.FeedException;
 
 public class RecordPullerJob {
 	private static final Logger logger = Logger.getLogger(RecordPullerJob.class);
 
-	private RecordService recordService = new RecordServiceImpl();
+	@Autowired
+	private RecordService recordService;
 
-	private MediaService mediaService = new MediaServiceImpl();
+	@Autowired
+	private MediaService mediaService;
 
-	@Scheduled(fixedRate = 60 * 60 * 1000, initialDelay = 10 * 60 * 1000)
+	/*@Scheduled(fixedRate = 60 * 60 * 1000, initialDelay = 10 * 60 * 1000)*/
 	public void saveRecord() {
 		List<Media> mediaList = mediaService.getAllMediasToSubscribe();
 

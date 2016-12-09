@@ -4,7 +4,14 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +25,15 @@ import com.ethionews.util.EnConstants;
 @Controller
 public class MediaController {
 	private static final Logger logger = Logger.getLogger(MediaController.class);
+
+	@Autowired
+	@Qualifier("mediaValidator")
+	private Validator validator;
+
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
+	}
 
 	@Autowired
 	private MediaService mediaService;
@@ -36,16 +52,23 @@ public class MediaController {
 	}
 
 	@RequestMapping("saveMedia")
-	public ModelAndView saveMedia(@ModelAttribute Media media) {
+	public String saveMedia(Model model, @Validated Media media, BindingResult result) {
 		logger.info("Saving the Media. Data : " + media);
 		// if media id is 0 then creating the media other updating the
 		// media
-		if (media.getId() == 0) {
-			mediaService.createMedia(media);
+		String returnVal = "redirect:getAllMedias";
+		if (result.hasErrors()) {
+			return "mediaForm";
 		} else {
-			mediaService.updateMedia(media);
+			if (media.getId() == 0) {
+				mediaService.createMedia(media);
+			} else {
+				mediaService.updateMedia(media);
+			}
+
 		}
-		return new ModelAndView("redirect:getAllMedias");
+
+		return returnVal;
 	}
 
 	@RequestMapping("deleteMedia")

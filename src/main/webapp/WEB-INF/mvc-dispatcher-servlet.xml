@@ -29,6 +29,14 @@
 	<!-- Specifying the Resource location to load JS, CSS, Images etc -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
+	<bean id="mediaValidator" class="com.ethionews.validator.MediaValidator" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:validation" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
 	<!-- View Resolver -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

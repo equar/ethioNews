@@ -3,6 +3,7 @@ package com.ethionews.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,23 +48,13 @@ public class Record implements Serializable {
 		this.title = title;
 	}
 
-	@Column(name = "description", nullable = false)
+	@Column(name = "description", nullable = true)
 	public String getDescription() {
 		return description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "mediaId", nullable = false)
-	public Media getMedia() {
-		return media;
-	}
-
-	public void setMedia(Media media) {
-		this.media = media;
 	}
 
 	@Column(name = "date", nullable = false)
@@ -74,6 +65,7 @@ public class Record implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	@Column(name = "link", nullable = false)
 	public String getLink() {
 		return link;
@@ -82,6 +74,7 @@ public class Record implements Serializable {
 	public void setLink(String link) {
 		this.link = link;
 	}
+
 	@Column(name = "content", nullable = false)
 	public String getContent() {
 		return content;
@@ -89,6 +82,16 @@ public class Record implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
+	@JoinColumn(name = "mediaId", nullable = true)
+	public Media getMedia() {
+		return media;
+	}
+
+	public void setMedia(Media media) {
+		this.media = media;
 	}
 
 }

@@ -32,9 +32,6 @@ public class MediaDaoImpl implements MediaDao {
 	public void deleteMedia(long id) {
 		Media media = new Media();
 		media.setId(id);
-		User user = new User();
-		user.setId(id);
-		hibernateUtil.delete(id, User.class);
 		hibernateUtil.delete(media);
 
 	}

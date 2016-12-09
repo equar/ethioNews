@@ -53,8 +53,8 @@
 								<th><c:out value="${med.language}" /></th>
 								<th><c:out value="${med.country}" /></th>
 								<th><c:out value="${med.crawel}" /></th>
-								<th><a href="editMedia?id=<c:out value='${pass.id}'/>">Edit</a></th>
-								<th><a href="deleteMedia?id=<c:out value='${pass.id}'/>">Delete</a></th>
+								<th><a href="editMedia?id=<c:out value='${med.id}'/>">Edit</a></th>
+								<th><a href="deleteMedia?id=<c:out value='${med.id}'/>">Delete</a></th>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -62,5 +62,5 @@
 			</c:if>
 		</div>
 	</div>
-	
+
 	<%@include file="footer.jsp"%>

@@ -20,13 +20,13 @@
 					action="subscribeToMedias">
 					<div class="form-group">
 						<form:label path="email" cssClass="control-label col-xs-3">Enter EMail:</form:label>
-						<div class="col-xs-6">
+						<div class="col-xs-3">
 							<form:input cssClass="form-control" path="email" />
 						</div>
 					</div>
 					<div class="form-group">
 						<form:label path="frequency">News Frequency Demand:</form:label>
-						<div class="col-xs-6">
+						<div class="col-xs-2">
 							<form:select cssClass="form-control" path="frequency">
 								<option value="immed">Immediately</option>
 								<option value="daily">Daily</option>

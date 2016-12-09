@@ -16,7 +16,7 @@
 		<div class="panel-body">
 			<form:form id="mediaForm" cssClass="form-horizontal"
 				modelAttribute="media" method="post" action="saveMedia">
-
+				<span id="error"></span>
 				<div class="form-group">
 					<div class="control-label col-xs-3">
 						<form:label path="name">Name</form:label>
@@ -25,6 +25,7 @@
 						<form:hidden path="id" value="${mediaObject.id}" />
 						<form:input cssClass="form-control" path="name"
 							value="${mediaObject.name}" />
+						<form:errors path="name" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -33,6 +34,7 @@
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="url"
 							value="${mediaObject.url}" />
+						<form:errors path="url" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -45,6 +47,7 @@
 							<option value="radio">Radio</option>
 							<option value="paper">News Paper</option>
 						</form:select>
+						<form:errors path="type" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -57,6 +60,7 @@
 							<option value="oromifa">Oromifa</option>
 							<option value="tigrigna">Tigrigna</option>
 						</form:select>
+						<form:errors path="language" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -65,6 +69,7 @@
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="country"
 							value="${mediaObject.country}" />
+						<form:errors path="country" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -75,6 +80,7 @@
 						Yes
 						<form:radiobutton path="crawel" value="false" />
 						No
+						<form:errors path="crawel" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -82,8 +88,8 @@
 					<div class="row">
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
-							<input type="submit" id="saveCompany" class="btn btn-primary"
-								value="Save" onclick="return submitMediaForm();" />
+							<input type="submit" id="saveMedia" class="btn btn-primary"
+								value="Save" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>

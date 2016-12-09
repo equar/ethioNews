@@ -1,7 +1,7 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,6 +15,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/js/ethioNews.js" />">
+	
+</script>
 <link href="<c:url value="/resources/css/ethioNews.css" />"
 	rel="stylesheet">
 </head>
@@ -39,7 +42,7 @@
 				<li><a href="writeus">Radio</a></li>
 				<li><a href="writeus">News Papers</a></li>
 				<li><a href=createAdvert>Advert Apps</a></li>
-				<li><a href=createAdvert>Contact Us</a></li>
+				<li><a href=createContact>Contact Us</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="createUser"><span
