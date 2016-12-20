@@ -35,7 +35,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="searchbus">News</a></li>
+				<li class="active"><a href="getAllRecords">News</a></li>
 				<li><a href="getMediasToSubscribe">Subscribe Media's</a></li>
 				<li><a href="getAllVideos">Video</a></li>
 				<li><a href="printcancel">TV Channels</a></li>

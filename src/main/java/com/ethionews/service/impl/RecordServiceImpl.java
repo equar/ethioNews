@@ -3,8 +3,13 @@ package com.ethionews.service.impl;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -40,22 +45,42 @@ public class RecordServiceImpl implements RecordService {
 		@SuppressWarnings("unchecked")
 		List<SyndEntry> entries = feed.getEntries();
 		Iterator<SyndEntry> itEntries = entries.iterator();
-		while (itEntries.hasNext()) {
-			record = new Record();
-			SyndEntry entry = itEntries.next();
-			record.setTitle(entry.getTitle());
-			record.setLink(entry.getLink());
-			record.setDescription(entry.getDescription().toString());
-			record.setDate(entry.getPublishedDate());
-			doc = Jsoup.connect(entry.getLink()).ignoreContentType(true).timeout(10 * 1000).get();
-			record.setContent(doc.text());
-			record.setMedia(media);
+		Date today = Calendar.getInstance().getTime();
+		List<Record> records = new ArrayList<Record>();
+		// getting all records
+		List<Record> drRecords = recordDao.getAllRecords();
+		List<String> links = new ArrayList<>();
+		for (int i = 0; i < drRecords.size(); i++) {
+			links.add(drRecords.get(i).getLink());
 		}
-		return recordDao.createRecord(record);
+
+		while (itEntries.hasNext()) {
+			SyndEntry entry = itEntries.next();
+			if (!links.contains(entry.getLink())) {
+				record = new Record();
+				record.setTitle(entry.getTitle());
+				record.setLink(entry.getLink());
+				// record.setDescription(entry.getDescription().toString());
+				record.setDescription(entry.getTitle());
+				// record.setDate(entry.getPublishedDate());
+				record.setDate(today);
+				// doc =
+				// Jsoup.connect(entry.getLink()).ignoreContentType(true).timeout(10
+				// * 1000).get();
+				// record.setContent(doc.text());
+				// record.setContent(entry.getDescription().toString());
+				record.setContent(entry.getTitle());
+				record.setMedia(media);
+
+				records.add(record);
+			}
+		}
+		return recordDao.createRecord(records);
 	}
 
 	public long createRecord(Record record) {
-		return recordDao.createRecord(record);
+		// return recordDao.createRecord(record);
+		return 1;
 	}
 
 	@Override

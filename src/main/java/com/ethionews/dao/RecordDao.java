@@ -1,11 +1,12 @@
 package com.ethionews.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.ethionews.model.Record;
 
 public interface RecordDao {
-	public long createRecord(Record record);
+	public long createRecord(List<Record> records);
 
 	public Record updateRecord(Record record);
 

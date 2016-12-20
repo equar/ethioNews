@@ -12,7 +12,7 @@
 				</div>
 			</h3>
 		</div>
-
+		<div id="error"></div>
 		<div class="panel-body">
 			<form:form id="mediaForm" cssClass="form-horizontal"
 				modelAttribute="media" method="post" action="saveMedia">
@@ -89,7 +89,7 @@
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
 							<input type="submit" id="saveMedia" class="btn btn-primary"
-								value="Save" />
+								value="Save" onclick="submitMediaForm()" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>

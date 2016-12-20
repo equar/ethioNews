@@ -1,7 +1,9 @@
 package com.ethionews.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,14 +12,22 @@ import com.ethionews.dao.RecordDao;
 import com.ethionews.model.User;
 import com.ethionews.model.Record;
 import com.ethionews.util.HibernateUtil;
+
 @Repository("recordDao")
-public class RecordDaoImpl implements RecordDao{
+public class RecordDaoImpl implements RecordDao {
 	@Autowired
 	private HibernateUtil hibernateUtil;
 
 	@Override
-	public long createRecord(Record record) {
-		return (Long) hibernateUtil.create(record);
+	public long createRecord(List<Record> records) {
+		long result = 1;
+		Record record;
+		for (int i = 0; i < records.size(); i++) {
+			record = records.get(i);
+			result = (Long) hibernateUtil.create(record);
+		}
+
+		return result;
 	}
 
 	@Override
@@ -57,7 +67,7 @@ public class RecordDaoImpl implements RecordDao{
 			long roleId = ((long) recordObject[0]);
 			String roleName = (String) recordObject[1];
 			record.setId(roleId);
-			//record.setRoleType(roleName);
+			// record.setRoleType(roleName);
 			records.add(record);
 		}
 		System.out.println(records);

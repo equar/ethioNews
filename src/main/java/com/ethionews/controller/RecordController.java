@@ -1,5 +1,6 @@
 package com.ethionews.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ethionews.model.Media;
 import com.ethionews.model.Record;
 import com.ethionews.model.Record;
+import com.ethionews.service.MediaService;
 import com.ethionews.service.RecordService;
+import com.sun.syndication.io.FeedException;
 
 @Controller
 public class RecordController {
@@ -25,6 +29,9 @@ public class RecordController {
 
 	@Autowired
 	private RecordService recordService;
+
+	@Autowired
+	private MediaService mediaService;
 
 	@RequestMapping(value = { "/", "/news" }, method = RequestMethod.GET)
 	public ModelAndView displayRecord(HttpServletRequest request, HttpServletResponse response, Record record) {
@@ -36,7 +43,17 @@ public class RecordController {
 	@RequestMapping("createRecord")
 	public ModelAndView createRecord(@ModelAttribute Record record) {
 		logger.info("Creating Record. Data: " + record);
-		return new ModelAndView("recordForm");
+		List<Media> mediaList = mediaService.getAllMediasToSubscribe();
+
+		for (Media media : mediaList) {
+			try {
+				recordService.createRecord(media);
+			} catch (IllegalArgumentException | IOException | FeedException e) {
+				logger.info(e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		return new ModelAndView("redirect:getAllRecords");
 	}
 
 	@RequestMapping("editRecord")

@@ -1,10 +1,11 @@
 function submitMediaForm() {
-	var name = $('#name').val().trim();
-	var url = $('#url').val().trim();
-	var type = $('#type').val().trim();
-	var language = $('#language').val().trim();
-	var country = $('#country').val().trim();
-	var crawel = $('#crawel').val().trim();
+	console.log("Test String");
+	var name = $('#name').val();
+	var url = $('#url').val();
+	var type = $('#type').val();
+	var language = $('#language').val();
+	var country = $('#country').val();
+	var crawel = $('#crawel').val();
 
 	if (name.length == 0 || url.length == 0 || type.length == 0) {
 		document.getElementById("error").innerHTML = "Enter missed data";
