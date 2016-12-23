@@ -21,8 +21,8 @@ import javax.persistence.Table;
 public class Subscription implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private long id;
+	private String name;
 	private String email;
-	// private String country;
 	private String frequency;
 	private Set<Media> media = new HashSet<>();
 
@@ -37,6 +37,15 @@ public class Subscription implements Serializable {
 		this.id = id;
 	}
 
+	@Column(name = "name", nullable = false)
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Column(name = "email", nullable = false)
 	public String getEmail() {
 		return email;
@@ -45,13 +54,6 @@ public class Subscription implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	/*
-	 * @Column(name = "country", nullable = false) public String getCountry() {
-	 * return country; }
-	 * 
-	 * public void setCountry(String country) { this.country = country; }
-	 */
 
 	@Column(name = "frequency", nullable = false)
 	public String getFrequency() {

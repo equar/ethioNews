@@ -1,5 +1,4 @@
 <%@include file="header.jsp"%>
-<%@include file="adminPanel.jsp"%>
 <div class="container myrow-container">
 	<div class="panel panel-success">
 		<div class="panel-heading">
@@ -19,20 +18,28 @@
 					modelAttribute="subscription" method="post"
 					action="subscribeToMedias">
 					<div class="form-group">
-						<form:label path="email" cssClass="control-label col-xs-3">Enter EMail:</form:label>
+						<form:label path="name" cssClass="control-label col-xs-3">Name:</form:label>
 						<div class="col-xs-3">
-							<form:input cssClass="form-control" path="email" />
+							<form:input cssClass="form-control" path="name" />
+							<form:errors path="name" cssStyle="color: #ff0000;" />
 						</div>
 					</div>
 					<div class="form-group">
-						<form:label path="frequency">News Frequency Demand:</form:label>
-						<div class="col-xs-2">
+						<form:label path="email" cssClass="control-label col-xs-3">EMail:</form:label>
+						<div class="col-xs-3">
+							<form:input cssClass="form-control" path="email" />
+							<form:errors path="email" cssStyle="color: #ff0000;" />
+						</div>
+					</div>
+					<div class="form-group">
+						<form:label path="frequency">Frequency:</form:label>
+						<div class="col-xs-3">
 							<form:select cssClass="form-control" path="frequency">
-								<option value="immed">Immediately</option>
 								<option value="daily">Daily</option>
 								<option value="weekly">Weekly</option>
 								<option value="monthly">Monthly</option>
 							</form:select>
+							<form:errors path="frequency" cssStyle="color: #ff0000;" />
 						</div>
 					</div>
 
@@ -49,7 +56,7 @@
 							<tbody>
 								<c:forEach items="${mediaList}" var="med">
 									<tr>
-										<th><form:checkbox path="" value="${med}" /> <c:out
+										<th><form:checkbox path="media" value="${med}" /> <c:out
 												value="${med.name}" /></th>
 
 									</tr>

@@ -52,12 +52,4 @@ public class MediaServiceImpl implements MediaService {
 		return mediaDao.getAllMediasToSubscribe();
 	}
 
-	public long createSubscription(Subscription subscription) {
-		return mediaDao.createSubscription(subscription);
-	}
-
-	public Subscription updateSubscription(Subscription subscription) {
-		return mediaDao.updateSubscription(subscription);
-	}
-
 }

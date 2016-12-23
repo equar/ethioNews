@@ -17,4 +17,8 @@ public interface RecordDao {
 	public Record getRecord(long id);
 
 	public List<Record> getAllRecords(String search);
+
+	public List<Record> getRecords(Integer offset, Integer maxResults);
+
+	public Long count();
 }

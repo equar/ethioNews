@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -36,12 +37,12 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="getAllRecords">News</a></li>
-				<li><a href="getMediasToSubscribe">Subscribe Media's</a></li>
+				<li><a href="getMediasToSubscribe">Subscribe</a></li>
 				<li><a href="getAllVideos">Video</a></li>
-				<li><a href="printcancel">TV Channels</a></li>
+				<!-- <li><a href="printcancel">TV Channels</a></li>
 				<li><a href="writeus">Radio</a></li>
 				<li><a href="writeus">News Papers</a></li>
-				<li><a href=createAdvert>Advert Apps</a></li>
+				<li><a href=createAdvert>Advert Apps</a></li> -->
 				<li><a href=createContact>Contact Us</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

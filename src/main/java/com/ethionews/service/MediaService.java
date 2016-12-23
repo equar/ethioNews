@@ -20,7 +20,4 @@ public interface MediaService {
 
 	public List<Media> getAllMediasToSubscribe();
 
-	public long createSubscription(Subscription subscription);
-
-	public Subscription updateSubscription(Subscription subscription);
 }

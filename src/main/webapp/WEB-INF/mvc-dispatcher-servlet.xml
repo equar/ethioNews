@@ -30,6 +30,7 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<bean id="mediaValidator" class="com.ethionews.validator.MediaValidator" />
+	<bean id="subscriptionValidator" class="com.ethionews.validator.SubscriptionValidator" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">

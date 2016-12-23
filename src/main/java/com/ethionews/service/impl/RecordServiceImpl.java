@@ -99,6 +99,14 @@ public class RecordServiceImpl implements RecordService {
 		return recordDao.getAllRecords();
 	}
 
+	public List<Record> getRecords(Integer offset, Integer maxResults) {
+		return recordDao.getRecords(offset, maxResults);
+	}
+
+	public Long count() {
+		return recordDao.count();
+	}
+
 	@Override
 	public Record getRecord(long id) {
 		return recordDao.getRecord(id);

@@ -92,24 +92,4 @@ public class MediaController {
 		return new ModelAndView(EnConstants.MEDIA_LIST, EnConstants.MEDIA_LIST, mediaList);
 	}
 
-	@RequestMapping("getMediasToSubscribe")
-	public ModelAndView getAllMediasToSubscribe(@ModelAttribute Subscription subscription) {
-		logger.info("Getting the all Medias to subscribe.");
-		List<Media> mediaList = mediaService.getAllMediasToSubscribe();
-		return new ModelAndView("subscribeList", "mediaList", mediaList);
-	}
-
-	@RequestMapping("subscribeToMedias")
-	public ModelAndView createSubscription(@ModelAttribute Subscription subscription) {
-		logger.info("Saving the subscription. Data : " + subscription);
-		// if subscription id is 0 then creating the subscription other updating
-		// the subscription
-		if (subscription.getId() == 0) {
-			mediaService.createSubscription(subscription);
-		} else {
-			mediaService.updateSubscription(subscription);
-		}
-		return new ModelAndView("redirect:getMediasToSubscribe");
-	}
-
 }

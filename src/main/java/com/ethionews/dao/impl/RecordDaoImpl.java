@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -72,6 +73,14 @@ public class RecordDaoImpl implements RecordDao {
 		}
 		System.out.println(records);
 		return records;
+	}
+
+	public List<Record> getRecords(Integer offset, Integer maxResults) {
+		return hibernateUtil.getRecords(offset, maxResults);
+	}
+
+	public Long count() {
+		return hibernateUtil.count();
 	}
 
 }

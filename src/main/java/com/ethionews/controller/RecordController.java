@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -88,6 +89,14 @@ public class RecordController {
 		logger.info("Getting the all Records.");
 		List<Record> recordList = recordService.getAllRecords();
 		return new ModelAndView("recordList", "recordList", recordList);
+	}
+
+	@RequestMapping(value = "/list")
+	public String getRecords(Model model, Integer offset, Integer maxResults) {
+		model.addAttribute("records", recordService.getRecords(offset, maxResults));
+		model.addAttribute("count", recordService.count());
+		model.addAttribute("offset", offset);
+		return "/list";
 	}
 
 	@RequestMapping("searchRecord")

@@ -10,16 +10,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "contactus")
-public class Contactus implements Serializable {
+@Table(name = "contact")
+public class Contact implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private long id;
 	private String name;
 	private String email;
-	private String issue;
+	private String subject;
 	private String message;
+	private boolean status;
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -50,13 +51,13 @@ public class Contactus implements Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "issue", nullable = false)
-	public String getIssue() {
-		return issue;
+	@Column(name = "subject", nullable = false)
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setIssue(String issue) {
-		this.issue = issue;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
 	@Column(name = "message", nullable = false)
@@ -66,6 +67,15 @@ public class Contactus implements Serializable {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	@Column(name = "status", nullable = false)
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

@@ -1,15 +1,12 @@
 <%@include file="header.jsp"%>
-<%@include file="adminPanel.jsp"%>
 <div class="container myrow-container">
 	<div class="panel panel-success">
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>Record List</b>
+					<b>News List</b>
 				</div>
-				<div align="right">
-					<a href="createRecord">Add New Record</a>
-				</div>
+
 			</h3>
 		</div>
 		<div class="panel-body">
@@ -18,12 +15,22 @@
             </c:if>
 			<c:if test="${not empty recordList}">
 
-				<table class="table table-hover table-bordered">
+				<table class="table table-hover">
 
 					<tbody>
 						<c:forEach items="${recordList}" var="rec">
 							<tr>
-								<th><c:out value="${rec.title}" /></th>
+								<th><p>
+										<a href="${rec.link}" target="_blank"> <c:out
+												value="${rec.title}" />
+										</a>
+									</p>
+									<p>
+										<c:out value="${rec.description}" />
+									</p>
+									<p>
+										<a href="${rec.content}" target="_blank"> READ MORE >></a>
+									</p></th>
 
 							</tr>
 						</c:forEach>

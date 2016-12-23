@@ -82,12 +82,6 @@ public class MediaDaoImpl implements MediaDao {
 		return medias;
 	}
 
-	public long createSubscription(Subscription subscription) {
-		return (Long) hibernateUtil.create(subscription);
-	}
-
-	public Subscription updateSubscription(Subscription subscription) {
-		return hibernateUtil.update(subscription);
-	}
+	
 
 }
