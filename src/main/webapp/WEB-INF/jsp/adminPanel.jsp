@@ -5,7 +5,6 @@
 			href="getAllVideos">Video Mgt</a></span>| <span><a
 			href="getAllMedias">Media Mgt</a>| </span> <span><a
 			href="getAllRecords">News Mgt</a></span>| <span><a
-			href="getAllAdverts">Advert Mgt</a></span>| <span><a
 			href="getAllContacts">Contact Mgt</a></span>
 	</footer>
 </div>

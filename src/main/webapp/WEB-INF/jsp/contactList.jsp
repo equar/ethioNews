@@ -49,7 +49,7 @@
 								<th><c:out value="${cont.email}" /></th>
 								<th><c:out value="${cont.subject}" /></th>
 								<th><c:out value="${cont.message}" /></th>
-								<th><a href="editContact?id=<c:out value='${cont.id}'/>">Edit</a></th>
+								<th><a href="editContact?id=<c:out value='${cont.id}'/>">Read</a></th>
 								<th><a href="deleteContact?id=<c:out value='${cont.id}'/>">Delete</a></th>
 							</tr>
 						</c:forEach>

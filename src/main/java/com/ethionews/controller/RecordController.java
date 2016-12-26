@@ -34,7 +34,6 @@ public class RecordController {
 	@Autowired
 	private MediaService mediaService;
 
-	@RequestMapping(value = { "/", "/news" }, method = RequestMethod.GET)
 	public ModelAndView displayRecord(HttpServletRequest request, HttpServletResponse response, Record record) {
 		ModelAndView model = new ModelAndView("newsBoard");
 		model.addObject("newsBoard", record);
@@ -91,12 +90,18 @@ public class RecordController {
 		return new ModelAndView("recordList", "recordList", recordList);
 	}
 
-	@RequestMapping(value = "/list")
+	@RequestMapping(value = { "/", "/news" }, method = RequestMethod.GET)
 	public String getRecords(Model model, Integer offset, Integer maxResults) {
 		model.addAttribute("records", recordService.getRecords(offset, maxResults));
 		model.addAttribute("count", recordService.count());
 		model.addAttribute("offset", offset);
-		return "/list";
+		return "/news";
+	}
+
+	@RequestMapping("newsContent")
+	public String newsContent(Model model, @RequestParam String content) {
+		model.addAttribute("content", content);
+		return "/newsContent";
 	}
 
 	@RequestMapping("searchRecord")

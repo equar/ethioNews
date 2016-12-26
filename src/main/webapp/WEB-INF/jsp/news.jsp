@@ -16,7 +16,9 @@
 				<tbody>
 					<c:forEach items="${records}" var="rec" varStatus="itr">
 						<tr>
-							<th><p>
+							<%-- <td>${offset + itr.index +1 }</td> --%>
+							<th>
+								<p>
 									<a href="${rec.link}" target="_blank"> <c:out
 											value="${rec.title}" />
 									</a>
@@ -25,16 +27,18 @@
 									<c:out value="${rec.description}" />
 								</p>
 								<p>
-									<a href="${rec.content}" target="_blank"> READ MORE >></a>
-								</p></th>
+									<a href="newsContent?content=<c:out value='${rec.content}'/>"
+										target="_blank"> READ MORE >></a>
+								</p>
+							</th>
 
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 
-			<tag:paginate max="10" offset="${offset}" count="${count}"
-				uri="/jsp/list" next="&raquo;" previous="&laquo;" />
+			<tag:paginate max="10" offset="${offset}" count="${count}" uri="news"
+				next="&raquo;" previous="&laquo;" />
 
 		</div>
 	</div>
