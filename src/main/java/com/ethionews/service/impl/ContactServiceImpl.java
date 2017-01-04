@@ -47,4 +47,20 @@ public class ContactServiceImpl implements ContactService {
 		return contactDao.getAllContacts(search);
 	}
 
+	@Override
+	public List<Contact> getReadContacts() {
+		return contactDao.getAllContacts(true);
+	}
+
+	@Override
+	public List<Contact> getNewContacts() {
+		return contactDao.getAllContacts(false);
+	}
+
+	@Override
+	public void updateContactStatus(long id) {
+		contactDao.updateContactStatus(id);
+
+	}
+
 }

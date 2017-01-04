@@ -91,4 +91,25 @@ public class ContactController {
 		return new ModelAndView(EnConstants.MEDIA_LIST, EnConstants.MEDIA_LIST, contactList);
 	}
 
+	@RequestMapping("getReadContacts")
+	public ModelAndView getReadContacts() {
+		logger.info("Getting the all read Contacts.");
+		List<Contact> contactList = contactService.getReadContacts();
+		return new ModelAndView("contactList", "contactList", contactList);
+	}
+
+	@RequestMapping("getNewContacts")
+	public ModelAndView getNewContacts() {
+		logger.info("Getting the all un read Contacts.");
+		List<Contact> contactList = contactService.getNewContacts();
+		return new ModelAndView("contactList", "contactList", contactList);
+	}
+
+	@RequestMapping("updateContactStatus")
+	public ModelAndView updateContactStatus(@RequestParam long id) {
+		logger.info("updating Contact status. Id : " + id);
+		contactService.updateContactStatus(id);
+		return new ModelAndView("redirect:getAllContacts");
+	}
+
 }

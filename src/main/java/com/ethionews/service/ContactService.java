@@ -17,4 +17,10 @@ public interface ContactService {
 
 	public List<Contact> getAllContacts(String search);
 
+	public List<Contact> getReadContacts();
+
+	public List<Contact> getNewContacts();
+
+	public void updateContactStatus(long id);
+
 }

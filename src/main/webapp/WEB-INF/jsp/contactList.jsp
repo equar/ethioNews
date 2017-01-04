@@ -7,9 +7,7 @@
 				<div align="left">
 					<b>Contact List</b>
 				</div>
-				<div align="right">
-					<a href="createContact">Add New Contact</a>
-				</div>
+
 			</h3>
 		</div>
 		<div class="panel-body">

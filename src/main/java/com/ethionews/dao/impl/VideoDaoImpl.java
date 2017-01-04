@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ethionews.dao.VideoDao;
+import com.ethionews.model.Media;
 import com.ethionews.model.User;
 import com.ethionews.model.Video;
 import com.ethionews.util.HibernateUtil;
+
 @Repository("videoDao")
 public class VideoDaoImpl implements VideoDao {
 	@Autowired
@@ -29,11 +31,7 @@ public class VideoDaoImpl implements VideoDao {
 	public void deleteVideo(long id) {
 		Video video = new Video();
 		video.setId(id);
-		User user = new User();
-		user.setId(id);
-		hibernateUtil.delete(id, User.class);
 		hibernateUtil.delete(video);
-
 	}
 
 	@Override
@@ -57,7 +55,7 @@ public class VideoDaoImpl implements VideoDao {
 			long roleId = ((long) videoObject[0]);
 			String roleName = (String) videoObject[1];
 			video.setId(roleId);
-			//video.setRoleType(roleName);
+			// video.setRoleType(roleName);
 			videos.add(video);
 		}
 		System.out.println(videos);

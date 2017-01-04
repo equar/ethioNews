@@ -15,7 +15,8 @@
 
 		<div class="panel-body">
 			<form:form id="videoForm" cssClass="form-horizontal"
-				modelAttribute="video" method="post" action="saveVideo">
+				modelAttribute="video" method="post" action="saveVideo"
+				enctype="multipart/form-data">
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">
@@ -49,9 +50,9 @@
 				</div>
 
 				<div class="form-group">
-					<form:label path="filename" cssClass="control-label col-xs-3">Filename</form:label>
+					<form:label path="filename" cssClass="control-label col-xs-3">File to upload:</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="filename"
+						<input type="file" path="filename" name="file"
 							value="${videoObject.filename}" />
 					</div>
 				</div>

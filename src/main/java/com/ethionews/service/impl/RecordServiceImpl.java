@@ -46,7 +46,7 @@ public class RecordServiceImpl implements RecordService {
 		List<SyndEntry> entries = feed.getEntries();
 		Iterator<SyndEntry> itEntries = entries.iterator();
 		Date today = Calendar.getInstance().getTime();
-		List<Record> records = new ArrayList<Record>();
+		List<Record> records = new ArrayList<>();
 		// getting all records
 		List<Record> drRecords = recordDao.getAllRecords();
 		List<String> links = new ArrayList<>();
@@ -56,10 +56,12 @@ public class RecordServiceImpl implements RecordService {
 
 		while (itEntries.hasNext()) {
 			SyndEntry entry = itEntries.next();
+			
 			if (!links.contains(entry.getLink())) {
 				record = new Record();
 				record.setTitle(entry.getTitle());
 				record.setLink(entry.getLink());
+				
 				// record.setDescription(entry.getDescription().toString());
 				record.setDescription(entry.getTitle());
 				// record.setDate(entry.getPublishedDate());

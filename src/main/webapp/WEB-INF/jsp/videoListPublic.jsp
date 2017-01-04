@@ -8,7 +8,7 @@
 					<b>Video List</b>
 				</div>
 				<div align="right">
-					<a href="createVideo">Add New Video</a>
+					<!-- <a href="createVideo">Add New Video</a> -->
 				</div>
 			</h3>
 		</div>
@@ -30,30 +30,17 @@
 				</form>
 
 				<table class="table table-hover table-bordered">
-					<thead style="background-color: #bce8f1;">
-						<tr>
-							<th>Id</th>
-							<th>Title</th>
-							<th>Desc</th>
-							<th>Category</th>
-							<th>Filename</th>
-							<th>Date</th>
-							<th>Edit</th>
-							<th>Delete</th>
-						</tr>
-					</thead>
+
 					<tbody>
 						<c:forEach items="${videoList}" var="vid">
 							<tr>
-								<th><c:out value="${vid.id}" /></th>
-								<th><c:out value="${vid.title}" /></th>
-								<th><c:out value="${vid.description}" /></th>
-								<th><c:out value="${vid.category}" /></th>
-								<th><a href="${vid.filename}" target="_blank"><c:out
-											value="${vid.filename}" /></a></th>
+
+								<th><video width="400" controls>
+										<source src=<c:out value="${vid.filename}" /> type="video/mp4">
+									</video></th>
+
 								<th><c:out value="${vid.date}" /></th>
-								<th><a href="editVideo?id=<c:out value='${vid.id}'/>">Edit</a></th>
-								<th><a href="deleteVideo?id=<c:out value='${vid.id}'/>">Delete</a></th>
+
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -31,7 +31,7 @@ public class User implements Serializable {
 	private String email;
 	private boolean enabled;
 	private Set<UserRole> userRole = new HashSet<>();
-	private Set<Video> video = new HashSet<>();
+	//private Set<Video> video = new HashSet<>();
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -100,13 +100,13 @@ public class User implements Serializable {
 		this.userRole = userRole;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	public Set<Video> getVideo() {
 		return video;
 	}
 
 	public void setVideo(Set<Video> video) {
 		this.video = video;
-	}
+	}*/
 
 }

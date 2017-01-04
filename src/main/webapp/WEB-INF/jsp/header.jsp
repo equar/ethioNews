@@ -36,9 +36,9 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="getAllRecords">News</a></li>
+				<li class="active"><a href="news">News</a></li>
+				<li><a href="getPublicVideos">Video</a></li>
 				<li><a href="getMediasToSubscribe">Subscribe</a></li>
-				<li><a href="getAllVideos">Video</a></li>
 				<!-- <li><a href="printcancel">TV Channels</a></li>
 				<li><a href="writeus">Radio</a></li>
 				<li><a href="writeus">News Papers</a></li>

@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<form:label path="frequency">Frequency:</form:label>
+						<form:label path="frequency" cssClass="control-label col-xs-3">Frequency:</form:label>
 						<div class="col-xs-3">
 							<form:select cssClass="form-control" path="frequency">
 								<option value="daily">Daily</option>

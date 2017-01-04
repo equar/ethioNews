@@ -45,20 +45,70 @@ public class ContactDaoImpl implements ContactDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Contact> getAllContacts(String roleType) {
-		String query = "SELECT e.* FROM Contact e WHERE e.roleType like '%" + roleType + "%'";
+	public List<Contact> getAllContacts(String search) {
+		String query = "SELECT e.* FROM Contact e WHERE e.name like '%" + search + "%'";
 		List<Object[]> contactObjects = hibernateUtil.fetchAll(query);
-		List<Contact> contacts = new ArrayList<Contact>();
+		List<Contact> contacts = new ArrayList<>();
+		long id;
+		String name;
+		String email;
+		String subject;
+		String message;
 		for (Object[] contactObject : contactObjects) {
 			Contact contact = new Contact();
-			long roleId = ((long) contactObject[0]);
-			String roleName = (String) contactObject[1];
-			contact.setId(roleId);
-			// contact.setRoleType(roleName);
+			id = (long) contactObject[0];
+			name = (String) contactObject[1];
+			email = (String) contactObject[2];
+			subject = (String) contactObject[3];
+			message = (String) contactObject[4];
+
+			contact.setId(id);
+			contact.setName(name);
+			contact.setEmail(email);
+			contact.setSubject(subject);
+			contact.setMessage(message);
+
 			contacts.add(contact);
 		}
-		System.out.println(contacts);
+
 		return contacts;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Contact> getAllContacts(Boolean status) {
+		String query = "SELECT e.* FROM Contact e WHERE e.status=" + status;
+		List<Object[]> contactObjects = hibernateUtil.fetchAll(query);
+		List<Contact> contacts = new ArrayList<>();
+		long id;
+		String name;
+		String email;
+		String subject;
+		String message;
+		for (Object[] contactObject : contactObjects) {
+			Contact contact = new Contact();
+			id = (long) contactObject[0];
+			name = (String) contactObject[1];
+			email = (String) contactObject[2];
+			subject = (String) contactObject[3];
+			message = (String) contactObject[4];
+
+			contact.setId(id);
+			contact.setName(name);
+			contact.setEmail(email);
+			contact.setSubject(subject);
+			contact.setMessage(message);
+
+			contacts.add(contact);
+		}
+
+		return contacts;
+	}
+
+	@Override
+	public void updateContactStatus(long id) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

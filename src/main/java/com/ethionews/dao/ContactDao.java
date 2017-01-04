@@ -17,4 +17,7 @@ public interface ContactDao {
 
 	public List<Contact> getAllContacts(String search);
 
+	public List<Contact> getAllContacts(Boolean status);
+
+	public void updateContactStatus(long id);
 }
