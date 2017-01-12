@@ -26,14 +26,14 @@ import com.ethionews.util.EnConstants;
 public class MediaController {
 	private static final Logger logger = Logger.getLogger(MediaController.class);
 
-	@Autowired
+	/*@Autowired
 	@Qualifier("mediaValidator")
 	private Validator validator;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
-	}
+	}*/
 
 	@Autowired
 	private MediaService mediaService;

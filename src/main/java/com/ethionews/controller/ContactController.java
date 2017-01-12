@@ -100,7 +100,7 @@ public class ContactController {
 
 	@RequestMapping("getNewContacts")
 	public ModelAndView getNewContacts() {
-		logger.info("Getting the all un read Contacts.");
+		logger.info("Getting all un read Contacts.");
 		List<Contact> contactList = contactService.getNewContacts();
 		return new ModelAndView("contactList", "contactList", contactList);
 	}

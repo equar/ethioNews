@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ethionews.model.Contact;
 import com.ethionews.model.Media;
 import com.ethionews.model.Subscription;
 import com.ethionews.service.MediaService;
@@ -41,7 +42,7 @@ public class SubscriptionController {
 	public ModelAndView getAllMediasToSubscribe(@ModelAttribute Subscription subscription) {
 		logger.info("Getting the all Medias to subscribe.");
 		List<Media> mediaList = mediaService.getAllMediasToSubscribe();
-		return new ModelAndView("subscribeList", "mediaList", mediaList);
+		return new ModelAndView("subscriptionForm", "mediaList", mediaList);
 	}
 
 	@RequestMapping("subscribeToMedias")
@@ -56,4 +57,12 @@ public class SubscriptionController {
 		}
 		return new ModelAndView("redirect:getMediasToSubscribe");
 	}
+
+	@RequestMapping("getAllSubscribers")
+	public ModelAndView getAllSubscription() {
+		logger.info("Getting all Subscribers.");
+		List<Subscription> subscriptionList = subscriptionService.getAllSubscription();
+		return new ModelAndView("subscriptionList", "subscriptionList", subscriptionList);
+	}
+
 }

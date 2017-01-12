@@ -34,6 +34,11 @@ public class HibernateUtil {
 		return entity;
 	}
 
+	public <T> void update(String query) {
+		sessionFactory.getCurrentSession().createNativeQuery(query);
+
+	}
+
 	public <T> void delete(final T entity) {
 		sessionFactory.getCurrentSession().delete(entity);
 	}
@@ -45,16 +50,15 @@ public class HibernateUtil {
 
 	@SuppressWarnings("unchecked")
 	public <T> List<T> fetchAll(Class<T> entityClass) {
-		return sessionFactory.getCurrentSession().createQuery(" FROM " + entityClass.getName()).list();
+		return sessionFactory.getCurrentSession().createQuery(" FROM " + entityClass.getName()).getResultList();
 	}
 
 	@SuppressWarnings("rawtypes")
 	public <T> List fetchAll(String query) {
-		return sessionFactory.getCurrentSession().createSQLQuery(query).list();
+		return sessionFactory.getCurrentSession().createNativeQuery(query).getResultList();
 
 	}
 
-	@SuppressWarnings("unchecked")
 	public <T> T fetchById(Serializable id, Class<T> entityClass) {
 		return (T) sessionFactory.getCurrentSession().get(entityClass, id);
 	}

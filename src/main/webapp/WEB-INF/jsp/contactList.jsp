@@ -7,7 +7,12 @@
 				<div align="left">
 					<b>Contact List</b>
 				</div>
-
+				<div align="center">
+					<a href="getNewContacts">New Contact</a>
+				</div>
+				<div align="right">
+					<a href="getReadContacts">Old Contact</a>
+				</div>
 			</h3>
 		</div>
 		<div class="panel-body">
@@ -35,7 +40,7 @@
 							<th>Email</th>
 							<th>subject</th>
 							<th>Message</th>
-							<th>Edit</th>
+							<th>Read</th>
 							<th>Delete</th>
 						</tr>
 					</thead>
@@ -47,7 +52,8 @@
 								<th><c:out value="${cont.email}" /></th>
 								<th><c:out value="${cont.subject}" /></th>
 								<th><c:out value="${cont.message}" /></th>
-								<th><a href="editContact?id=<c:out value='${cont.id}'/>">Read</a></th>
+								<th><a
+									href="updateContactStatus?id=<c:out value='${cont.id}'/>">Read</a></th>
 								<th><a href="deleteContact?id=<c:out value='${cont.id}'/>">Delete</a></th>
 							</tr>
 						</c:forEach>

@@ -1,5 +1,6 @@
 package com.ethionews.dao.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,11 +88,11 @@ public class ContactDaoImpl implements ContactDao {
 		String message;
 		for (Object[] contactObject : contactObjects) {
 			Contact contact = new Contact();
-			id = (long) contactObject[0];
+			id = ((BigInteger) contactObject[0]).longValue();
 			name = (String) contactObject[1];
 			email = (String) contactObject[2];
 			subject = (String) contactObject[3];
-			message = (String) contactObject[4];
+			message = (String) contactObject[5];
 
 			contact.setId(id);
 			contact.setName(name);
@@ -107,7 +108,8 @@ public class ContactDaoImpl implements ContactDao {
 
 	@Override
 	public void updateContactStatus(long id) {
-		// TODO Auto-generated method stub
+		String query = "UPDATE Contact set status=" + true + "WHERE id=" + id;
+		hibernateUtil.update(query);
 
 	}
 
