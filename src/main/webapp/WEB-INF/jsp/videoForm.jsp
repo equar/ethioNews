@@ -50,12 +50,20 @@
 				</div>
 
 				<div class="form-group">
+					<form:label path="filename" cssClass="control-label col-xs-3">File Path From YouTube:</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="filename"
+							value="${videoObject.filename}" />
+					</div>
+				</div>
+
+				<%-- <div class="form-group">
 					<form:label path="filename" cssClass="control-label col-xs-3">File to upload:</form:label>
 					<div class="col-xs-6">
 						<input type="file" path="filename" name="file"
 							value="${videoObject.filename}" />
 					</div>
-				</div>
+				</div> --%>
 
 				<div class="form-group">
 					<div class="row">

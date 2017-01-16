@@ -3,6 +3,7 @@ package com.ethionews.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ethionews.model.Event;
 import com.ethionews.model.Video;
 import com.ethionews.service.EventService;
+import com.ethionews.util.EthioUtil;
 
 @Controller
 public class EventController {
@@ -48,37 +50,14 @@ public class EventController {
 		logger.info("Saving the Event. Data : " + event);
 		// if event id is 0 then creating the event other updating the
 		// event
-		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
+		String filePath = EthioUtil.uploadFileToServer(file, "eventFiles");
+		event.setImagePath(filePath);
+		event.setStatus(false);
 
-				// Creating the directory to store file
-				String rootPath = System.getProperty("catalina.home");
-				File dir = new File(rootPath + File.separator + "eventFiles");
-				if (!dir.exists()) {
-					dir.mkdirs();
-				}
-
-				// Create the file on server
-				File serverFile = new File(dir.getAbsolutePath() + File.separator + file.getOriginalFilename());
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();
-
-				event.setImagePath(serverFile.toString());
-				event.setStatus(false);
-
-				if (event.getId() == 0) {
-					eventService.createEvent(event);
-				} else {
-					eventService.updateEvent(event);
-				}
-
-				logger.info("Server File Location=" + serverFile.getAbsolutePath());
-
-			} catch (Exception e) {
-				logger.info(e.getMessage());
-			}
+		if (event.getId() == 0) {
+			eventService.createEvent(event);
+		} else {
+			eventService.updateEvent(event);
 		}
 
 		return new ModelAndView("redirect:getAllEvents");
@@ -108,7 +87,12 @@ public class EventController {
 	@RequestMapping("getPublicEvents")
 	public ModelAndView getPublicVideos() {
 		logger.info("Getting the all Videos.");
-		List<Event> eventList = eventService.getAllEvents();
+		List<Event> eventList = null;
+		try {
+			eventList = eventService.getAllPublicEvents();
+		} catch (IOException e) {
+			logger.info("There is an exception in file:" + e);
+		}
 		return new ModelAndView("eventListPublic", "eventList", eventList);
 	}
 

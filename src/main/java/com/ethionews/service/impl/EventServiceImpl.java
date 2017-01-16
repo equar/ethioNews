@@ -1,5 +1,6 @@
 package com.ethionews.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,16 @@ import com.ethionews.dao.EventDao;
 import com.ethionews.dao.MediaDao;
 import com.ethionews.model.Event;
 import com.ethionews.service.EventService;
+import com.ethionews.util.EthioUtil;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import org.apache.commons.codec.binary.Base64;
 
 @Service("eventService")
 @Transactional
@@ -36,6 +47,12 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public List<Event> getAllEvents() {
 		return eventDao.getAllEvents();
+	}
+
+	@Override
+	public List<Event> getAllPublicEvents() throws IOException {
+		List<Event> imageEvents = eventDao.getAllEvents();
+		return getAllEventsWithImage(imageEvents);
 	}
 
 	@Override
@@ -72,6 +89,23 @@ public class EventServiceImpl implements EventService {
 	public List<Event> getAllDisabledEvents() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	private List<Event> getAllEventsWithImage(List<Event> events) throws IOException {
+		List<Event> imageEvents = new ArrayList<>();
+		String base64Encoded;
+		for (int i = 0; i < events.size(); i++) {
+			Event event = new Event();
+			base64Encoded = EthioUtil.getBase64Encoded(events.get(i).getImagePath());
+			event.setId(events.get(i).getId());
+			event.setType(events.get(i).getType());
+			event.setAddress(events.get(i).getAddress());
+			event.setImagePath(base64Encoded);
+			event.setStatus(events.get(i).isStatus());
+
+			imageEvents.add(event);
+		}
+		return imageEvents;
 	}
 
 }

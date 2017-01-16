@@ -56,24 +56,18 @@ public class RecordServiceImpl implements RecordService {
 
 		while (itEntries.hasNext()) {
 			SyndEntry entry = itEntries.next();
-			
+
 			if (!links.contains(entry.getLink())) {
 				record = new Record();
 				record.setTitle(entry.getTitle());
 				record.setLink(entry.getLink());
-				
-				// record.setDescription(entry.getDescription().toString());
-				record.setDescription(entry.getTitle());
-				// record.setDate(entry.getPublishedDate());
+				record.setDescription(entry.getDescription().toString());
 				record.setDate(today);
-				// doc =
-				// Jsoup.connect(entry.getLink()).ignoreContentType(true).timeout(10
-				// * 1000).get();
-				// record.setContent(doc.text());
-				// record.setContent(entry.getDescription().toString());
-				record.setContent(entry.getTitle());
-				record.setMedia(media);
 
+				doc = Jsoup.connect(entry.getLink()).ignoreContentType(true).timeout(10 * 1000).get();
+				record.setContent(doc.text());
+
+				record.setMedia(media);
 				records.add(record);
 			}
 		}

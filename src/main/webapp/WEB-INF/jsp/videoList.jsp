@@ -38,6 +38,7 @@
 							<th>Category</th>
 							<th>Filename</th>
 							<th>Date</th>
+							<th>Test</th>
 							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
@@ -52,6 +53,8 @@
 								<th><a href="${vid.filename}" target="_blank"><c:out
 											value="${vid.filename}" /></a></th>
 								<th><c:out value="${vid.date}" /></th>
+								<th><a
+									href="testVideo?filename=<c:out value='${vid.filename}'/>">Test</a></th>
 								<th><a href="editVideo?id=<c:out value='${vid.id}'/>">Edit</a></th>
 								<th><a href="deleteVideo?id=<c:out value='${vid.id}'/>">Delete</a></th>
 							</tr>

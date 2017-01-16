@@ -35,9 +35,8 @@
 						<c:forEach items="${videoList}" var="vid">
 							<tr>
 
-								<th><video width="400" controls>
-										<source src=<c:out value="${vid.filename}" /> type="video/mp4">
-									</video></th>
+								<th><iframe width="420" height="345"
+										src=<c:out value="${vid.filename}" />> </iframe></th>
 
 								<th><c:out value="${vid.date}" /></th>
 

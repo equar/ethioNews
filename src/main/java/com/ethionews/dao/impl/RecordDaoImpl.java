@@ -22,10 +22,13 @@ public class RecordDaoImpl implements RecordDao {
 	@Override
 	public long createRecord(List<Record> records) {
 		long result = 1;
+		int count = 0;
 		Record record;
 		for (int i = 0; i < records.size(); i++) {
 			record = records.get(i);
-			result = (Long) hibernateUtil.create(record);
+			count++;
+			result = (Long) hibernateUtil.create(record, count);
+
 		}
 
 		return result;
@@ -40,9 +43,6 @@ public class RecordDaoImpl implements RecordDao {
 	public void deleteRecord(long id) {
 		Record record = new Record();
 		record.setId(id);
-		User user = new User();
-		user.setId(id);
-		hibernateUtil.delete(id, User.class);
 		hibernateUtil.delete(record);
 
 	}

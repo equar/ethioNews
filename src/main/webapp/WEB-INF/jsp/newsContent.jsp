@@ -4,14 +4,19 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>News List</b>
+					<b>News Details</b>
 				</div>
-
+				<div align="right">
+					<a href="news">News List</a>
+				</div>
 			</h3>
 		</div>
-		<div class="panel-body"></div>
+		<div class="panel-body">
 
-		<p>${content}</p>
+			<p>${content}</p>
+		</div>
 	</div>
+</div>
 
-	<%@include file="footer.jsp"%>
+
+<%@include file="footer.jsp"%>

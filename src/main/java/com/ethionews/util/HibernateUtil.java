@@ -29,6 +29,13 @@ public class HibernateUtil {
 		return sessionFactory.getCurrentSession().save(entity);
 	}
 
+	public <T> Serializable create(final T entity, int count) {
+		if (count % 10 == 0) {
+			sessionFactory.getCurrentSession().flush();
+		}
+		return sessionFactory.getCurrentSession().save(entity);
+	}
+
 	public <T> T update(final T entity) {
 		sessionFactory.getCurrentSession().update(entity);
 		return entity;

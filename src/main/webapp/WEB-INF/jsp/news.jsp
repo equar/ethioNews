@@ -27,8 +27,8 @@
 									<c:out value="${rec.description}" />
 								</p>
 								<p>
-									<a href="newsContent?content=<c:out value='${rec.content}'/>"
-										target="_blank"> READ MORE >></a>
+									<a href="newsContent?content=<c:out value='${rec.content}'/>">
+										READ MORE >></a>
 								</p>
 							</th>
 

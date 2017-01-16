@@ -10,6 +10,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ethionews.model.Media;
 import com.ethionews.model.Video;
 import com.ethionews.service.VideoService;
 
@@ -42,7 +46,30 @@ public class VideoController {
 	}
 
 	@RequestMapping("saveVideo")
-	public ModelAndView saveVideo(@ModelAttribute Video video, @RequestParam("file") MultipartFile file) {
+	public String saveVideo(Model model, @Validated Video video, BindingResult result) {
+		logger.info("Saving the Media. Data : " + video);
+		// if media id is 0 then creating the media other updating the
+		// media
+		String returnVal = "redirect:getAllVideos";
+		Date today = Calendar.getInstance().getTime();
+		video.setDate(today);
+
+		if (result.hasErrors()) {
+			return "videoForm";
+		} else {
+			if (video.getId() == 0) {
+				videoService.createVideo(video);
+			} else {
+				videoService.updateVideo(video);
+			}
+
+		}
+
+		return returnVal;
+	}
+
+	@RequestMapping("saveVideoTemp")
+	public ModelAndView saveVideoTemp(@ModelAttribute Video video, @RequestParam("file") MultipartFile file) {
 		logger.info("Saving the Video. Data : " + video);
 		// if video id is 0 then creating the video other updating the
 		// video
@@ -148,6 +175,12 @@ public class VideoController {
 		} else {
 			return "You failed to upload " + name + " because the file was empty.";
 		}
+	}
+
+	@RequestMapping("testVideo")
+	public ModelAndView testVideo(@RequestParam String filename) {
+		logger.info("Testing the Video. Id : " + filename);
+		return new ModelAndView("videoTest", "videoTest", filename);
 	}
 
 }

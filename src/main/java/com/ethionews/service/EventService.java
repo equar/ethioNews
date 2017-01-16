@@ -1,5 +1,6 @@
 package com.ethionews.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.ethionews.model.Event;
@@ -24,4 +25,6 @@ public interface EventService {
 	public List<Event> getAllEnabledEvents();
 
 	public List<Event> getAllDisabledEvents();
+
+	List<Event> getAllPublicEvents() throws IOException;
 }

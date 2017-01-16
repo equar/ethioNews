@@ -50,7 +50,6 @@ public class RecordController {
 				recordService.createRecord(media);
 			} catch (IllegalArgumentException | IOException | FeedException e) {
 				logger.info(e.getMessage());
-				e.printStackTrace();
 			}
 		}
 		return new ModelAndView("redirect:getAllRecords");
@@ -80,7 +79,7 @@ public class RecordController {
 	public ModelAndView deleteRecord(@RequestParam long id) {
 		logger.info("Deleting the Record. Id : " + id);
 		recordService.deleteRecord(id);
-		return new ModelAndView("redirect:getAllRecords");
+		return new ModelAndView("redirect:getAllRecordsAdmin");
 	}
 
 	@RequestMapping("getAllRecords")
@@ -88,6 +87,13 @@ public class RecordController {
 		logger.info("Getting the all Records.");
 		List<Record> recordList = recordService.getAllRecords();
 		return new ModelAndView("recordList", "recordList", recordList);
+	}
+
+	@RequestMapping("getAllRecordsAdmin")
+	public ModelAndView getAllRecordsAdmin() {
+		logger.info("Getting the all Records.");
+		List<Record> recordList = recordService.getAllRecords();
+		return new ModelAndView("recordListAdmin", "recordList", recordList);
 	}
 
 	@RequestMapping(value = { "/", "/news" }, method = RequestMethod.GET)

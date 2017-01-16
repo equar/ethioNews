@@ -12,15 +12,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="<c:url value="/resources/css/ethioNews.css" />"
+	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="<c:url value="/resources/js/ethioNews.js" />">
+<script type="text/javascript"
+	src="<c:url value="/resources/js/ethioNews.js" />">
 	
 </script>
-<link href="<c:url value="/resources/css/ethioNews.css" />"
-	rel="stylesheet">
+<script type="text/javascript"
+	src="<c:url value="/resources/js/countries.js" />">
+	
+</script>
+
+<script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#date").datepicker();
+	});
+</script>
 </head>
 
 <body>

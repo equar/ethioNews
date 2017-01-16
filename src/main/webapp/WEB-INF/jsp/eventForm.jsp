@@ -18,24 +18,87 @@
 				modelAttribute="event" method="post" action="saveEvent"
 				enctype="multipart/form-data">
 				<span id="error"></span>
+
 				<div class="form-group">
-					<div class="control-label col-xs-3">
-						<form:label path="type">Type</form:label>
-					</div>
+					<form:label path="type" cssClass="control-label col-xs-3">Event Type</form:label>
+					<form:hidden path="id" value="${eventObject.id}" />
 					<div class="col-xs-6">
-						<form:hidden path="id" value="${eventObject.id}" />
-						<form:input cssClass="form-control" path="type"
-							value="${eventObject.type}" />
-						<form:errors path="type" cssStyle="color: #ff0000;" />
+						<form:select cssClass="form-control" path="type">
+							<option value="concert">Concert</option>
+							<option value="party">Party</option>
+							<option value="meeting">Meeting</option>
+							<option value="seminar">Seminar</option>
+						</form:select>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<form:label path="address" cssClass="control-label col-xs-3">Address</form:label>
+					<form:label path="description" cssClass="control-label col-xs-3">Event Description</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="description"
+							value="${eventObject.description}" />
+						<form:errors path="description" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="address" cssClass="control-label col-xs-3">Street address</form:label>
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="address"
 							value="${eventObject.address}" />
 						<form:errors path="address" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="city" cssClass="control-label col-xs-3">City</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="city"
+							value="${eventObject.city}" />
+						<form:errors path="city" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="zipCode" cssClass="control-label col-xs-3">Zip Code</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="zipCode"
+							value="${eventObject.zipCode}" />
+						<form:errors path="zipCode" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="country" cssClass="control-label col-xs-3">Country</form:label>
+					<div class="col-xs-6">
+						<form:select cssClass="form-control" path="country"></form:select>
+					</div>
+				</div>
+				<div class="form-group">
+					<form:label path="state" cssClass="control-label col-xs-3">State</form:label>
+					<div class="col-xs-6">
+						<form:select cssClass="form-control" path="state"></form:select>
+					</div>
+				</div>
+				<script language="javascript">
+					populateCountries("country", "state");
+				</script>
+
+				<div class="form-group">
+					<form:label path="date" cssClass="control-label col-xs-3">Event Date</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="date"
+							value="${eventObject.date}" />
+						<form:errors path="date" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="time" cssClass="control-label col-xs-3">Time starts</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="time"
+							value="${eventObject.time}" />
+						<form:errors path="time" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
