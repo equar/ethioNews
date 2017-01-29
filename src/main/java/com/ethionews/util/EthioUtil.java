@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.multipart.MultipartFile;
@@ -78,19 +80,51 @@ public class EthioUtil {
 		return new String(encodeBase64, "UTF-8");
 	}
 
-	public static void writeToFile(String filePath, String content) {
+	public static String writeFileToServer(String content, String dirName) {
 		Random randomGenerator = new Random();
 		int randomInt = randomGenerator.nextInt(1000000);
+		String filePath = null;
+		if (null != content) {
+			try {
+				byte[] bytes = content.getBytes();
 
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+				// Creating the directory to store file
+				String rootPath = System.getProperty("catalina.home");
+				File dir = new File(rootPath + File.separator + dirName);
+				if (!dir.exists()) {
+					dir.mkdirs();
+				}
 
-			bw.write(content);
+				// Create the file on server
+				File serverFile = new File(dir.getAbsolutePath() + File.separator + randomInt + ".txt");
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+				stream.write(bytes);
+				stream.close();
+				filePath = serverFile.toString();
 
-		} catch (IOException e) {
-
-			e.printStackTrace();
-
+			} catch (Exception e) {
+				logger.info(e.getMessage());
+			}
 		}
+		return filePath;
+
+	}
+
+	public static String readFileFromServer(String filePath) {
+		String fileContents = null;
+		try (FileInputStream inputStream = new FileInputStream(filePath)) {
+
+			fileContents = IOUtils.toString(inputStream);
+
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		return fileContents;
 	}
 
 	public static String getClientIpAddress(HttpServletRequest request) {

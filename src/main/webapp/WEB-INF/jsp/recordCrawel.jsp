@@ -12,11 +12,12 @@
 		</div>
 		<div class="panel-body"></div>
 
-		<div></div>
-		If you want to crawel news in case the auto crawel is not working,
-		Please click on <a href="createRecord">Start Manually</a>
+		<div>
+			If you want to crawel news in case the auto crawel is not working,
+			Please click on <a href="createRecord">Start Manually</a>
+		</div>
+		<div>${status}</div>
 	</div>
-	<div>${status}</div>
 
 </div><%@include file="adminPanel.jsp"%>
 <%@include file="footer.jsp"%>

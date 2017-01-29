@@ -21,6 +21,7 @@ import com.ethionews.dao.RecordDao;
 import com.ethionews.model.Media;
 import com.ethionews.model.Record;
 import com.ethionews.service.RecordService;
+import com.ethionews.util.EthioUtil;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
@@ -32,9 +33,11 @@ import com.sun.syndication.io.XmlReader;
 public class RecordServiceImpl implements RecordService {
 	@Autowired
 	private RecordDao recordDao;
+	private static final String newsDirectory = "newsFile";
 
 	@Override
 	public long createRecord(Media media) throws IOException, IllegalArgumentException, FeedException {
+		String filePath;
 		Document doc = null;
 		Record record = null;
 		URL url = new URL("http://feeds.bbci.co.uk/news/world/rss.xml?edition=uk#");
@@ -63,14 +66,11 @@ public class RecordServiceImpl implements RecordService {
 				record.setLink(entry.getLink());
 				record.setDescription(entry.getDescription().toString());
 				record.setDate(today);
-
-				/*
-				 * doc = Jsoup.connect(entry.getLink()).ignoreContentType(true).
-				 * timeout(10 * 1000).get(); record.setContent(doc.text());
-				 */
-				record.setContent(entry.getTitle());
-
+				doc = Jsoup.connect(entry.getLink()).ignoreContentType(true).timeout(10 * 1000).get();
+				filePath = EthioUtil.writeFileToServer(doc.text(), newsDirectory);
+				record.setContent(filePath);
 				record.setMedia(media);
+
 				records.add(record);
 			}
 		}
