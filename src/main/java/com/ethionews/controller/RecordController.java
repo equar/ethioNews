@@ -21,6 +21,7 @@ import com.ethionews.model.Record;
 import com.ethionews.model.Record;
 import com.ethionews.service.MediaService;
 import com.ethionews.service.RecordService;
+import com.ethionews.util.EthioUtil;
 import com.sun.syndication.io.FeedException;
 
 @Controller
@@ -102,12 +103,14 @@ public class RecordController {
 		model.addAttribute("records", recordService.getRecords(offset, maxResults));
 		model.addAttribute("count", recordService.count());
 		model.addAttribute("offset", offset);
+
 		return "/news";
 	}
 
 	@RequestMapping("newsContent")
 	public String newsContent(Model model, @RequestParam String content) {
-		model.addAttribute("content", content);
+		String fileContents = EthioUtil.readFileFromServer(content);
+		model.addAttribute("content", fileContents);
 		return "/newsContent";
 	}
 

@@ -50,7 +50,7 @@ public class Record implements Serializable {
 		this.title = title;
 	}
 
-	@Column(name = "description", nullable = true)
+	@Column(name = "description", length = 500, nullable = true)
 	public String getDescription() {
 		return description;
 	}
