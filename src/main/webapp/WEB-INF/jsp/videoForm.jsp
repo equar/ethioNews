@@ -26,6 +26,7 @@
 						<form:hidden path="id" value="${videoObject.id}" />
 						<form:input cssClass="form-control" path="title"
 							value="${videoObject.title}" />
+						<form:errors path="title" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -34,6 +35,7 @@
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="description"
 							value="${videoObject.description}" />
+						<form:errors path="description" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -46,6 +48,7 @@
 							<option value="enter">Entertainments</option>
 							<option value="prank">Pranks</option>
 						</form:select>
+						<form:errors path="category" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -54,6 +57,7 @@
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="filename"
 							value="${videoObject.filename}" />
+						<form:errors path="filename" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 

@@ -25,14 +25,14 @@ import com.ethionews.util.EnConstants;
 public class ContactController {
 	private static final Logger logger = Logger.getLogger(ContactController.class);
 
-	/*
-	 * @Autowired
-	 * 
-	 * @Qualifier("contactValidator") private Validator validator;
-	 * 
-	 * @InitBinder private void initBinder(WebDataBinder binder) {
-	 * binder.setValidator(validator); }
-	 */
+	@Autowired
+	@Qualifier("contactValidator")
+	private Validator validator;
+
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
+	}
 
 	@Autowired
 	private ContactService contactService;
@@ -51,23 +51,22 @@ public class ContactController {
 	}
 
 	@RequestMapping("saveContact")
-	public String saveContact(Model model, @Validated Contact contact, BindingResult result) {
+	public ModelAndView saveContact(Model model, @Validated Contact contact, BindingResult result) {
 		logger.info("Saving the Contact. Data : " + contact);
 		// if contact id is 0 then creating the contact other updating the
 		// contact
-		String returnVal = "redirect:createContact";
+		String returnVal = "contactForm";
 		if (result.hasErrors()) {
-			return "contactForm";
+			return new ModelAndView(returnVal);
 		} else {
 			if (contact.getId() == 0) {
 				contactService.createContact(contact);
 			} else {
 				contactService.updateContact(contact);
 			}
-
+			return new ModelAndView(returnVal, "status", "You message has been added succesfully");
 		}
 
-		return returnVal;
 	}
 
 	@RequestMapping("deleteContact")
@@ -85,10 +84,10 @@ public class ContactController {
 	}
 
 	@RequestMapping("searchContact")
-	public ModelAndView searchContact(@RequestParam("roleType") String roleType) {
-		logger.info("Searching the Contact. Contact Names: " + roleType);
-		List<Contact> contactList = contactService.getAllContacts(roleType);
-		return new ModelAndView(EnConstants.MEDIA_LIST, EnConstants.MEDIA_LIST, contactList);
+	public ModelAndView searchContact(@RequestParam("name") String name) {
+		logger.info("Searching the Contact. Contact Names: " + name);
+		List<Contact> contactList = contactService.getAllContacts(name);
+		return new ModelAndView("contactList", "contactList", contactList);
 	}
 
 	@RequestMapping("getReadContacts")

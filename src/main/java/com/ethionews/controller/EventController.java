@@ -1,33 +1,44 @@
 package com.ethionews.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ethionews.model.ClientLocation;
 import com.ethionews.model.Event;
-import com.ethionews.model.Video;
+import com.ethionews.model.Media;
 import com.ethionews.service.EventService;
 import com.ethionews.util.EthioUtil;
 
 @Controller
 public class EventController {
 	private static final Logger logger = Logger.getLogger(EventController.class);
+
+	@Autowired
+	@Qualifier("eventValidator")
+	private Validator validator;
+
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
+	}
 
 	@Autowired
 	private EventService eventService;
@@ -46,21 +57,28 @@ public class EventController {
 	}
 
 	@RequestMapping("saveEvent")
-	public ModelAndView saveEvent(@ModelAttribute Event event, @RequestParam("file") MultipartFile file) {
+	public String saveEvent(Model model, @Validated Event event, @RequestParam("file") MultipartFile file,
+			BindingResult result) {
 		logger.info("Saving the Event. Data : " + event);
 		// if event id is 0 then creating the event other updating the
 		// event
-		String filePath = EthioUtil.uploadFileToServer(file, "eventFiles");
-		event.setImagePath(filePath);
-		event.setStatus(false);
-
-		if (event.getId() == 0) {
-			eventService.createEvent(event);
+		String returnVal = "redirect:getAllEvents";
+		if (result.hasErrors()) {
+			return "eventForm";
 		} else {
-			eventService.updateEvent(event);
+			String filePath = EthioUtil.uploadFileToServer(file, "eventFiles");
+			event.setImagePath(filePath);
+			event.setStatus(false);
+
+			if (event.getId() == 0) {
+				eventService.createEvent(event);
+			} else {
+				eventService.updateEvent(event);
+			}
+
 		}
 
-		return new ModelAndView("redirect:getAllEvents");
+		return returnVal;
 	}
 
 	@RequestMapping("deleteEvent")
@@ -85,10 +103,13 @@ public class EventController {
 	}
 
 	@RequestMapping("getPublicEvents")
-	public ModelAndView getPublicVideos() {
+	public ModelAndView getPublicVideos(HttpServletRequest request) {
 		logger.info("Getting the all Videos.");
 		List<Event> eventList = null;
 		try {
+			String ipAddress = EthioUtil.getClientIpAddress(request);
+			ClientLocation client = EthioUtil.getLocation(ipAddress);
+
 			eventList = eventService.getAllPublicEvents();
 		} catch (IOException e) {
 			logger.info("There is an exception in file:" + e);

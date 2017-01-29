@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ethionews.model.Media;
-import com.ethionews.model.Subscription;
 import com.ethionews.service.MediaService;
 import com.ethionews.util.EnConstants;
 
@@ -26,14 +25,14 @@ import com.ethionews.util.EnConstants;
 public class MediaController {
 	private static final Logger logger = Logger.getLogger(MediaController.class);
 
-	/*@Autowired
+	@Autowired
 	@Qualifier("mediaValidator")
 	private Validator validator;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
-	}*/
+	}
 
 	@Autowired
 	private MediaService mediaService;
@@ -86,9 +85,9 @@ public class MediaController {
 	}
 
 	@RequestMapping("searchMedia")
-	public ModelAndView searchMedia(@RequestParam("roleType") String roleType) {
-		logger.info("Searching the Media. Media Names: " + roleType);
-		List<Media> mediaList = mediaService.getAllMedias(roleType);
+	public ModelAndView searchMedia(@RequestParam("name") String name) {
+		logger.info("Searching the Media. Media Names: " + name);
+		List<Media> mediaList = mediaService.getAllMedias(name);
 		return new ModelAndView(EnConstants.MEDIA_LIST, EnConstants.MEDIA_LIST, mediaList);
 	}
 

@@ -1,5 +1,6 @@
 package com.ethionews.dao.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,19 +47,32 @@ public class VideoDaoImpl implements VideoDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Video> getAllVideos(String roleType) {
-		String query = "SELECT e.* FROM Video e WHERE e.roleType like '%" + roleType + "%'";
+	public List<Video> getAllVideos(String search) {
+		String query = "SELECT e.* FROM Video e WHERE e.title like '%" + search + "%'";
 		List<Object[]> videoObjects = hibernateUtil.fetchAll(query);
 		List<Video> videos = new ArrayList<Video>();
+		long id;
+		String title;
+		String description;
+		String category;
+		String filename;
 		for (Object[] videoObject : videoObjects) {
 			Video video = new Video();
-			long roleId = ((long) videoObject[0]);
-			String roleName = (String) videoObject[1];
-			video.setId(roleId);
-			// video.setRoleType(roleName);
+			id = ((BigInteger) videoObject[0]).longValue();
+			title = (String) videoObject[5];
+			description = (String) videoObject[3];
+			category = (String) videoObject[1];
+			filename = (String) videoObject[4];
+
+			video.setId(id);
+			video.setTitle(title);
+			video.setDescription(description);
+			video.setCategory(category);
+			video.setFilename(filename);
+
 			videos.add(video);
 		}
-		System.out.println(videos);
+
 		return videos;
 	}
 

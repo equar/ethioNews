@@ -48,19 +48,38 @@ public class MediaDaoImpl implements MediaDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Media> getAllMedias(String roleType) {
-		String query = "SELECT e.* FROM Media e WHERE e.roleType like '%" + roleType + "%'";
+	public List<Media> getAllMedias(String search) {
+		String query = "SELECT e.* FROM Media e WHERE e.name like '%" + search + "%'";
 		List<Object[]> mediaObjects = hibernateUtil.fetchAll(query);
 		List<Media> medias = new ArrayList<Media>();
+		long id;
+		String name;
+		String url;
+		String type;
+		String language;
+		String country;
+		boolean crawel;
 		for (Object[] mediaObject : mediaObjects) {
 			Media media = new Media();
-			long roleId = ((long) mediaObject[0]);
-			String roleName = (String) mediaObject[1];
-			media.setId(roleId);
-			// media.setRoleType(roleName);
+			id = ((BigInteger) mediaObject[0]).longValue();
+			name = (String) mediaObject[4];
+			url = (String) mediaObject[6];
+			type = (String) mediaObject[5];
+			language = (String) mediaObject[3];
+			country = (String) mediaObject[1];
+			crawel = (Boolean) mediaObject[2];
+
+			media.setId(id);
+			media.setName(name);
+			media.setUrl(url);
+			media.setType(type);
+			media.setLanguage(language);
+			media.setCountry(country);
+			media.setCrawel(crawel);
+
 			medias.add(media);
 		}
-		System.out.println(medias);
+
 		return medias;
 	}
 
@@ -81,7 +100,5 @@ public class MediaDaoImpl implements MediaDao {
 		System.out.println(medias);
 		return medias;
 	}
-
-	
 
 }

@@ -34,9 +34,10 @@ public class RecordController {
 	@Autowired
 	private MediaService mediaService;
 
-	public ModelAndView displayRecord(HttpServletRequest request, HttpServletResponse response, Record record) {
-		ModelAndView model = new ModelAndView("newsBoard");
-		model.addObject("newsBoard", record);
+	@RequestMapping("recordCrawel")
+	public ModelAndView displayRecordCrawel() {
+		ModelAndView model = new ModelAndView("recordCrawel");
+		model.addObject("recordCrawel");
 		return model;
 	}
 
@@ -52,7 +53,7 @@ public class RecordController {
 				logger.info(e.getMessage());
 			}
 		}
-		return new ModelAndView("redirect:getAllRecords");
+		return new ModelAndView("recordCrawel", "status", "News Crawling Completed!");
 	}
 
 	@RequestMapping("editRecord")

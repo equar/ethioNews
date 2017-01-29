@@ -13,6 +13,7 @@
 			</h3>
 		</div>
 		<div id="error"></div>
+		<div cssStyle="color: #ff0000;">${status}</div>
 		<div>Your feedback is really important to us, so please feel
 			free to drop us a line. If you are expecting a response, you will
 			need to provide us your email* address, of course.</div>

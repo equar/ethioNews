@@ -30,7 +30,7 @@ public class RecordDaoImpl implements RecordDao {
 			result = (Long) hibernateUtil.create(record, count);
 
 		}
-
+		System.out.println("Media crawling completed");
 		return result;
 	}
 

@@ -29,6 +29,7 @@
 							<option value="meeting">Meeting</option>
 							<option value="seminar">Seminar</option>
 						</form:select>
+						<form:errors path="type" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -72,12 +73,14 @@
 					<form:label path="country" cssClass="control-label col-xs-3">Country</form:label>
 					<div class="col-xs-6">
 						<form:select cssClass="form-control" path="country"></form:select>
+						<form:errors path="country" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 				<div class="form-group">
 					<form:label path="state" cssClass="control-label col-xs-3">State</form:label>
 					<div class="col-xs-6">
 						<form:select cssClass="form-control" path="state"></form:select>
+						<form:errors path="state" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 				<script language="javascript">

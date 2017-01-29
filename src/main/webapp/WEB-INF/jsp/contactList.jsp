@@ -21,7 +21,7 @@
             </c:if>
 			<c:if test="${not empty contactList}">
 
-				<form action="searchCompany">
+				<form action="searchContact">
 					<div class="row">
 						<div class="col-md-4">
 							Search Contact: <input type='text' name='name' id='name' />

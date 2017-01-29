@@ -57,11 +57,11 @@ public class ContactDaoImpl implements ContactDao {
 		String message;
 		for (Object[] contactObject : contactObjects) {
 			Contact contact = new Contact();
-			id = (long) contactObject[0];
-			name = (String) contactObject[1];
-			email = (String) contactObject[2];
-			subject = (String) contactObject[3];
-			message = (String) contactObject[4];
+			id = ((BigInteger) contactObject[0]).longValue();
+			name = (String) contactObject[3];
+			email = (String) contactObject[1];
+			subject = (String) contactObject[5];
+			message = (String) contactObject[2];
 
 			contact.setId(id);
 			contact.setName(name);

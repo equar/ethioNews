@@ -16,13 +16,17 @@
 				<tbody>
 					<c:forEach items="${records}" var="rec" varStatus="itr">
 						<tr>
-							<%-- <td>${offset + itr.index +1 }</td> --%>
-							<th>
-								<p>
+							<td colspan="2">
+								<h4>
 									<a href="${rec.link}" target="_blank"> <c:out
 											value="${rec.title}" />
 									</a>
-								</p>
+								</h4>
+							</td>
+						</tr>
+						<tr>
+							<td>Image not available</td>
+							<td>
 								<p>
 									<c:out value="${rec.description}" />
 								</p>
@@ -30,7 +34,7 @@
 									<a href="newsContent?content=<c:out value='${rec.content}'/>">
 										READ MORE >></a>
 								</p>
-							</th>
+							</td>
 
 						</tr>
 					</c:forEach>

@@ -12,7 +12,8 @@
 			</h3>
 		</div>
 		<div class="panel-body">
-
+			<h4>News Title</h4>
+			<p>Image not available</p>
 			<p>${content}</p>
 		</div>
 	</div>

@@ -43,8 +43,6 @@
 						</div>
 					</div>
 
-
-
 					<div class="form-group">
 						<table>
 							<!-- class="table table-hover table-bordered"> -->
@@ -54,12 +52,17 @@
 								</tr>
 							</thead> -->
 							<tbody>
-								<c:forEach items="${mediaList}" var="med">
+								<%!int length = 0;%>
+								<c:forEach items="${mediaList}" var="med" varStatus="count">
+
 									<tr>
-										<th><form:checkbox path="media" value="${med}" /> <c:out
-												value="${med.name}" /></th>
+										<td>${count.count}</td>
+										<td><form:checkbox path="media" value="${med}" /> <c:out
+												value="${med.name}" /></td>
+
 
 									</tr>
+
 								</c:forEach>
 							</tbody>
 						</table>

@@ -18,7 +18,7 @@
             </c:if>
 			<c:if test="${not empty mediaList}">
 
-				<form action="searchCompany">
+				<form action="searchMedia">
 					<div class="row">
 						<div class="col-md-4">
 							Search Media: <input type='text' name='name' id='name' />

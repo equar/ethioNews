@@ -64,8 +64,11 @@ public class RecordServiceImpl implements RecordService {
 				record.setDescription(entry.getDescription().toString());
 				record.setDate(today);
 
-				doc = Jsoup.connect(entry.getLink()).ignoreContentType(true).timeout(10 * 1000).get();
-				record.setContent(doc.text());
+				/*
+				 * doc = Jsoup.connect(entry.getLink()).ignoreContentType(true).
+				 * timeout(10 * 1000).get(); record.setContent(doc.text());
+				 */
+				record.setContent(entry.getTitle());
 
 				record.setMedia(media);
 				records.add(record);
