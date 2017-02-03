@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ethionews.model.ClientLocation;
 import com.ethionews.model.Event;
-import com.ethionews.model.Media;
 import com.ethionews.service.EventService;
 import com.ethionews.util.EthioUtil;
 

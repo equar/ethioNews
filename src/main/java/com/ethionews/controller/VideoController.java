@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -190,9 +192,15 @@ public class VideoController {
 	}
 
 	@RequestMapping("testVideo")
-	public ModelAndView testVideo(@RequestParam String filename) {
-		logger.info("Testing the Video. Id : " + filename);
-		return new ModelAndView("videoTest", "videoTest", filename);
+	public ModelAndView testVideo(HttpServletRequest request) {
+		logger.info("Testing the Video. Id : " + request);
+		ModelAndView model = new ModelAndView("videoTest");
+		model.addObject("id", request.getParameter("id"));
+		model.addObject("title", request.getParameter("title"));
+		model.addObject("description", request.getParameter("description"));
+		model.addObject("category", request.getParameter("category"));
+		model.addObject("filename", request.getParameter("filename"));
+		return model;
 	}
 
 }

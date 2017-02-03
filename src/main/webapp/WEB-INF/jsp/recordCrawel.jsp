@@ -19,5 +19,5 @@
 		<div>${status}</div>
 	</div>
 
-</div><%@include file="adminPanel.jsp"%>
+</div>
 <%@include file="footer.jsp"%>

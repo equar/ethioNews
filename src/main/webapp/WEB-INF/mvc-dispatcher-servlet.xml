@@ -29,12 +29,6 @@
 	<!-- Specifying the Resource location to load JS, CSS, Images etc -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<bean id="mediaValidator" class="com.ethionews.validator.MediaValidator" />
-	<bean id="subscriptionValidator" class="com.ethionews.validator.SubscriptionValidator" />
-	<bean id="videoValidator" class="com.ethionews.validator.VideoValidator" />
-	<bean id="contactValidator" class="com.ethionews.validator.ContactValidator" />
-	<bean id="eventValidator" class="com.ethionews.validator.EventValidator" />
-
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:validation" />
@@ -98,6 +92,7 @@
 	<!-- <import resource="spring-mail.xml" /> -->
 
 	<task:annotation-driven />
-	<bean id="myAppScheduleJobs" class="com.ethionews.controller.RecordPullerJob" />
+	<!-- <bean id="myAppScheduleJobs" class="com.ethionews.controller.RecordPullerJob" 
+		/> -->
 
 </beans>

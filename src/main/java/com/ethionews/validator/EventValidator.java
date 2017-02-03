@@ -1,11 +1,13 @@
 package com.ethionews.validator;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.ethionews.model.Event;
 
+@Component("eventValidator")
 public class EventValidator implements Validator {
 	@Override
 	public boolean supports(Class<?> paramClass) {

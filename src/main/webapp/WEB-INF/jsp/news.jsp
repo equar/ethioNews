@@ -1,4 +1,5 @@
 <%@include file="header.jsp"%>
+<%@include file="adminPanel.jsp"%>
 <div class="container myrow-container">
 	<div class="panel panel-success">
 		<div class="panel-heading">
@@ -16,27 +17,23 @@
 				<tbody>
 					<c:forEach items="${records}" var="rec" varStatus="itr">
 						<tr>
-							<td colspan="2">
+							<td><img src="${rec.imageURL}" alt="Image not available"
+								style="width: 240px; height: 180px;"></td>
+							<td>
+								<p>
 								<h4>
 									<a href="${rec.link}" target="_blank"> <c:out
 											value="${rec.title}" />
 									</a>
 								</h4>
-							</td>
-						</tr>
-						<tr>
-							<td>Image not available</td>
-							<td>
-								<p>
-									<c:out value="${rec.description}" />
 								</p>
-								<p>
-									<a href="newsContent?content=<c:out value='${rec.content}'/>">
-										READ MORE >></a>
-								</p>
-							</td>
 
-						</tr>
+								<p>
+									<span align="left">Media Name</span> <span align="right">${rec.date}</span>
+								</p>
+								<p>${rec.description}</p>
+							</td>
+						<tr>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -46,5 +43,5 @@
 
 		</div>
 	</div>
-
-	<%@include file="footer.jsp"%>
+</div>
+<%@include file="footer.jsp"%>

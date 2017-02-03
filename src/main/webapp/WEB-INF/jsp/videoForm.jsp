@@ -74,7 +74,7 @@
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
 							<input type="submit" id="saveVideo" class="btn btn-primary"
-								value="Save" />
+								value="Save" onclick="submitVideoForm();" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>
@@ -84,8 +84,5 @@
 		</div>
 	</div>
 </div>
-
-
-
 
 <%@include file="footer.jsp"%>

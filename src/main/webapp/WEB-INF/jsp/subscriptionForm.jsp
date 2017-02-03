@@ -1,4 +1,5 @@
 <%@include file="header.jsp"%>
+<%@include file="adminPanel.jsp"%>
 <div class="container myrow-container">
 	<div class="panel panel-success">
 		<div class="panel-heading">
@@ -6,7 +7,6 @@
 				<div align="left">
 					<b>Subscribe Media List</b>
 				</div>
-
 			</h3>
 		</div>
 		<div class="panel-body">
@@ -43,30 +43,30 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					<%-- <div class="form-group">
 						<table>
-							<!-- class="table table-hover table-bordered"> -->
-							<!-- <thead style="background-color: #bce8f1;">
-								<tr>
-									<th>Please select the media you want to get news</th>
-								</tr>
-							</thead> -->
+
 							<tbody>
 								<%!int length = 0;%>
 								<c:forEach items="${mediaList}" var="med" varStatus="count">
-
+								<c:forEach items="${mediaList}" var="med" varStatus="status">
 									<tr>
 										<td>${count.count}</td>
-										<td><form:checkbox path="media" value="${med}" /> <c:out
+										<td><form:checkbox path="media" value="${med.id}" /> <c:out
 												value="${med.name}" /></td>
 
 
 									</tr>
 
 								</c:forEach>
+								<tr>
+								<td>Choose the Media you like:</td>
+								<td><form:checkboxes path="media" items="${mediaList}" />
+								</td>
+								</tr>
 							</tbody>
 						</table>
-					</div>
+					</div> --%>
 
 					<div class="col-xs-4">
 						<input class="btn btn-success" type='submit' value='Subscribe' />
@@ -76,5 +76,6 @@
 			</c:if>
 		</div>
 	</div>
+</div>
 
-	<%@include file="footer.jsp"%>
+<%@include file="footer.jsp"%>

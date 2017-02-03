@@ -18,6 +18,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/js/ethioNews.js" />">
@@ -30,11 +32,11 @@
 
 <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
+<!-- <script>
 	$(function() {
 		$("#date").datepicker();
 	});
-</script>
+</script> -->
 </head>
 
 <body>

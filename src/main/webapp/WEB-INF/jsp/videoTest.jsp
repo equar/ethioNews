@@ -18,8 +18,13 @@
 
 				<tbody>
 					<tr>
-						<th><iframe width="420" height="345"
-								src=<c:out value="${videoTest}" />> </iframe></th>
+						<td width="50%"><iframe width="420" height="345"
+								src=<c:out value="${filename}" />> </iframe></td>
+						<td width="50%"><p>Title: ${title}</p>
+							<p>Category: ${category}</p>
+							<p>Description: ${description}</p>
+							<p>If you want to edit in case the video or its information
+								were not displayed as expected, please click on Edit</p></td>
 					</tr>
 				</tbody>
 			</table>

@@ -34,18 +34,23 @@
 							<th>Name</th>
 							<th>Email</th>
 							<th>Frequency</th>
-							<th>Detail</th>
+							<th>Date</th>
+							<!-- <th>Detail</th> -->
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${subscriptionList}" var="sub">
 							<tr>
-								<th><c:out value="${sub.id}" /></th>
-								<th><c:out value="${sub.name}" /></th>
-								<th><c:out value="${sub.email}" /></th>
-								<th><c:out value="${sub.frequency}" /></th>
-								<th><a
-									href="detailSubscribers?id=<c:out value='${sub.id}'/>">Detail</a></th>
+								<td><c:out value="${sub.id}" /></td>
+								<td><c:out value="${sub.name}" /></td>
+								<td><c:out value="${sub.email}" /></td>
+								
+								<td><c:out value="${sub.frequency}" /></td>
+								
+								<td><c:out value="${sub.frequency}" /></td>
+							
+								<%-- <th><a
+									href="detailSubscribers?id=<c:out value='${sub.id}'/>">Detail</a></th> --%>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -53,5 +58,5 @@
 			</c:if>
 		</div>
 	</div>
-
-	<%@include file="footer.jsp"%>
+</div>
+<%@include file="footer.jsp"%>

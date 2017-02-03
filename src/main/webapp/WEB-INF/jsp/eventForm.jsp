@@ -72,14 +72,16 @@
 				<div class="form-group">
 					<form:label path="country" cssClass="control-label col-xs-3">Country</form:label>
 					<div class="col-xs-6">
-						<form:select cssClass="form-control" path="country"></form:select>
+						<form:select cssClass="form-control" path="country"
+							value="${eventObject.country}"></form:select>
 						<form:errors path="country" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 				<div class="form-group">
 					<form:label path="state" cssClass="control-label col-xs-3">State</form:label>
 					<div class="col-xs-6">
-						<form:select cssClass="form-control" path="state"></form:select>
+						<form:select cssClass="form-control" path="state"
+							value="${eventObject.state}"></form:select>
 						<form:errors path="state" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
@@ -108,8 +110,9 @@
 				<div class="form-group">
 					<form:label path="imagePath" cssClass="control-label col-xs-3">Image to upload:</form:label>
 					<div class="col-xs-6">
-						<input type="file" path="imagePath" name="file"
-							value="${videoObject.imagePath}" />
+						<form:input cssClass="form-control" type="file" path="imagePath"
+							name="file" value="${videoObject.imagePath}" />
+						<form:errors path="imagePath" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -118,7 +121,7 @@
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
 							<input type="submit" id="saveEvent" class="btn btn-primary"
-								value="Save" onclick="submitEventForm()" />
+								value="Save" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>

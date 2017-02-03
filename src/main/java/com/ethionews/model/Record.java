@@ -28,6 +28,7 @@ public class Record implements Serializable {
 	private String description;
 	private String content;
 	private Date date;
+	private String imageURL;
 	private Media media;
 
 	@Id
@@ -85,6 +86,15 @@ public class Record implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Column(name = "imageURL", nullable = true)
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })

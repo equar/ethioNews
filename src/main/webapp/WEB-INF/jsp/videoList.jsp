@@ -54,7 +54,11 @@
 											value="${vid.filename}" /></a></th>
 								<th><c:out value="${vid.date}" /></th>
 								<th><a
-									href="testVideo?filename=<c:out value='${vid.filename}'/>">Test</a></th>
+									href="testVideo?id=<c:out value='${vid.id}'/>&
+									title=<c:out value='${vid.title}'/>&
+									description=<c:out value='${vid.description}'/>&
+									category=<c:out value='${vid.category}'/>&
+									filename=<c:out value='${vid.filename}'/>">Test</a></th>
 								<th><a href="editVideo?id=<c:out value='${vid.id}'/>">Edit</a></th>
 								<th><a href="deleteVideo?id=<c:out value='${vid.id}'/>">Delete</a></th>
 							</tr>
@@ -64,10 +68,11 @@
 			</c:if>
 		</div>
 	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</div>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
-	<%@include file="footer.jsp"%>
+<%@include file="footer.jsp"%>
