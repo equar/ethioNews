@@ -29,7 +29,7 @@ public class Media implements Serializable {
 	private String country;
 	private boolean crawel;
 	private Set<Record> record = new HashSet<>();
-	private Set<Subscription> subscription = new HashSet<>();
+	/*private Set<Subscription> subscription = new HashSet<>();*/
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -106,7 +106,7 @@ public class Media implements Serializable {
 		this.record = record;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "media", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	/*@ManyToMany(fetch = FetchType.LAZY, mappedBy = "media", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE })
 	public Set<Subscription> getSubscription() {
 		return subscription;
@@ -114,6 +114,6 @@ public class Media implements Serializable {
 
 	public void setSubscription(Set<Subscription> subscription) {
 		this.subscription = subscription;
-	}
+	}*/
 
 }

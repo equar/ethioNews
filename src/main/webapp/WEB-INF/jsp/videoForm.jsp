@@ -15,8 +15,7 @@
 
 		<div class="panel-body">
 			<form:form id="videoForm" cssClass="form-horizontal"
-				modelAttribute="video" method="post" action="saveVideo"
-				enctype="multipart/form-data">
+				modelAttribute="video" method="post" action="saveVideo">
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">

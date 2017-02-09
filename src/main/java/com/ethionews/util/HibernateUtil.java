@@ -71,15 +71,15 @@ public class HibernateUtil {
 	}
 
 	@SuppressWarnings({ "deprecation", "unchecked" })
-	public List<Record> getRecords(Integer offset, Integer maxResults) {
-		return sessionFactory.getCurrentSession().createCriteria(Record.class)
-				.setFirstResult(offset != null ? offset : 0).setMaxResults(maxResults != null ? maxResults : 10).list();
+	public List<Record> getPaginatedResults(Integer offset, Integer maxResults, String query) {
+		return sessionFactory.getCurrentSession().createQuery(query).setFirstResult(offset != null ? offset : 0)
+				.setMaxResults(maxResults != null ? maxResults : 10).list();
 	}
 
 	@SuppressWarnings("deprecation")
-	public Long count() {
-		return (Long) sessionFactory.getCurrentSession().createCriteria(Record.class)
-				.setProjection(Projections.rowCount()).uniqueResult();
+	public Long count(Class<Record> className) {
+		return (Long) sessionFactory.getCurrentSession().createCriteria(className).setProjection(Projections.rowCount())
+				.uniqueResult();
 	}
 
 }

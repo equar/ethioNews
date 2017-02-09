@@ -44,6 +44,8 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<tag:paginate max="10" offset="${offset}" count="${count}"
+					uri="getPublicVideos" next="&raquo;" previous="&laquo;" />
 			</c:if>
 		</div>
 	</div>

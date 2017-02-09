@@ -72,7 +72,7 @@ public class SubscriptionController {
 			modelSub.addObject("name", subscription.getName());
 			modelSub.addObject("email", subscription.getEmail());
 			modelSub.addObject("frequency", subscription.getFrequency());
-			modelSub.addObject("mediaList", subscription.getMedia());
+			// modelSub.addObject("mediaList", subscription.getMedia());
 			modelSub.setViewName("subscribedUserMedia");
 		}
 		return modelSub;

@@ -76,11 +76,13 @@ public class RecordDaoImpl implements RecordDao {
 	}
 
 	public List<Record> getRecords(Integer offset, Integer maxResults) {
-		return hibernateUtil.getRecords(offset, maxResults);
+		String query = "From Record r left join fetch r.media order by r.date desc";
+		return hibernateUtil.getPaginatedResults(offset, maxResults, query);
 	}
 
 	public Long count() {
-		return hibernateUtil.count();
+		Class<Record> className = Record.class;
+		return hibernateUtil.count(className);
 	}
 
 }

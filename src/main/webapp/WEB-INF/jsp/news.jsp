@@ -29,7 +29,9 @@
 								</p>
 
 								<p>
-									<span align="left">Media Name</span> <span align="right">${rec.date}</span>
+									<span align="left">${rec.media.name}</span>&emsp; <span
+										align="right"><fmt:formatDate value="${rec.date}"
+											pattern="EEEE, MMMM dd,yyyy HH:mm a" /></span>
 								</p>
 								<p>${rec.description}</p>
 							</td>

@@ -6,5 +6,9 @@
 			href="privacyPolicy">Privacy Policy</a></span>
 	</footer>
 </div>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 </body>
 </html>

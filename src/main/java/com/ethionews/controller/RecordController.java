@@ -100,7 +100,8 @@ public class RecordController {
 
 	@RequestMapping(value = { "/", "/news" }, method = RequestMethod.GET)
 	public String getRecords(Model model, Integer offset, Integer maxResults) {
-		model.addAttribute("records", recordService.getRecords(offset, maxResults));
+		List<Record> records = recordService.getRecords(offset, maxResults);
+		model.addAttribute("records", records);
 		model.addAttribute("count", recordService.count());
 		model.addAttribute("offset", offset);
 

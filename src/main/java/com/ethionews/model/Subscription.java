@@ -24,7 +24,7 @@ public class Subscription implements Serializable {
 	private String name;
 	private String email;
 	private String frequency;
-	private Set<Media> media = new HashSet<>();
+	/*private Set<Media> media = new HashSet<>();*/
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -64,7 +64,7 @@ public class Subscription implements Serializable {
 		this.frequency = frequency;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	/*@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "subscribedMedia", joinColumns = { @JoinColumn(name = "subscribeId") }, inverseJoinColumns = {
 			@JoinColumn(name = "mediaId") })
 	public Set<Media> getMedia() {
@@ -73,6 +73,6 @@ public class Subscription implements Serializable {
 
 	public void setMedia(Set<Media> media) {
 		this.media = media;
-	}
+	}*/
 
 }

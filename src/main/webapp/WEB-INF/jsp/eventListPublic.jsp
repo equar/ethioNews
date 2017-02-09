@@ -43,7 +43,7 @@
 
 								<td width="50%">
 									<p>${evnt.address}</p>
-									<p>${evnt.city},${evnt.state} ${evnt.zipCode}</p>
+									<p>${evnt.city},${evnt.state}${evnt.zipCode}</p>
 									<p>${evnt.country}</p>
 								</td>
 
@@ -51,6 +51,8 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<tag:paginate max="10" offset="${offset}" count="${count}"
+					uri="getPublicEvents" next="&raquo;" previous="&laquo;" />
 			</c:if>
 		</div>
 	</div>

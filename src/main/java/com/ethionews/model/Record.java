@@ -60,7 +60,7 @@ public class Record implements Serializable {
 		this.description = description;
 	}
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date", nullable = false)
 	public Date getDate() {
 		return date;
