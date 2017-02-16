@@ -35,13 +35,13 @@
 						<c:forEach items="${eventList}" var="evnt">
 							<tr>
 
-								<td width="50%"><img
+								<td width="40%"><img
 									src="data:image/jpeg;base64,${evnt.imagePath}"
-									alt="Event Image View" style="width: 340px; height: 228px;" />
+									alt="Event Image View" style="width: 380px; height: 230px;" />
 
 								</td>
 
-								<td width="50%">
+								<td width="60%">
 									<p>${evnt.address}</p>
 									<p>${evnt.city},${evnt.state}${evnt.zipCode}</p>
 									<p>${evnt.country}</p>

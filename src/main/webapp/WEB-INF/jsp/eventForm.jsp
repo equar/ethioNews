@@ -17,7 +17,6 @@
 			<form:form id="eventForm" cssClass="form-horizontal"
 				modelAttribute="event" method="post" action="saveEvent"
 				enctype="multipart/form-data">
-				<span id="error"></span>
 
 				<div class="form-group">
 					<form:label path="type" cssClass="control-label col-xs-3">Event Type</form:label>
@@ -121,7 +120,7 @@
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
 							<input type="submit" id="saveEvent" class="btn btn-primary"
-								value="Save" />
+								value="Save" onclick="submitEventForm();" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>

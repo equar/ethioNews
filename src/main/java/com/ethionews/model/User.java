@@ -25,13 +25,12 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private long id;
-	private String username;
+	private String email;
 	private String password;
 	private String confirmPasword;
-	private String email;
 	private boolean enabled;
 	private Set<UserRole> userRole = new HashSet<>();
-	//private Set<Video> video = new HashSet<>();
+	// private Set<Video> video = new HashSet<>();
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -44,13 +43,13 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "username", nullable = false)
-	public String getUsername() {
-		return username;
+	@Column(name = "email", unique = true, nullable = false)
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Column(name = "password", nullable = false)
@@ -69,15 +68,6 @@ public class User implements Serializable {
 
 	public void setConfirmPasword(String confirmPasword) {
 		this.confirmPasword = confirmPasword;
-	}
-
-	@Column(name = "email", unique = true, nullable = false)
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	@Column(name = "enabled", nullable = false)
@@ -100,13 +90,11 @@ public class User implements Serializable {
 		this.userRole = userRole;
 	}
 
-	/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Video> getVideo() {
-		return video;
-	}
-
-	public void setVideo(Set<Video> video) {
-		this.video = video;
-	}*/
+	/*
+	 * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set<Video>
+	 * getVideo() { return video; }
+	 * 
+	 * public void setVideo(Set<Video> video) { this.video = video; }
+	 */
 
 }

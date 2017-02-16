@@ -4,7 +4,14 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +24,15 @@ import com.ethionews.service.UserRoleService;
 public class UserRoleController {
 
 	private static final Logger logger = Logger.getLogger(UserRoleController.class);
+
+	@Autowired
+	@Qualifier("userRoleValidator")
+	private Validator validator;
+
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
+	}
 
 	@Autowired
 	private UserRoleService userRoleService;
@@ -35,16 +51,21 @@ public class UserRoleController {
 	}
 
 	@RequestMapping("saveUserRole")
-	public ModelAndView saveUserRole(@ModelAttribute UserRole userRole) {
+	public String saveUserRole(Model model, @Validated UserRole userRole, BindingResult result) {
 		logger.info("Saving the UserRole. Data : " + userRole);
 		// if userRole id is 0 then creating the userRole other updating the
 		// userRole
-		if (userRole.getId() == 0) {
-			userRoleService.createUserRole(userRole);
+		String returnVal = "redirect:getAllVideos";
+		if (result.hasErrors()) {
+			return "userRoleForm";
 		} else {
-			userRoleService.updateUserRole(userRole);
+			if (userRole.getId() == 0) {
+				userRoleService.createUserRole(userRole);
+			} else {
+				userRoleService.updateUserRole(userRole);
+			}
 		}
-		return new ModelAndView("redirect:getAllUserRoles");
+		return returnVal;
 	}
 
 	@RequestMapping("deleteUserRole")

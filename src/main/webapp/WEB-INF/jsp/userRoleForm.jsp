@@ -22,9 +22,10 @@
 						<form:label path="roleType">Role Type</form:label>
 					</div>
 					<div class="col-xs-6">
-						<form:hidden path="roleId" value="${userRoleObject.roleId}" />
+						<form:hidden path="id" value="${userRoleObject.id}" />
 						<form:input cssClass="form-control" path="roleType"
 							value="${userRoleObject.roleType}" />
+						<form:errors path="roleType" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -43,26 +44,5 @@
 		</div>
 	</div>
 </div>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-<script type="text/javascript">
-	function submitUserRoleForm() {
-
-		// getting the UserRole form values
-		var name = $('#roleType').val().trim();
-		if (name.length == 0) {
-			alert('Please enter role type');
-			$('#roleType').focus();
-			return false;
-		}
-
-		return true;
-	};
-</script>
-
 
 <%@include file="footer.jsp"%>

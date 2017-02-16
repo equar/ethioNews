@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ethionews.dao.UserRoleDao;
 import com.ethionews.model.User;
 import com.ethionews.model.UserRole;
+import com.ethionews.model.Video;
 import com.ethionews.util.HibernateUtil;
 
 @Repository("userRoleDao")
@@ -31,11 +32,7 @@ public class UserRoleDaoImpl implements UserRoleDao {
 	public void deleteUserRole(long id) {
 		UserRole userRole = new UserRole();
 		userRole.setId(id);
-		User user = new User();
-		user.setId(id);
-		hibernateUtil.delete(id, User.class);
 		hibernateUtil.delete(userRole);
-
 	}
 
 	@Override

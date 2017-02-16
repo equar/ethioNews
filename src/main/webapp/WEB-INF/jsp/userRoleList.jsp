@@ -41,12 +41,10 @@
 					<tbody>
 						<c:forEach items="${userRoleList}" var="role">
 							<tr>
-								<th><c:out value="${role.roleId}" /></th>
+								<th><c:out value="${role.id}" /></th>
 								<th><c:out value="${role.roleType}" /></th>
-								<th><a
-									href="editUserRole?id=<c:out value='${role.roleId}'/>">Edit</a></th>
-								<th><a
-									href="deleteUserRole?id=<c:out value='${role.roleId}'/>">Delete</a></th>
+								<th><a href="editUserRole?id=<c:out value='${role.id}'/>">Edit</a></th>
+								<th><a href="deleteUserRole?id=<c:out value='${role.id}'/>">Delete</a></th>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -62,5 +60,5 @@
 	<%-- <script src="<c:url value="/resources/js/jquery-2.1.3.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
      --%>
-	
+
 	<%@include file="footer.jsp"%>

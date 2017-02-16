@@ -91,6 +91,8 @@
 
 	<!-- <import resource="spring-mail.xml" /> -->
 
+	<import resource="spring-security.xml" />
+
 	<task:annotation-driven />
 	<!-- <bean id="myAppScheduleJobs" class="com.ethionews.controller.RecordPullerJob" 
 		/> -->
