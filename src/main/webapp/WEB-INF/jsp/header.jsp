@@ -56,13 +56,10 @@
 				<li><a href="getPublicVideos">Video</a></li>
 				<li><a href="getPublicEvents">Events</a></li>
 				<li><a href="getMediasToSubscribe">Subscribe</a></li>
-				<!--<li><a href="writeus">Radio</a></li>
-				<li><a href="writeus">News Papers</a></li>
-				<li><a href=createAdvert>Advert Apps</a></li> -->
 				<li><a href=createContact>Contact Us</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="createUser"><span
+				<li><a href="userLogin"><span
 						class="glyphicon glyphicon-log-in"></span> Sign Up/Sign In</a></li>
 			</ul>
 		</div>

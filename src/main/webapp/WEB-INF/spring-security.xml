@@ -9,6 +9,7 @@
 	<http auto-config="true">
 		<intercept-url pattern="/" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/welcome" access="hasRole('ROLE_USER')" />
+		
 		<form-login login-page="/login" default-target-url="/welcome"
 			authentication-failure-url="/login?error" username-parameter="username"
 			password-parameter="password" />
@@ -16,13 +17,13 @@
 	</http>
 
 	<authentication-manager alias="authenticationManager">
-		<authentication-provider user-service-ref="userDetailsServiceImpl">
+		<authentication-provider user-service-ref="userDetailsService">
 			<password-encoder ref="encoder"></password-encoder>
 		</authentication-provider>
 	</authentication-manager>
 
-	<beans:bean id="userDetailsServiceImpl"
-		class="com.hellokoding.account.service.UserDetailsServiceImpl"></beans:bean>
+	<beans:bean id="userDetailsService"
+		class="com.ethionews.service.impl.UserDetailsServiceImpl"></beans:bean>
 
 	<beans:bean id="encoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

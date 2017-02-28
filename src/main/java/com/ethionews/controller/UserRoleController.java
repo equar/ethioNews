@@ -55,7 +55,7 @@ public class UserRoleController {
 		logger.info("Saving the UserRole. Data : " + userRole);
 		// if userRole id is 0 then creating the userRole other updating the
 		// userRole
-		String returnVal = "redirect:getAllVideos";
+		String returnVal = "redirect:getAllUserRoles";
 		if (result.hasErrors()) {
 			return "userRoleForm";
 		} else {

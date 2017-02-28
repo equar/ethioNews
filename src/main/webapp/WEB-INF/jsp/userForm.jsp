@@ -11,24 +11,17 @@
 		</div>
 
 		<div class="panel-body">
-			<form:form id="signupForm" cssClass="form-horizontal"
+			<form:form id="userForm" cssClass="form-horizontal"
 				modelAttribute="user" method="post" action="saveUser">
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">
-						<form:label path="emailId">Email</form:label>
+						<form:label path="username">Email</form:label>
 					</div>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="emailId"
-							value="${user.emailId}" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="phoneNumber" cssClass="control-label col-xs-3">PhoneNumber</form:label>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="phoneNumber"
-							value="${user.phoneNumber}" />
+						<form:input cssClass="form-control" path="username"
+							value="${user.username}" />
+						<form:errors path="username" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -37,15 +30,17 @@
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="password"
 							value="${user.password}" />
+						<form:errors path="password" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<form:label path="confirmPassword"
+					<form:label path="passwordConfirm"
 						cssClass="control-label col-xs-3">Confirm Password</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="confirmPassword"
-							value="${user.confirmPassword}" />
+						<form:input cssClass="form-control" path="passwordConfirm"
+							value="${user.passwordConfirm}" />
+						<form:errors path="passwordConfirm" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -59,13 +54,12 @@
 						<div class="col-xs-4"></div>
 					</div>
 				</div>
-
+				<h4 class="text-center">
+					Already Have Account? &nbsp;&nbsp; <a href="userLogin">Sign In</a>
+				</h4>
 			</form:form>
 		</div>
 	</div>
 </div>
-
-<script src="<c:url value="/resources/js/agileBus.js" />"></script>
-
 
 <%@include file="footer.jsp"%>

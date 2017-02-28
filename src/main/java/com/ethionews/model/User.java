@@ -25,9 +25,9 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private long id;
-	private String email;
+	private String username;
 	private String password;
-	private String confirmPasword;
+	private String passwordConfirm;
 	private boolean enabled;
 	private Set<UserRole> userRole = new HashSet<>();
 	// private Set<Video> video = new HashSet<>();
@@ -43,13 +43,13 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "email", unique = true, nullable = false)
-	public String getEmail() {
-		return email;
+	@Column(name = "username", unique = true, nullable = false)
+	public String getUsername() {
+		return username;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Column(name = "password", nullable = false)
@@ -62,12 +62,12 @@ public class User implements Serializable {
 	}
 
 	@Transient
-	public String getConfirmPasword() {
-		return confirmPasword;
+	public String getPasswordConfirm() {
+		return passwordConfirm;
 	}
 
-	public void setConfirmPasword(String confirmPasword) {
-		this.confirmPasword = confirmPasword;
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
 	}
 
 	@Column(name = "enabled", nullable = false)
