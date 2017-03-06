@@ -5,6 +5,8 @@
 <%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -58,10 +60,18 @@
 				<li><a href="getMediasToSubscribe">Subscribe</a></li>
 				<li><a href=createContact>Contact Us</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="userLogin"><span
-						class="glyphicon glyphicon-log-in"></span> Sign Up/Sign In</a></li>
-			</ul>
+			<c:if test="${pageContext.request.userPrincipal.name == null}">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="userLogin"><span
+							class="glyphicon glyphicon-log-in"></span> Sign Up/Sign In</a></li>
+				</ul>
+			</c:if>
+			<c:if test="${pageContext.request.userPrincipal.name != null}">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="userLogout"><span
+							class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+				</ul>
+			</c:if>
 		</div>
 	</div>
 	</nav>

@@ -12,8 +12,8 @@ import com.ethionews.service.UserService;
 @Component("userValidator")
 public class UserValidator implements Validator {
 
-	/*@Autowired
-	private UserService userService;*/
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public boolean supports(Class<?> aClass) {
@@ -28,9 +28,10 @@ public class UserValidator implements Validator {
 		if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
 			errors.rejectValue("username", "Size.userForm.username");
 		}
-		/*if (userService.findByUsername(user.getUsername()) != null) {
+
+		if (userService.findByUsername(user.getUsername()) != null) {
 			errors.rejectValue("username", "Duplicate.userForm.username");
-		}*/
+		}
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
 		if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {

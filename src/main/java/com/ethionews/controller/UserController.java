@@ -15,6 +15,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ethionews.model.User;
@@ -37,16 +39,13 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private UserDetailsService userDetailsService;
-
-	@RequestMapping("createUser")
+	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
 	public ModelAndView createUser(@ModelAttribute User user) {
 		logger.info("Creating User. Data: " + user);
 		return new ModelAndView("userForm");
 	}
 
-	@RequestMapping("saveUser")
+	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
 	public ModelAndView saveUser(Model model, @Validated User user, BindingResult result) {
 		logger.info("Saving the Media. Data : " + user);
 		// if media id is 0 then creating the media other updating the
@@ -62,31 +61,43 @@ public class UserController {
 			userService.updateUser(user);
 		}
 
-		// userDetailsService.autologin(user.getUsername(), user.getPassword());
+		userService.autologin(user.getUsername(), user.getPassword());
 
 		return new ModelAndView("userCreated", "username", user.getUsername());
 	}
 
-	@RequestMapping("userLogin")
-	public ModelAndView userLogin(@ModelAttribute User user) {
-		logger.info("Creating User. Data: " + user);
-		return new ModelAndView("userLogin");
+	@RequestMapping(value = "/userCreated", method = RequestMethod.GET)
+	public ModelAndView userCreated() {
+		return new ModelAndView("userCreated");
 	}
 
-	@RequestMapping("login")
-	public String login(Model model, String error, String logout) {
-		if (error != null) {
-			model.addAttribute("error", "Your username and password is invalid.");
-		}
-
-		if (logout != null) {
-			model.addAttribute("message", "You have been logged out successfully.");
-		}
-
+	@RequestMapping(value = "/userLoginDisplay", method = RequestMethod.GET)
+	public String userLoginDisplay() {
 		return "userLogin";
 	}
 
-	@RequestMapping("getAllUsers")
+	@RequestMapping(value = "/userLogin", method = RequestMethod.GET)
+	public ModelAndView userLogin(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "userLogout", required = false) String logout) {
+
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("error", "Your username and password is invalid.");
+		}
+
+		if (logout != null) {
+			model.addObject("message", "You have been logged out successfully.");
+		}
+		model.setViewName("userLogin");
+		return model;
+	}
+
+	@RequestMapping(value = "/userLogout")
+	public String userLogout(Model model, String error, String logout) {
+		return "news";
+	}
+
+	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
 	public ModelAndView getAllUsers() {
 		logger.info("Getting the all Users.");
 		List<User> userList = userService.getAllUsers();

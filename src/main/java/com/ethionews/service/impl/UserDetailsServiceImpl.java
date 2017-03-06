@@ -20,20 +20,21 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ethionews.dao.UserDao;
 import com.ethionews.model.UserRole;
 
-/*@Service("userDetailsService")*/
+@Service("userDetailsService")
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UserDao userDao;
 
-	@Autowired
-	private AuthenticationManager authenticationManager;
-
 	@Override
 	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 
-		com.ethionews.model.User user = userDao.findByUserName(username);
+		com.ethionews.model.User user = userDao.findByUsername(username);
+		if (null == user) {
+			throw new UsernameNotFoundException(username);
+		}
+
 		List<GrantedAuthority> grantedAuthorities = buildUserAuthority(user.getUserRole());
 
 		return buildUserForAuthentication(user, grantedAuthorities);
@@ -58,29 +59,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
 
 		return Result;
-	}
-
-	public String findLoggedInUsername() {
-		Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
-		if (userDetails instanceof UserDetails) {
-			return ((UserDetails) userDetails).getUsername();
-		}
-
-		return null;
-	}
-
-	public void autologin(String username, String password) {
-		UserDetails userDetails = loadUserByUsername(username);
-		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-				userDetails, password, userDetails.getAuthorities());
-
-		authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-
-		if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-			SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-			// logger.debug(String.format("Auto login %s successfully!",
-			// username));
-		}
 	}
 
 }

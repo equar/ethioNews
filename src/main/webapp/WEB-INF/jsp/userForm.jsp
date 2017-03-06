@@ -14,7 +14,7 @@
 			<form:form id="userForm" cssClass="form-horizontal"
 				modelAttribute="user" method="post" action="saveUser">
 
-				<div class="form-group">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
 					<div class="control-label col-xs-3">
 						<form:label path="username">Email</form:label>
 					</div>
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
 					<form:label path="password" cssClass="control-label col-xs-3">Password</form:label>
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="password"
@@ -34,7 +34,7 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
 					<form:label path="passwordConfirm"
 						cssClass="control-label col-xs-3">Confirm Password</form:label>
 					<div class="col-xs-6">

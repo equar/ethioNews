@@ -6,14 +6,18 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http auto-config="true">
-		<intercept-url pattern="/" access="hasRole('ROLE_USER')" />
-		<intercept-url pattern="/welcome" access="hasRole('ROLE_USER')" />
-		
-		<form-login login-page="/login" default-target-url="/welcome"
-			authentication-failure-url="/login?error" username-parameter="username"
+	<http use-expressions="true">
+		<!-- <intercept-url pattern="/**" access="authenticated" /> <form-login 
+			/> <http-basic /> -->
+		<!-- <intercept-url pattern="/" access="hasRole('ROLE_USER')" /> <intercept-url 
+			pattern="/userCreated" access="hasRole('ROLE_USER')" /> -->
+
+		<form-login login-page="/userLogin" default-target-url="/news"
+			authentication-failure-url="/userLogin?error" username-parameter="username"
 			password-parameter="password" />
-		<logout logout-success-url="/login?logout" />
+		<logout logout-success-url="/userLogin?userLogout" />
+		<!-- enable csrf protection -->
+		<csrf />
 	</http>
 
 	<authentication-manager alias="authenticationManager">

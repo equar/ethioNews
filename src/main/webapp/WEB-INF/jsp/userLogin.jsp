@@ -11,27 +11,31 @@
 		</div>
 
 		<div class="panel-body">
-			<form:form id="userLogin" cssClass="form-horizontal"
-				modelAttribute="user" method="post" action="userLogin">
+			<c:if test="${not empty error}">
+				<span>${error}</span>
+			</c:if>
+			<c:if test="${not empty msg}">
 				<span>${message}</span>
+			</c:if>
+
+			<form:form id="userLogin" cssClass="form-horizontal"
+				action="<c:url value='j_spring_security_check' />" method="post">
+
 				<div class="form-group">
 					<div class="control-label col-xs-3">
 						<form:label path="username">Email</form:label>
 					</div>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="username"
-							value="${user.username}" autofocus="true" />
+						<form:input cssClass="form-control" path="username" value=''
+							autofocus="true" />
 					</div>
 				</div>
 
 				<div class="form-group">
 					<form:label path="password" cssClass="control-label col-xs-3">Password</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="password"
-							value="${user.password}" />
+						<form:input cssClass="form-control" path="password" value='' />
 					</div>
-					<span>${error}</span> <input type="hidden"
-						name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</div>
 
 				<div class="form-group">
@@ -47,7 +51,8 @@
 				<h4 class="text-center">
 					<a href="createUser">Create an account</a>
 				</h4>
-
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
 			</form:form>
 		</div>
 	</div>

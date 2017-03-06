@@ -13,4 +13,8 @@ public interface UserService {
 	public List<User> getAllUsers();
 
 	public User findByUsername(String username);
+
+	public String findLoggedInUsername();
+
+	public void autologin(String username, String password);
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ethionews.model.Record;
+import com.ethionews.model.User;
 
 @Repository
 public class HibernateUtil {
@@ -63,6 +64,12 @@ public class HibernateUtil {
 	@SuppressWarnings("rawtypes")
 	public <T> List fetchAll(String query) {
 		return sessionFactory.getCurrentSession().createNativeQuery(query).getResultList();
+
+	}
+
+	@SuppressWarnings({ "unchecked" })
+	public List<User> fetchAllHql(String query) {
+		return sessionFactory.getCurrentSession().createQuery(query).getResultList();
 
 	}
 
