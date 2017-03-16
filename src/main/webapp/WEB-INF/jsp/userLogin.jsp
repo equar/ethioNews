@@ -21,7 +21,37 @@
 			<form:form id="userLogin" cssClass="form-horizontal" method="post"
 				action="userLogin">
 
-				<table>
+				<div class="form-group">
+					<div class="control-label col-xs-3">
+						<div cssClass="control-label col-xs-3">Email</div>
+					</div>
+					<div class="col-xs-6">
+						<input type='text' name='username' value=''
+							cssClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="control-label col-xs-3">
+						<div cssClass="control-label col-xs-3">Password</div>
+					</div>
+					<div class="col-xs-6">
+						<input type='password' name='password' cssClass="form-control" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-4"></div>
+						<div class="col-xs-4">
+							<input name="submit" type="submit" value="submit"
+								class="btn btn-primary" />
+						</div>
+						<div class="col-xs-4"></div>
+					</div>
+				</div>
+
+				<!-- <table>
 					<tr>
 						<td>UserName:</td>
 						<td><input type='text' name='username' value=''></td>
@@ -34,7 +64,7 @@
 						<td colspan='2'><input name="submit" type="submit"
 							value="submit" /></td>
 					</tr>
-				</table>
+				</table> -->
 
 
 				<h4 class="text-center">

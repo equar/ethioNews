@@ -63,7 +63,7 @@ public class UserController {
 			userService.updateUser(user);
 		}
 
-		userService.autologin(user.getUsername(), user.getPassword());
+		// userService.autologin(user.getUsername(), user.getPassword());
 
 		return new ModelAndView("userCreated", "username", user.getUsername());
 	}
@@ -100,11 +100,26 @@ public class UserController {
 		return "news";
 	}
 
+	@RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
+	public ModelAndView accessDenied() {
+		return new ModelAndView("accessDenied");
+	}
+
 	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
 	public ModelAndView getAllUsers() {
 		logger.info("Getting the all Users.");
 		List<User> userList = userService.getAllUsers();
 		return new ModelAndView("userList", "userList", userList);
+	}
+
+	@RequestMapping(value = "/sessionExpired", method = RequestMethod.GET)
+	public ModelAndView sessionExpired() {
+		return new ModelAndView("sessionExpired");
+	}
+
+	@RequestMapping(value = "/invalidSession", method = RequestMethod.GET)
+	public ModelAndView invalidSession() {
+		return new ModelAndView("invalidSession");
 	}
 
 }

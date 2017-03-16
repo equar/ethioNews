@@ -5,7 +5,7 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>Access Denied</b>
+					<b>Session Expired</b>
 				</div>
 				<div align="right">
 					<!-- <a href="getAllContacts">Contact List</a> -->
@@ -15,7 +15,7 @@
 
 		<div class="panel-body">
 
-			<h2>Sorry, you do not have permission to view this page.</h2>
+			<h2>Sorry, your session has been expired.</h2>
 		</div>
 	</div>
 </div>

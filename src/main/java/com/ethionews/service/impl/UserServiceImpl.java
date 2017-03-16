@@ -32,23 +32,25 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRoleDao userRoleDao;
 
-	/*@Autowired
-	private AuthenticationManager authenticationManager;
-*/
+	/*
+	 * @Autowired private AuthenticationManager authenticationManager;
+	 */
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-	/*@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;*/
+	/*
+	 * @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
+	 */
 
 	@Override
 	public long createUser(User user) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(11);
 		List<UserRole> roleList = userRoleDao.getAllUserRoles();
 		user.setEnabled(true);
 		Set<UserRole> userRoles = new HashSet<UserRole>(roleList);
 		user.setUserRoles(userRoles);
 		// user.setPassword(EthioUtil.passwordEncoder(user.getPassword()));
-		//user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setPassword(encoder.encode(user.getPassword()));
 		return userDao.createUser(user);
 	}
 
@@ -77,20 +79,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void autologin(String username, String password) {
-		/*try {
-			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-					userDetails, password, userDetails.getAuthorities());
-
-			authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-
-			if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-				logger.debug(String.format("Auto login %s successfully!", username));
-			}
-		} catch (Exception e) {
-			logger.info("Exception: " + e.getMessage());
-		}*/
+		/*
+		 * try { UserDetails userDetails =
+		 * userDetailsService.loadUserByUsername(username);
+		 * UsernamePasswordAuthenticationToken
+		 * usernamePasswordAuthenticationToken = new
+		 * UsernamePasswordAuthenticationToken( userDetails, password,
+		 * userDetails.getAuthorities());
+		 * 
+		 * authenticationManager.authenticate(
+		 * usernamePasswordAuthenticationToken);
+		 * 
+		 * if (usernamePasswordAuthenticationToken.isAuthenticated()) {
+		 * SecurityContextHolder.getContext().setAuthentication(
+		 * usernamePasswordAuthenticationToken); logger.debug(String.format(
+		 * "Auto login %s successfully!", username)); } } catch (Exception e) {
+		 * logger.info("Exception: " + e.getMessage()); }
+		 */
 	}
 
 }

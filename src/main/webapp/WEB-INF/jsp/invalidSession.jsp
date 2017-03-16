@@ -15,7 +15,7 @@
 
 		<div class="panel-body">
 
-			<h2>Sorry, you do not have permission to view this page.</h2>
+			<h2>Sorry, your session has been invalidated.</h2>
 		</div>
 	</div>
 </div>
