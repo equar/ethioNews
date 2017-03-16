@@ -29,7 +29,7 @@ public class User implements Serializable {
 	private String password;
 	private String passwordConfirm;
 	private boolean enabled;
-	private Set<UserRole> userRole = new HashSet<>();
+	private Set<UserRole> userRoles = new HashSet<>();
 	// private Set<Video> video = new HashSet<>();
 
 	@Id
@@ -82,12 +82,12 @@ public class User implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "UserAndRole", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns = {
 			@JoinColumn(name = "roleId") })
-	public Set<UserRole> getUserRole() {
-		return userRole;
+	public Set<UserRole> getUserRoles() {
+		return userRoles;
 	}
 
-	public void setUserRole(Set<UserRole> userRole) {
-		this.userRole = userRole;
+	public void setUserRoles(Set<UserRole> userRoles) {
+		this.userRoles = userRoles;
 	}
 
 	/*

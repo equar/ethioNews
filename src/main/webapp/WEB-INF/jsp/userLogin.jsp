@@ -12,42 +12,31 @@
 
 		<div class="panel-body">
 			<c:if test="${not empty error}">
-				<span>${error}</span>
+				<div>${error}</div>
 			</c:if>
-			<c:if test="${not empty msg}">
-				<span>${message}</span>
+			<c:if test="${not empty message}">
+				<div>${message}</div>
 			</c:if>
 
-			<form:form id="userLogin" cssClass="form-horizontal"
-				action="<c:url value='j_spring_security_check' />" method="post">
+			<form:form id="userLogin" cssClass="form-horizontal" method="post"
+				action="userLogin">
 
-				<div class="form-group">
-					<div class="control-label col-xs-3">
-						<form:label path="username">Email</form:label>
-					</div>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="username" value=''
-							autofocus="true" />
-					</div>
-				</div>
+				<table>
+					<tr>
+						<td>UserName:</td>
+						<td><input type='text' name='username' value=''></td>
+					</tr>
+					<tr>
+						<td>Password:</td>
+						<td><input type='password' name='password' /></td>
+					</tr>
+					<tr>
+						<td colspan='2'><input name="submit" type="submit"
+							value="submit" /></td>
+					</tr>
+				</table>
 
-				<div class="form-group">
-					<form:label path="password" cssClass="control-label col-xs-3">Password</form:label>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="password" value='' />
-					</div>
-				</div>
 
-				<div class="form-group">
-					<div class="row">
-						<div class="col-xs-4"></div>
-						<div class="col-xs-4">
-							<input type="submit" id="saveUser" class="btn btn-primary"
-								value="Login" onclick="return submitUserSignupForm();" />
-						</div>
-						<div class="col-xs-4"></div>
-					</div>
-				</div>
 				<h4 class="text-center">
 					<a href="createUser">Create an account</a>
 				</h4>

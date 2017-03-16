@@ -6,21 +6,49 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http use-expressions="true">
-		<!-- <intercept-url pattern="/**" access="authenticated" /> <form-login 
-			/> <http-basic /> -->
-		<!-- <intercept-url pattern="/" access="hasRole('ROLE_USER')" /> <intercept-url 
-			pattern="/userCreated" access="hasRole('ROLE_USER')" /> -->
+	<!-- Configuring RoleVoter bean to use custom access roles, by default roles 
+		should be in the form ROLE_{XXX} -->
+	<beans:bean id="roleVoter"
+		class="org.springframework.security.access.vote.RoleVoter">
+		<beans:property name="rolePrefix" value=""></beans:property>
+	</beans:bean>
 
-		<form-login login-page="/userLogin" default-target-url="/news"
+	<beans:bean id="accessDecisionManager"
+		class="org.springframework.security.access.vote.AffirmativeBased">
+		<beans:constructor-arg name="decisionVoters"
+			ref="roleVoter" />
+	</beans:bean>
+
+	<http use-expressions="true" authentication-manager-ref="authenticationManager"
+		access-decision-manager-ref="accessDecisionManager">
+		<!-- <intercept-url pattern="/news" access="permitAll" /> <intercept-url 
+			pattern="/userLogin" access="permitAll" /> <intercept-url pattern="/userLogout" 
+			access="permitAll" /> <intercept-url pattern="/accessdenied" access="permitAll" 
+			/> <intercept-url pattern="/getPublicVideos" access="permitAll" /> <intercept-url 
+			pattern="/getPublicEvents" access="permitAll" /> <intercept-url pattern="/getMediasToSubscribe" 
+			access="permitAll" /> <intercept-url pattern="/createContact" access="permitAll" 
+			/> -->
+
+		<intercept-url pattern="/getAllEvents" access="ROLE_EVENT" />
+		<intercept-url pattern="/userCreated" access="ROLE_USER" />
+
+		<form-login login-page="/userLogin" default-target-url="/getAllEvents"
 			authentication-failure-url="/userLogin?error" username-parameter="username"
 			password-parameter="password" />
-		<logout logout-success-url="/userLogin?userLogout" />
-		<!-- enable csrf protection -->
+
+		<logout invalidate-session="true" logout-success-url="/userLogin"
+			logout-url="/j_spring_security_logout" />
+
+		<access-denied-handler error-page="/accessDenied" />
+		<session-management invalid-session-url="/userLogin">
+			<concurrency-control max-sessions="1"
+				expired-url="/userLogin" />
+		</session-management>
 		<csrf />
 	</http>
 
-	<authentication-manager alias="authenticationManager">
+	<authentication-manager id="authenticationManager"
+		alias="authenticationManager">
 		<authentication-provider user-service-ref="userDetailsService">
 			<password-encoder ref="encoder"></password-encoder>
 		</authentication-provider>

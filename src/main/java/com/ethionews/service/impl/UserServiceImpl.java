@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,23 +32,23 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRoleDao userRoleDao;
 
-	@Autowired
+	/*@Autowired
 	private AuthenticationManager authenticationManager;
-
+*/
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	/*@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;*/
 
 	@Override
 	public long createUser(User user) {
 		List<UserRole> roleList = userRoleDao.getAllUserRoles();
 		user.setEnabled(true);
 		Set<UserRole> userRoles = new HashSet<UserRole>(roleList);
-		user.setUserRole(userRoles);
+		user.setUserRoles(userRoles);
 		// user.setPassword(EthioUtil.passwordEncoder(user.getPassword()));
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		//user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		return userDao.createUser(user);
 	}
 
@@ -78,7 +77,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public void autologin(String username, String password) {
-		try {
+		/*try {
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
 					userDetails, password, userDetails.getAuthorities());
@@ -91,7 +90,7 @@ public class UserServiceImpl implements UserService {
 			}
 		} catch (Exception e) {
 			logger.info("Exception: " + e.getMessage());
-		}
+		}*/
 	}
 
 }

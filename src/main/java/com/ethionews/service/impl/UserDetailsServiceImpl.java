@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,10 +30,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		com.ethionews.model.User user = userDao.findByUsername(username);
 		if (null == user) {
-			throw new UsernameNotFoundException(username);
+			throw new UsernameNotFoundException(username + "not found");
 		}
 
-		List<GrantedAuthority> grantedAuthorities = buildUserAuthority(user.getUserRole());
+		List<GrantedAuthority> grantedAuthorities = buildUserAuthority(user.getUserRoles());
 
 		return buildUserForAuthentication(user, grantedAuthorities);
 

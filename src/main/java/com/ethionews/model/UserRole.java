@@ -22,7 +22,7 @@ public class UserRole implements Serializable {
 
 	private long id;
 	private String roleType;
-	private Set<User> user = new HashSet<>();
+	private Set<User> users = new HashSet<>();
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -44,13 +44,13 @@ public class UserRole implements Serializable {
 		this.roleType = roleType;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "userRole", cascade = CascadeType.ALL)
-	public Set<User> getUser() {
-		return user;
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "userRoles", cascade = CascadeType.ALL)
+	public Set<User> getUsers() {
+		return users;
 	}
 
-	public void setUser(Set<User> user) {
-		this.user = user;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 }

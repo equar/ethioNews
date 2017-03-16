@@ -2,6 +2,8 @@ package com.ethionews.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -78,16 +80,17 @@ public class UserController {
 
 	@RequestMapping(value = "/userLogin", method = RequestMethod.GET)
 	public ModelAndView userLogin(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "userLogout", required = false) String logout) {
+			@RequestParam(value = "logout", required = false) String logout) {
 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
-			model.addObject("error", "Your username and password is invalid.");
+			model.addObject("error", "Invalid Credentials provided.");
 		}
 
 		if (logout != null) {
-			model.addObject("message", "You have been logged out successfully.");
+			model.addObject("message", "Logged out from ethioNews successfully.");
 		}
+
 		model.setViewName("userLogin");
 		return model;
 	}

@@ -66,12 +66,20 @@
 							class="glyphicon glyphicon-log-in"></span> Sign Up/Sign In</a></li>
 				</ul>
 			</c:if>
+
+			<c:url value="/logout" var="logoutUrl" />
+			<form id="logout" action="${logoutUrl}" method="post">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+			</form>
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="userLogout"><span
-							class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+					<li><a
+						href="javascript:document.getElementById('logout').submit()"><span
+							class="glyphicon glyphicon-log-in"></span>Logout</a></li>
 				</ul>
 			</c:if>
+
 		</div>
 	</div>
 	</nav>
