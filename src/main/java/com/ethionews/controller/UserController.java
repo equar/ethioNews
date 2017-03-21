@@ -122,4 +122,15 @@ public class UserController {
 		return new ModelAndView("invalidSession");
 	}
 
+	@RequestMapping(value = "/passwordForgot", method = RequestMethod.GET)
+	public ModelAndView passwordForgot(@ModelAttribute User user) {
+		return new ModelAndView("passwordForgot");
+	}
+
+	@RequestMapping(value = "/passwordChange", method = RequestMethod.GET)
+	public ModelAndView passwordChange(@ModelAttribute User user) {
+		logger.info("Change Password form rendered");
+		return new ModelAndView("passwordChange");
+	}
+
 }

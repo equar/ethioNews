@@ -68,7 +68,9 @@
 
 
 				<h4 class="text-center">
-					<a href="createUser">Create an account</a>
+					<span class="text-left"><a href="passwordForgot">Forgot
+							Password?</a></span> &nbsp;&nbsp; &nbsp;&nbsp;<span class="text-right"><a
+						href="createUser">Create an account</a></span>
 				</h4>
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />

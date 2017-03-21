@@ -1,15 +1,12 @@
 package com.ethionews.util;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,12 +26,9 @@ public class EthioUtil {
 	private static final Logger logger = Logger.getLogger(EthioUtil.class);
 
 	public static String passwordEncoder(String password) {
-		String hashedPassword = null;
-		for (int i = 0; i < 10; i++) {
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			hashedPassword = passwordEncoder.encode(password);
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11);
+		String hashedPassword = passwordEncoder.encode(password);
 
-		}
 		return hashedPassword;
 	}
 
