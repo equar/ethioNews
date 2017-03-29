@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user) {
+		user.setPassword(EthioUtil.passwordEncoder(user.getPassword()));
 		return userDao.updateUser(user);
 	}
 
@@ -67,11 +69,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public String findLoggedInUsername() {
-		Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
-		if (userDetails instanceof UserDetails) {
-			return ((UserDetails) userDetails).getUsername();
-		}
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
+		return userDetails.getUsername();
+	}
+
+	public User findLoggedInUser() {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		if (userDetails instanceof UserDetails) {
+			User user = new User();
+			// user.setId(userDetails.get);
+			user.setUsername(userDetails.getUsername());
+			user.setPassword(userDetails.getPassword());
+			user.setEnabled(userDetails.isEnabled());
+
+			return user;
+		}
 		return null;
 	}
 

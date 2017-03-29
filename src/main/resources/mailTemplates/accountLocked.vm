@@ -1,4 +1,4 @@
-Hi $username.
+Hi ${username}.
 
 You, or someone else, have exceeded the number of permitted attempts of either logging-in or answering your secret question. 
 Therefore, for your protection, your account has been locked. To unlock your account, please click the link below.
@@ -9,6 +9,6 @@ because someone may be trying to take over your account.
 
 To unlock your WatchDox account, click on the following link:
 
-$url
+${url}
 
 Once your account is unlocked, you can log into your account with your password.

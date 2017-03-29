@@ -1,12 +1,20 @@
 package com.ethionews.config;
 
+import java.io.IOException;
+import java.util.Properties;
+
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.exception.VelocityException;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
+import org.springframework.ui.velocity.VelocityEngineFactory;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
@@ -81,6 +89,37 @@ public class AppConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public HttpSessionEventPublisher httpSessionEventPublisher() {
 		return new HttpSessionEventPublisher();
+	}
+
+	@Bean
+	public JavaMailSender getMailSender() {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+		// Using gmail
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+		mailSender.setUsername("busagile@gmail.com");
+		mailSender.setPassword("agileproject");
+
+		Properties javaMailProperties = new Properties();
+		javaMailProperties.put("mail.smtp.starttls.enable", "true");
+		javaMailProperties.put("mail.smtp.auth", "true");
+		javaMailProperties.put("mail.transport.protocol", "smtp");
+		// Prints out everything on screen
+		javaMailProperties.put("mail.debug", "true");
+
+		mailSender.setJavaMailProperties(javaMailProperties);
+		return mailSender;
+	}
+
+	@Bean
+	public VelocityEngine getVelocityEngine() throws VelocityException, IOException {
+		VelocityEngineFactory factory = new VelocityEngineFactory();
+		Properties props = new Properties();
+		props.put("resource.loader", "class");
+		props.put("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+		factory.setVelocityProperties(props);
+		return factory.createVelocityEngine();
 	}
 
 }

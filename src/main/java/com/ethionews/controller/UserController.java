@@ -1,13 +1,11 @@
 package com.ethionews.controller;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,14 +14,17 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ethionews.model.Mail;
 import com.ethionews.model.User;
-import com.ethionews.model.UserRole;
+import com.ethionews.service.MailService;
 import com.ethionews.service.UserService;
+import com.ethionews.util.EthioUtil;
 
 @Controller
 public class UserController {
@@ -37,6 +38,9 @@ public class UserController {
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
 	}
+
+	@Autowired
+	private MailService mailService;
 
 	@Autowired
 	private UserService userService;
@@ -122,14 +126,64 @@ public class UserController {
 		return new ModelAndView("invalidSession");
 	}
 
-	@RequestMapping(value = "/passwordForgot", method = RequestMethod.GET)
-	public ModelAndView passwordForgot(@ModelAttribute User user) {
-		return new ModelAndView("passwordForgot");
+	@RequestMapping(value = "/passwordEmailVerify", method = RequestMethod.GET)
+	public ModelAndView passwordEmailVerify(@ModelAttribute User user) {
+		return new ModelAndView("passwordEmailVerify");
+	}
+
+	@RequestMapping(value = "/passwordEmailVerify", method = RequestMethod.POST)
+	public ModelAndView passwordEmailVerify(Model model, @ModelAttribute User user) {
+		User loggedUser = userService.findByUsername(user.getUsername());
+		if (null == loggedUser) {
+			return new ModelAndView("passwordEmailVerify", "message", "Your email doesn't exist in our system");
+		}
+		String templateName = "restorePassword.vm";
+		Mail mail = new Mail();
+		mail.setMailFrom("from@gmail.com");
+		mail.setMailTo(loggedUser.getUsername());
+		mail.setMailSubject("Password Reset Instructions");
+		mail.setTemplateName("restorePassword.vm");
+		mail.setMailContent(mailService.getMailBody(templateName, loggedUser.getUsername()));
+		mailService.sendEmail(mail);
+		return new ModelAndView("passwordRestoreEmailSent", "username", user.getUsername());
 	}
 
 	@RequestMapping(value = "/passwordChange", method = RequestMethod.GET)
 	public ModelAndView passwordChange(@ModelAttribute User user) {
 		logger.info("Change Password form rendered");
+		return new ModelAndView("passwordChange");
+	}
+
+	@RequestMapping(value = "/passwordChange", method = RequestMethod.POST)
+	public ModelAndView passwordChange(Model model, @ModelAttribute User user) {
+		logger.info("Updating password for : " + user);
+
+		/*
+		 * if (result.hasErrors()) { return new ModelAndView("passwordChange");
+		 * }
+		 */
+
+		String username = userService.findLoggedInUsername();
+		if (null == username) {
+			return new ModelAndView("passwordChange", "message", "Your session has been expired. Please Login again");
+		}
+		User loggedUser = userService.findByUsername(username);
+		loggedUser.setPassword(user.getPassword());
+
+		userService.updateUser(loggedUser);
+
+		return new ModelAndView("passwordChange", "message", "Your password has been updated succesfully");
+	}
+
+	@RequestMapping(value = "/newPassword/{newPassword}")
+	public ModelAndView resetPassword(@PathVariable String newPassword, Map<String, String> model) {
+		String emailId = EthioUtil.getDecodedFromBase64(newPassword);
+		User loggedUser = userService.findByUsername(emailId);
+		if (null == loggedUser) {
+			return new ModelAndView("passwordChange", "message",
+					"The Link has been expired. Please try to reset your password again");
+		}
+		model.put("emailid", emailId);
 		return new ModelAndView("passwordChange");
 	}
 

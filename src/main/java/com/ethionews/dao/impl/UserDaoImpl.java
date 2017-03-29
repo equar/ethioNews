@@ -47,18 +47,9 @@ public class UserDaoImpl implements UserDao {
 		boolean isEnabled;
 		Set<UserRole> userRole;
 		for (User userObject : userObjects) {
-			/*
-			 * id = ((BigInteger) userObject[0]).longValue(); username =
-			 * (String) userObject[3]; password = (String) userObject[2];
-			 * isEnabled = (boolean) userObject[1]; userRole = (Set<UserRole>)
-			 * userObject[4];
-			 */
+
 			user = new User();
-			/*
-			 * user.setId(id); user.setUsername(username);
-			 * user.setPassword(password); user.setEnabled(isEnabled);
-			 * user.setUserRole(userRole);
-			 */
+
 			user.setId(userObject.getId());
 			user.setUsername(userObject.getUsername());
 			user.setPassword(userObject.getPassword());

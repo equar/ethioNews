@@ -7,11 +7,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -68,10 +68,20 @@ public class EthioUtil {
 			bos.write(buf, 0, readNum);
 		}
 		byte[] bytes = bos.toByteArray();
-		byte[] encodeBase64 = Base64.encodeBase64(bytes);
+		// byte[] encodeBase64 = Base64.encodeBase64(bytes);
+		String encodeBase64 = Base64.getEncoder().encodeToString(bytes);
 		fis.close();
 
-		return new String(encodeBase64, "UTF-8");
+		// return new String(encodeBase64, "UTF-8");
+		return encodeBase64;
+	}
+
+	public static String getEncodedToBase64(String encoded) {
+		return Base64.getEncoder().encodeToString(encoded.getBytes());
+	}
+
+	public static String getDecodedFromBase64(String decoded) {
+		return Base64.getDecoder().decode(decoded).toString();
 	}
 
 	public static String writeFileToServer(String content, String dirName) {

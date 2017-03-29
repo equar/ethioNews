@@ -22,7 +22,7 @@ public class Video implements Serializable {
 	private String title;
 	private String description;
 	private String category;
-	// private User user;
+	private User user;
 	private Date date;
 	private String filename;
 
@@ -64,7 +64,7 @@ public class Video implements Serializable {
 		this.category = category;
 	}
 
-	/*@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userId", nullable = false)
 	public User getUser() {
 		return user;
@@ -72,7 +72,7 @@ public class Video implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}*/
+	}
 
 	@Column(name = "date", nullable = false)
 	public Date getDate() {

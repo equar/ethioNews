@@ -5,18 +5,20 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>Password Reset Successful</b>
+					<b>Password Reset Email</b>
 				</div>
 				<div align="right">
 					<!-- <a href="getAllContacts">Contact List</a> -->
 				</div>
 			</h3>
 		</div>
-
+		<c:if test="${not empty message}">
+			<div>${message}</div>
+		</c:if>
 		<div class="panel-body">
 
-			<form:form id="passwordForgot" cssClass="form-horizontal"
-				modelAttribute="user" method="post" action="passwordForgot">
+			<form:form id="passwordEmailVerify" cssClass="form-horizontal"
+				modelAttribute="user" method="post" action="passwordEmailVerify">
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">
@@ -33,7 +35,7 @@
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
 							<input type="submit" id="saveUser" class="btn btn-primary"
-								value="Login" onclick="return submitUserSignupForm();" />
+								value="Submit" onclick="return submitUserSignupForm();" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>

@@ -9,11 +9,13 @@
 				</div>
 			</h3>
 		</div>
-
+		<c:if test="${not empty message}">
+			<div>${message}</div>
+		</c:if>
 		<div class="panel-body">
 			<form:form id="passwordChange" cssClass="form-horizontal"
 				modelAttribute="user" method="post" action="passwordChange">
- 
+
 				<div class="form-group">
 					<form:label path="password" cssClass="control-label col-xs-3">Password</form:label>
 					<div class="col-xs-6">

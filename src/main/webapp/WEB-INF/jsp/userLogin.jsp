@@ -68,7 +68,7 @@
 
 
 				<h4 class="text-center">
-					<span class="text-left"><a href="passwordForgot">Forgot
+					<span class="text-left"><a href="passwordEmailVerify">Forgot
 							Password?</a></span> &nbsp;&nbsp; &nbsp;&nbsp;<span class="text-right"><a
 						href="createUser">Create an account</a></span>
 				</h4>

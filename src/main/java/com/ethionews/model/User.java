@@ -30,7 +30,7 @@ public class User implements Serializable {
 	private String passwordConfirm;
 	private boolean enabled;
 	private Set<UserRole> userRoles = new HashSet<>();
-	// private Set<Video> video = new HashSet<>();
+	private Set<Video> videos = new HashSet<>();
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -90,11 +90,13 @@ public class User implements Serializable {
 		this.userRoles = userRoles;
 	}
 
-	/*
-	 * @OneToMany(fetch = FetchType.LAZY, mappedBy = "user") public Set<Video>
-	 * getVideo() { return video; }
-	 * 
-	 * public void setVideo(Set<Video> video) { this.video = video; }
-	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Video> getVideos() {
+		return videos;
+	}
+
+	public void setVideos(Set<Video> videos) {
+		this.videos = videos;
+	}
 
 }
