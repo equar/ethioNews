@@ -58,9 +58,10 @@ public class MailServiceImpl implements MailService {
 	}
 
 	public String getMailBody(String templateName, String emailId) {
+		velocityEngine.init();
 		Template template = velocityEngine.getTemplate("./mailTemplates/" + templateName);
 		String encodedEmail = EthioUtil.getEncodedToBase64(emailId);
-		String url = "http://localhost:8080/newPassword/" + encodedEmail;
+		String url = "http://localhost:8080/newPassword?newPassword=" + encodedEmail;
 
 		VelocityContext velocityContext = new VelocityContext();
 		velocityContext.put("name", "EthioNews  User");

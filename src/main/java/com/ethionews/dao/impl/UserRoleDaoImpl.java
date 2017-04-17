@@ -1,5 +1,6 @@
 package com.ethionews.dao.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,15 +52,16 @@ public class UserRoleDaoImpl implements UserRoleDao {
 		String query = "SELECT e.* FROM UserRole e WHERE e.roleType like '%" + roleType + "%'";
 		List<Object[]> userRoleObjects = hibernateUtil.fetchAll(query);
 		List<UserRole> userRoles = new ArrayList<UserRole>();
+		long id;
+		String roleName;
 		for (Object[] userRoleObject : userRoleObjects) {
 			UserRole userRole = new UserRole();
-			long roleId = ((long) userRoleObject[0]);
-			String roleName = (String) userRoleObject[1];
-			userRole.setId(roleId);
+			id = ((BigInteger) userRoleObject[0]).longValue();
+			roleName = (String) userRoleObject[1];
+			userRole.setId(id);
 			userRole.setRoleType(roleName);
 			userRoles.add(userRole);
 		}
-		System.out.println(userRoles);
 		return userRoles;
 	}
 

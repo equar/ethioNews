@@ -5,23 +5,23 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>Video List</b>
+					<b>Ride List</b>
 				</div>
 				<div align="right">
-					<a href="createVideo">Post Video</a>
+					<a href="createRide">Post Ride</a>
 				</div>
 			</h3>
 		</div>
 		<div class="panel-body">
-			<c:if test="${empty videoList}">
-                There are no Video
+			<c:if test="${empty rideList}">
+                There are no Ride
             </c:if>
-			<c:if test="${not empty videoList}">
+			<c:if test="${not empty rideList}">
 
-				<form action="searchVideo">
+				<form action="searchRide">
 					<div class="row">
 						<div class="col-md-4">
-							Search Video: <input type='text' name='title' id='title' />
+							Search Ride: <input type='text' name='title' id='title' />
 						</div>
 						<div class="col-md-4">
 							<input class="btn btn-success" type='submit' value='Search' />
@@ -32,11 +32,10 @@
 				<table class="table table-hover table-bordered">
 
 					<tbody>
-						<c:forEach items="${videoList}" var="vid">
+						<c:forEach items="${rideList}" var="vid">
 							<tr>
 
-								<th><iframe width="420" height="345"
-										src=<c:out value="${vid.filename}" />> </iframe></th>
+								<th><c:out value="${vid.date}" /></th>
 
 								<th><c:out value="${vid.date}" /></th>
 
@@ -45,7 +44,7 @@
 					</tbody>
 				</table>
 				<tag:paginate max="10" offset="${offset}" count="${count}"
-					uri="getPublicVideos" next="&raquo;" previous="&laquo;" />
+					uri="getPublicRides" next="&raquo;" previous="&laquo;" />
 			</c:if>
 		</div>
 	</div>

@@ -12,4 +12,6 @@ public interface UserDao {
 	public List<User> getAllUsers();
 
 	public User findByUsername(String username);
+
+	List<User> getAllUsers(String username);
 }

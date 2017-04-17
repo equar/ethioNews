@@ -2,6 +2,7 @@ package com.ethionews.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ethionews.model.Mail;
 import com.ethionews.model.User;
+import com.ethionews.model.UserRole;
 import com.ethionews.service.MailService;
 import com.ethionews.service.UserService;
 import com.ethionews.util.EthioUtil;
@@ -111,8 +113,53 @@ public class UserController {
 
 	@RequestMapping(value = "/getAllUsers", method = RequestMethod.GET)
 	public ModelAndView getAllUsers() {
-		logger.info("Getting the all Users.");
+		logger.info("Getting all Users.");
 		List<User> userList = userService.getAllUsers();
+		return new ModelAndView("userList", "userList", userList);
+	}
+
+	@RequestMapping(value = "/getEnabledUsers", method = RequestMethod.GET)
+	public ModelAndView getEnabledUsers() {
+		logger.info("Getting  all enabled Users.");
+		List<User> userList = userService.getAllUsers();
+		List<User> filteredUserList = userList.stream().filter(user -> user.isEnabled() == true)
+				.collect(Collectors.toList());
+		return new ModelAndView("userList", "userList", filteredUserList);
+	}
+
+	@RequestMapping(value = "/getDisabledUsers", method = RequestMethod.GET)
+	public ModelAndView getDisabledUsers() {
+		logger.info("Getting all disabled Users.");
+		List<User> userList = userService.getAllUsers();
+		List<User> filteredUserList = userList.stream().filter(user -> user.isEnabled() == false)
+				.collect(Collectors.toList());
+		return new ModelAndView("userList", "userList", filteredUserList);
+	}
+
+	@RequestMapping(value = "/enableUser", method = RequestMethod.GET)
+	public String enableUser(@RequestParam String id, @RequestParam boolean action) {
+		logger.info("Getting all Users.");
+		User user = userService.findByUsername(id);
+		user.setEnabled(action);
+		userService.enableOrDisableUser(user);
+
+		return "redirect:getAllUsers";
+	}
+
+	@RequestMapping(value = "/disableUser", method = RequestMethod.GET)
+	public String disableUser(@RequestParam String id, @RequestParam boolean action) {
+		logger.info("Getting all Users.");
+		User user = userService.findByUsername(id);
+		user.setEnabled(action);
+		userService.enableOrDisableUser(user);
+
+		return "redirect:getAllUsers";
+	}
+
+	@RequestMapping("searchUser")
+	public ModelAndView searchUser(@RequestParam("username") String username) {
+		logger.info("Searching the User. User Names: " + username);
+		List<User> userList = userService.getAllUsers(username);
 		return new ModelAndView("userList", "userList", userList);
 	}
 
@@ -175,8 +222,8 @@ public class UserController {
 		return new ModelAndView("passwordChange", "message", "Your password has been updated succesfully");
 	}
 
-	@RequestMapping(value = "/newPassword/{newPassword}")
-	public ModelAndView resetPassword(@PathVariable String newPassword, Map<String, String> model) {
+	@RequestMapping(value = "/newPassword", method = RequestMethod.GET)
+	public ModelAndView resetPassword(@RequestParam String newPassword, Map<String, String> model) {
 		String emailId = EthioUtil.getDecodedFromBase64(newPassword);
 		User loggedUser = userService.findByUsername(emailId);
 		if (null == loggedUser) {

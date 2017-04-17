@@ -8,7 +8,7 @@
 					<b>Event List</b>
 				</div>
 				<div align="right">
-					<!-- <a href="createVideo">Add New Video</a> -->
+					<a href="createEvent">Post Event</a>
 				</div>
 			</h3>
 		</div>

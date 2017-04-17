@@ -58,6 +58,10 @@
 				<li><a href="getPublicVideos">Video</a></li>
 				<li><a href="getPublicEvents">Events</a></li>
 				<li><a href="getMediasToSubscribe">Subscribe</a></li>
+				<li><a href=getPublicServices>Service Search</a></li>
+				<li><a href=getPublicRides>Ride Sharing</a></li>
+				<li><a href=getPublicRents>Rent Sharing</a></li>
+				<li><a href=getPublicSpeaks>Speak Up</a></li>
 				<li><a href=createContact>Contact Us</a></li>
 			</ul>
 			<c:if test="${pageContext.request.userPrincipal.name == null}">

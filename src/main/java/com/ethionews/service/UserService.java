@@ -21,4 +21,8 @@ public interface UserService {
 	public User findLoggedInUser();
 
 	public void autologin(String username, String password);
+
+	public List<User> getAllUsers(String username);
+
+	public User enableOrDisableUser(User user);
 }

@@ -18,7 +18,7 @@
             </c:if>
 			<c:if test="${not empty userRoleList}">
 
-				<form action="searchEmployee">
+				<form action="searchUserRole">
 					<div class="row">
 						<div class="col-md-4">
 							Search UserRole: <input type='text' name='roleType' id='roleType' />

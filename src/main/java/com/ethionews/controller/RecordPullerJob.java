@@ -21,7 +21,7 @@ public class RecordPullerJob {
 	@Autowired
 	private MediaService mediaService;
 
-	/*@Scheduled(fixedRate = 60 * 60 * 1000, initialDelay = 10 * 60 * 1000)*/
+	@Scheduled(fixedRate = 1000 * 60 * 60 * 3, initialDelay = 5000)
 	public void saveRecord() {
 		List<Media> mediaList = mediaService.getAllMediasToSubscribe();
 
@@ -29,6 +29,7 @@ public class RecordPullerJob {
 			for (Media media : mediaList) {
 				recordService.createRecord(media);
 			}
+			System.out.println("Automatic crawling completed");
 
 		} catch (IllegalArgumentException e) {
 			logger.error(e.getMessage());

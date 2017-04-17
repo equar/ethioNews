@@ -8,13 +8,14 @@
 					<b>User List</b>
 				</div>
 				<div align="right">
-					<!-- <a href="createUserRole">Add New UserRole</a> -->
+					<a href="getAllUsers">All Users</a>| <a href="getEnabledUsers">Enabled
+						Users</a>| <a href="getDisabledUsers">Disabled Users</a>
 				</div>
 			</h3>
 		</div>
 		<div class="panel-body">
 			<c:if test="${empty userList}">
-                There are no User roles
+                There are no Users
             </c:if>
 			<c:if test="${not empty userList}">
 
@@ -36,7 +37,7 @@
 							<th>Username</th>
 							<th>Status</th>
 							<th>Action</th>
-							<th>Delete</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -45,8 +46,14 @@
 								<th><c:out value="${user.id}" /></th>
 								<th><c:out value="${user.username}" /></th>
 								<th><c:out value="${user.enabled}" /></th>
-								<th><a href="editUser?id=<c:out value='${user.id}'/>">Edit</a></th>
-								<th><a href="deleteUser?id=<c:out value='${user.id}'/>">Delete</a></th>
+								<c:if test="${user.enabled == true}">
+									<th><a
+										href="disableUser?id=<c:out value='${user.username}'/>&action=<c:out value='false'/>">Disable</a></th>
+								</c:if>
+								<c:if test="${user.enabled == false}">
+									<th><a
+										href="enableUser?id=<c:out value='${user.username}'/>&action=<c:out value='true'/>">Enable</a></th>
+								</c:if>
 							</tr>
 						</c:forEach>
 					</tbody>
