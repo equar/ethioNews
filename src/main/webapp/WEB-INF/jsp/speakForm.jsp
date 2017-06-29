@@ -8,7 +8,7 @@
 					<b>Speak Details</b>
 				</div>
 				<div align="right">
-					<a href="getAllSpeakss">Speak List</a>
+					<a href="getAllSpeaks">Speak List</a>
 				</div>
 			</h3>
 		</div>
@@ -19,31 +19,31 @@
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">
-						<form:label path="subject">Subject</form:label>
+						<form:label path="title">Title</form:label>
 					</div>
 					<div class="col-xs-6">
 						<form:hidden path="id" value="${speakObject.id}" />
-						<form:input cssClass="form-control" path="subject"
-							value="${speakObject.subject}" />
-						<form:errors path="subject" cssStyle="color: #ff0000;" />
+						<form:input cssClass="form-control" path="title"
+							value="${speakObject.title}" />
+						<form:errors path="title" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
 				<div class="form-group">
 					<form:label path="description" cssClass="control-label col-xs-3">Description</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="description"
-							value="${speakObject.description}" />
+						<form:textarea cssClass="form-control" path="description" rows="5"
+							cols="50" value="${speakObject.description}" />
 						<form:errors path="description" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<form:label path="filename" cssClass="control-label col-xs-3">File Name</form:label>
+					<form:label path="url" cssClass="control-label col-xs-3">URL</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="filename"
-							value="${speakObject.filename}" />
-						<form:errors path="filename" cssStyle="color: #ff0000;" />
+						<form:input cssClass="form-control" path="url"
+							value="${speakObject.url}" />
+						<form:errors path="url" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 

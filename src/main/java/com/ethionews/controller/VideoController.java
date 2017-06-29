@@ -27,21 +27,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ethionews.model.User;
 import com.ethionews.model.Video;
+import com.ethionews.service.UserService;
 import com.ethionews.service.VideoService;
 
 @Controller
 public class VideoController {
 	private static final Logger logger = Logger.getLogger(VideoController.class);
 
-	@Autowired
+	/*@Autowired
 	@Qualifier("videoValidator")
 	private Validator validator;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
-	}
+	}*/
 
 	@Autowired
 	private VideoService videoService;
@@ -60,13 +62,16 @@ public class VideoController {
 	}
 
 	@RequestMapping("saveVideo")
-	public String saveVideo(Model model, @Validated Video video, BindingResult result) {
+	public String saveVideo(@ModelAttribute("loggedUser") User user, Model model, @Validated Video video,
+			BindingResult result) {
 		logger.info("Saving the Media. Data : " + video);
 		// if media id is 0 then creating the media other updating the
 		// media
 		String returnVal = "redirect:getAllVideos";
 		Date today = Calendar.getInstance().getTime();
 		video.setDate(today);
+
+		// video.setUser(userService.findLoggedUser());
 
 		if (result.hasErrors()) {
 			return "videoForm";

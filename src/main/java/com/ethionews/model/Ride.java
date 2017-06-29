@@ -1,13 +1,15 @@
 package com.ethionews.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +22,10 @@ public class Ride implements Serializable {
 	private String from;
 	private String to;
 	private String price;
-	private Date date;
+	private String date;
 	private String time;
 	private String seats;
+	private User user;
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -35,7 +38,7 @@ public class Ride implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "from", nullable = false)
+	@Column(name = "fromLocation", nullable = false)
 	public String getFrom() {
 		return from;
 	}
@@ -44,7 +47,7 @@ public class Ride implements Serializable {
 		this.from = from;
 	}
 
-	@Column(name = "to", nullable = false)
+	@Column(name = "toLocation", nullable = false)
 	public String getTo() {
 		return to;
 	}
@@ -63,11 +66,11 @@ public class Ride implements Serializable {
 	}
 
 	@Column(name = "date", nullable = false)
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -87,6 +90,16 @@ public class Ride implements Serializable {
 
 	public void setSeats(String seats) {
 		this.seats = seats;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId", nullable = false)
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +29,7 @@ public class Event implements Serializable {
 	private String time;
 	private String imagePath;
 	private boolean status;
+	private User user;
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -135,6 +139,16 @@ public class Event implements Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId", nullable = false)
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

@@ -9,15 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ethionews.dao.RentDao;
 import com.ethionews.model.Rent;
 import com.ethionews.service.RentService;
+import com.ethionews.service.UserService;
 
 @Service("rentService")
 @Transactional
 public class RentServiceImpl implements RentService {
 	@Autowired
 	private RentDao rentDao;
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public long createRent(Rent rent) {
+		rent.setUser(userService.findLoggedUser());
 		return rentDao.createRent(rent);
 	}
 

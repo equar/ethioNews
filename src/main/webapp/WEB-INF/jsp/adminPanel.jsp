@@ -31,7 +31,13 @@
 			<sec:authorize access="hasRole('ROLE_USER')">
 				<span><a href="getAllRides">Ride Mgt </a>|</span>
 			</sec:authorize>
-			<sec:authorize access="hasRole('ROLE_SPEAK')">
+			<sec:authorize access="hasRole('ROLE_USER')">
+				<span><a href="getAllJobs">Job Mgt </a>|</span>
+			</sec:authorize>
+			<sec:authorize access="hasRole('ROLE_USER')">
+				<span><a href="getAllProfessions">Profession Mgt </a>|</span>
+			</sec:authorize>
+			<sec:authorize access="hasRole('ROLE_USER')">
 				<span><a href="getAllSpeaks">Speak Mgt </a>|</span>
 			</sec:authorize>
 			<sec:authorize

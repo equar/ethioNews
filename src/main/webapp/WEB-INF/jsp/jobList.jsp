@@ -5,23 +5,23 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>Speak List</b>
+					<b>Job List</b>
 				</div>
 				<div align="right">
-					<a href="createSpeak">Add New Speak</a>
+					<a href="createJob">Add New Job</a>
 				</div>
 			</h3>
 		</div>
 		<div class="panel-body">
-			<c:if test="${empty speakList}">
-                There are no Speak
+			<c:if test="${empty jobList}">
+                There are no Job
             </c:if>
-			<c:if test="${not empty speakList}">
+			<c:if test="${not empty jobList}">
 
-				<form action="searchSpeak">
+				<form action="searchJob">
 					<div class="row">
 						<div class="col-md-4">
-							Search Speak: <input type='text' name='title' id='title' />
+							Search Job: <input type='text' name='title' id='title' />
 						</div>
 						<div class="col-md-4">
 							<input class="btn btn-success" type='submit' value='Search' />
@@ -35,22 +35,26 @@
 							<th>Id</th>
 							<th>Title</th>
 							<th>Description</th>
-							<th>Up</th>
-							<th>Down</th>
+							<th>Location</th>
+							<th>PhoneNumber</th>
+							<th>Email</th>
+							<th>Available</th>
 							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${speakList}" var="spk">
+						<c:forEach items="${jobList}" var="job">
 							<tr>
-								<th><c:out value="${spk.id}" /></th>
-								<th><c:out value="${spk.title}" /></th>
-								<th><c:out value="${spk.description}" /></th>
-								<th><c:out value="${spk.up}" /></th>
-								<th><c:out value="${spk.down}" /></th>
-								<th><a href="editSpeak?id=<c:out value='${spk.id}'/>">Edit</a></th>
-								<th><a href="deleteSpeak?id=<c:out value='${spk.id}'/>">Delete</a></th>
+								<th><c:out value="${job.id}" /></th>
+								<th><c:out value="${job.title}" /></th>
+								<th><c:out value="${job.descritpion}" /></th>
+								<th><c:out value="${job.location}" /></th>
+								<th><c:out value="${job.phoneNumber}" /></th>
+								<th><c:out value="${job.email}" /></th>
+								<th><c:out value="${job.availabl}" /></th>
+								<th><a href="editJob?id=<c:out value='${job.id}'/>">Edit</a></th>
+								<th><a href="deleteJob?id=<c:out value='${job.id}'/>">Delete</a></th>
 							</tr>
 						</c:forEach>
 					</tbody>

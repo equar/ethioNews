@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(EthioUtil.passwordEncoder(user.getPassword()));
 		return userDao.updateUser(user);
 	}
-	
+
 	public User enableOrDisableUser(User user) {
 		return userDao.updateUser(user);
 	}
@@ -77,6 +77,12 @@ public class UserServiceImpl implements UserService {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
 		return userDetails.getUsername();
+	}
+
+	public User findLoggedUser() {
+		String loggedUsername = findLoggedInUsername();
+		User loggedUser = findByUsername(loggedUsername);
+		return loggedUser;
 	}
 
 	public User findLoggedInUser() {

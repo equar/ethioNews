@@ -7,6 +7,8 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ethionews.dao.UserDao;
 import com.ethionews.model.User;
@@ -15,6 +17,7 @@ import com.ethionews.model.User;
 import com.ethionews.util.HibernateUtil;
 
 @Repository("userDao")
+@SessionAttributes("loggedUser")
 public class UserDaoImpl implements UserDao {
 	@Autowired
 	private HibernateUtil hibernateUtil;
@@ -43,11 +46,6 @@ public class UserDaoImpl implements UserDao {
 
 		List<User> userObjects = hibernateUtil.fetchAllHql(Query);
 		User user = null;
-		long id;
-		String username;
-		String password;
-		boolean isEnabled;
-		Set<UserRole> userRole;
 		for (User userObject : userObjects) {
 
 			user = new User();

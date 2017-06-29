@@ -19,7 +19,6 @@ public class SpeakValidator implements Validator {
 	public void validate(Object obj, Errors errors) {
 		ValidationUtils.rejectIfEmpty(errors, "title", "rent.title");
 		ValidationUtils.rejectIfEmpty(errors, "description", "rent.description");
-		ValidationUtils.rejectIfEmpty(errors, "category", "rent.category");
-		ValidationUtils.rejectIfEmpty(errors, "filename", "rent.filename");
+		ValidationUtils.rejectIfEmpty(errors, "url", "rent.filename");
 	}
 }

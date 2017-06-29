@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +28,7 @@ public class Rent implements Serializable {
 	private boolean furnished;
 	private Date availableDate;
 	private String address;
+	private User user;
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -107,6 +111,16 @@ public class Rent implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId", nullable = false)
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

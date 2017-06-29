@@ -32,9 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (null == user) {
 			throw new UsernameNotFoundException(username + "not found");
 		}
-
 		List<GrantedAuthority> grantedAuthorities = buildUserAuthority(user.getUserRoles());
-
 		return buildUserForAuthentication(user, grantedAuthorities);
 
 	}

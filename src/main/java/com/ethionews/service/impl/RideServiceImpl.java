@@ -9,15 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ethionews.dao.RideDao;
 import com.ethionews.model.Ride;
 import com.ethionews.service.RideService;
+import com.ethionews.service.UserService;
 
 @Service("rideService")
 @Transactional
 public class RideServiceImpl implements RideService {
 	@Autowired
 	private RideDao rideDao;
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public long createRide(Ride ride) {
+		ride.setUser(userService.findLoggedUser());
 		return rideDao.createRide(ride);
 	}
 

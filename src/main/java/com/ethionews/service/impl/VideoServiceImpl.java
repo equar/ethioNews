@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ethionews.dao.VideoDao;
 import com.ethionews.model.Video;
+import com.ethionews.service.UserService;
 import com.ethionews.service.VideoService;
 
 @Service("videoService")
@@ -15,9 +16,12 @@ import com.ethionews.service.VideoService;
 public class VideoServiceImpl implements VideoService {
 	@Autowired
 	private VideoDao videoDao;
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public long createVideo(Video video) {
+		video.setUser(userService.findLoggedUser());
 		return videoDao.createVideo(video);
 	}
 

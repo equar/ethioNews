@@ -9,20 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ethionews.dao.SpeakDao;
 import com.ethionews.model.Speak;
 import com.ethionews.service.SpeakService;
+import com.ethionews.service.UserService;
 
 @Service("speakService")
 @Transactional
 public class SpeakServiceImpl implements SpeakService {
 	@Autowired
 	private SpeakDao speakDao;
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public long createSpeak(Speak speak) {
+		speak.setUser(userService.findLoggedUser());
 		return speakDao.createSpeak(speak);
 	}
 
 	@Override
 	public Speak updateSpeak(Speak speak) {
+		speak.setUser(userService.findLoggedUser());
 		return speakDao.updateSpeak(speak);
 	}
 

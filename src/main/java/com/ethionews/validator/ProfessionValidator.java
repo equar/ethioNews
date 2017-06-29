@@ -5,14 +5,14 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.ethionews.model.Service;
+import com.ethionews.model.Profession;
 
-@Component("serviceValidator")
-public class ServiceValidator implements Validator {
+@Component("professionValidator")
+public class ProfessionValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> paramClass) {
-		return Service.class.equals(paramClass);
+		return Profession.class.equals(paramClass);
 	}
 
 	@Override

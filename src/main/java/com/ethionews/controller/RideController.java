@@ -58,7 +58,7 @@ public class RideController {
 		// media
 		String returnVal = "redirect:getAllRides";
 		Date today = Calendar.getInstance().getTime();
-		ride.setDate(today);
+		ride.setDate(today.toString());
 
 		if (result.hasErrors()) {
 			return "rideForm";

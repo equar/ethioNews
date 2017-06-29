@@ -11,6 +11,7 @@ import com.ethionews.dao.EventDao;
 import com.ethionews.dao.MediaDao;
 import com.ethionews.model.Event;
 import com.ethionews.service.EventService;
+import com.ethionews.service.UserService;
 import com.ethionews.util.EthioUtil;
 
 import java.io.ByteArrayOutputStream;
@@ -27,9 +28,12 @@ import org.apache.commons.codec.binary.Base64;
 public class EventServiceImpl implements EventService {
 	@Autowired
 	private EventDao eventDao;
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public long createEvent(Event event) {
+		event.setUser(userService.findLoggedUser());
 		return eventDao.createEvent(event);
 	}
 

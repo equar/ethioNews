@@ -58,7 +58,8 @@
 				<li><a href="getPublicVideos">Video</a></li>
 				<li><a href="getPublicEvents">Events</a></li>
 				<li><a href="getMediasToSubscribe">Subscribe</a></li>
-				<li><a href=getPublicServices>Service Search</a></li>
+				<li><a href=getPublicJobs>Jobs</a></li>
+				<li><a href=getPublicProfessions>Professional Services</a></li>
 				<li><a href=getPublicRides>Ride Sharing</a></li>
 				<li><a href=getPublicRents>Rent Sharing</a></li>
 				<li><a href=getPublicSpeaks>Speak Up</a></li>
@@ -80,7 +81,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a
 						href="javascript:document.getElementById('logout').submit()"><span
-							class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+							class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 				</ul>
 			</c:if>
 

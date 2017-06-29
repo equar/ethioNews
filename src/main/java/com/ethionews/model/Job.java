@@ -13,17 +13,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "speak")
-public class Speak implements Serializable {
+@Table(name = "job")
+public class Job implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private long id;
 	private String title;
 	private String description;
-	private String url;
-	private int up;
-	private int down;
+	private String phoneNumber;
+	private String email;
+	private boolean available;
+	private String location;
 	private User user;
 
 	@Id
@@ -55,31 +56,40 @@ public class Speak implements Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "url", nullable = false)
-	public String getUrl() {
-		return url;
+	@Column(name = "phoneNumber", nullable = false)
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	@Column(name = "up", nullable = true)
-	public int getUp() {
-		return up;
+	@Column(name = "email", nullable = false)
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUp(int up) {
-		this.up = up;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	@Column(name = "down", nullable = true)
-	public int getDown() {
-		return down;
+	@Column(name = "available", nullable = false)
+	public boolean isAvailable() {
+		return available;
 	}
 
-	public void setDown(int down) {
-		this.down = down;
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	@Column(name = "location", nullable = false)
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

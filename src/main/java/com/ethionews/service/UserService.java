@@ -18,6 +18,8 @@ public interface UserService {
 
 	public String findLoggedInUsername();
 
+	public User findLoggedUser();
+
 	public User findLoggedInUser();
 
 	public void autologin(String username, String password);

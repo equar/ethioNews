@@ -31,6 +31,12 @@ public class User implements Serializable {
 	private boolean enabled;
 	private Set<UserRole> userRoles = new HashSet<>();
 	private Set<Video> videos = new HashSet<>();
+	private Set<Event> events = new HashSet<>();
+	private Set<Job> jobs = new HashSet<>();
+	private Set<Rent> rents = new HashSet<>();
+	private Set<Ride> rides = new HashSet<>();
+	private Set<Speak> speaks = new HashSet<>();
+	private Set<Profession> professions = new HashSet<>();
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -97,6 +103,65 @@ public class User implements Serializable {
 
 	public void setVideos(Set<Video> videos) {
 		this.videos = videos;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Job> getJobs() {
+		return jobs;
+	}
+
+	public void setJobs(Set<Job> jobs) {
+		this.jobs = jobs;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Rent> getRents() {
+		return rents;
+	}
+
+	public void setRents(Set<Rent> rents) {
+		this.rents = rents;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Ride> getRides() {
+		return rides;
+	}
+
+	public void setRides(Set<Ride> rides) {
+		this.rides = rides;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Speak> getSpeaks() {
+		return speaks;
+	}
+
+	public void setSpeaks(Set<Speak> speaks) {
+		this.speaks = speaks;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Profession> getProfessions() {
+		return professions;
+	}
+
+	public void setProfessions(Set<Profession> professions) {
+		this.professions = professions;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled + "]";
 	}
 
 }

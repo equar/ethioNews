@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.access("hasRole('ROLE_VIDEO')").antMatchers("/getAllMedias").access("hasRole('ROLE_ADMIN')")
 				.antMatchers("/recordCrawel").access("hasRole('ROLE_ADMIN')").antMatchers("/getAllSubscribers")
 				.access("hasRole('ROLE_ADMIN')").antMatchers("/getAllContacts").access("hasRole('ROLE_ADMIN')")
-				.antMatchers("/getAllEvents").access("hasRole('ROLE_EVENT')").and().formLogin().loginPage("/userLogin")
+				.antMatchers("/getAllEvents").access("hasRole('ROLE_USER')").and().formLogin().loginPage("/userLogin")
 				.defaultSuccessUrl("/getAllEvents").failureUrl("/userLogin?error").usernameParameter("username")
 				.passwordParameter("password").and().logout().logoutSuccessUrl("/userLogin?logout").and()
 				.exceptionHandling().accessDeniedPage("/accessDenied").and().sessionManagement().maximumSessions(1)
