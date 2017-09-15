@@ -33,7 +33,9 @@
 					<thead style="background-color: #bce8f1;">
 						<tr>
 							<th>Id</th>
+							<th>Author</th>
 							<th>Title</th>
+							<th>URL</th>
 							<th>Description</th>
 							<th>Up</th>
 							<th>Down</th>
@@ -44,13 +46,15 @@
 					<tbody>
 						<c:forEach items="${speakList}" var="spk">
 							<tr>
-								<th><c:out value="${spk.id}" /></th>
-								<th><c:out value="${spk.title}" /></th>
-								<th><c:out value="${spk.description}" /></th>
-								<th><c:out value="${spk.up}" /></th>
-								<th><c:out value="${spk.down}" /></th>
-								<th><a href="editSpeak?id=<c:out value='${spk.id}'/>">Edit</a></th>
-								<th><a href="deleteSpeak?id=<c:out value='${spk.id}'/>">Delete</a></th>
+								<td><c:out value="${spk.id}" /></td>
+								<td><c:out value="${spk.author}" /></td>
+								<td><c:out value="${spk.title}" /></td>
+								<td><c:out value="${spk.url}" /></td>
+								<td><c:out value="${spk.description}" /></td>
+								<td><c:out value="${spk.up}" /></td>
+								<td><c:out value="${spk.down}" /></td>
+								<td><a href="editSpeak?id=<c:out value='${spk.id}'/>">Edit</a></td>
+								<td><a href="deleteSpeak?id=<c:out value='${spk.id}'/>">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

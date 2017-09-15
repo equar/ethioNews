@@ -17,9 +17,10 @@ public class RentValidator implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors errors) {
-		ValidationUtils.rejectIfEmpty(errors, "title", "rent.title");
-		ValidationUtils.rejectIfEmpty(errors, "description", "rent.description");
-		ValidationUtils.rejectIfEmpty(errors, "category", "rent.category");
-		ValidationUtils.rejectIfEmpty(errors, "filename", "rent.filename");
+		ValidationUtils.rejectIfEmpty(errors, "beds", "rent.beds");
+		ValidationUtils.rejectIfEmpty(errors, "baths", "rent.baths");
+		ValidationUtils.rejectIfEmpty(errors, "price", "rent.price");
+		ValidationUtils.rejectIfEmpty(errors, "address", "rent.address");
+		ValidationUtils.rejectIfEmpty(errors, "phonenumber", "rent.phonenumber");
 	}
 }

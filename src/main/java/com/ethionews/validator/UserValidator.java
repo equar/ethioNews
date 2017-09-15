@@ -8,6 +8,7 @@ import org.springframework.validation.Validator;
 
 import com.ethionews.model.User;
 import com.ethionews.service.UserService;
+import com.ethionews.util.EthioUtil;
 
 @Component("userValidator")
 public class UserValidator implements Validator {
@@ -23,7 +24,7 @@ public class UserValidator implements Validator {
 	@Override
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;
-		
+
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
 		if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
 			errors.rejectValue("username", "user.username.size");
@@ -31,6 +32,9 @@ public class UserValidator implements Validator {
 
 		if (userService.findByUsername(user.getUsername()) != null) {
 			errors.rejectValue("username", "user.username.duplicate");
+		}
+		if (!EthioUtil.isValidEmailAddress(user.getUsername())) {
+			errors.rejectValue("username", "user.username.email");
 		}
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");

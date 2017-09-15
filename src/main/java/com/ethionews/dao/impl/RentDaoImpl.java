@@ -11,6 +11,7 @@ import com.ethionews.dao.RentDao;
 import com.ethionews.model.Media;
 import com.ethionews.model.User;
 import com.ethionews.model.Rent;
+import com.ethionews.model.Speak;
 import com.ethionews.util.HibernateUtil;
 
 @Repository("rentDao")
@@ -65,7 +66,40 @@ public class RentDaoImpl implements RentDao {
 			filename = (String) rentObject[4];
 
 			rent.setId(id);
-			
+
+			rents.add(rent);
+		}
+
+		return rents;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Rent> getUserRents(long userId) {
+		String query = "SELECT e.* FROM Rent e WHERE e.userId=" + userId;
+		List<Object[]> rentObjects = hibernateUtil.fetchAll(query);
+		List<Rent> rents = new ArrayList<Rent>();
+		long id;
+		int beds;
+		int baths;
+		double price;
+		String address;
+		String phonenumber;
+		for (Object[] rentObject : rentObjects) {
+			Rent rent = new Rent();
+			id = ((BigInteger) rentObject[0]).longValue();
+			beds = (int) rentObject[3];
+			baths = (int) rentObject[2];
+			price = (double) rentObject[5];
+			address = (String) rentObject[1];
+			phonenumber = (String) rentObject[4];
+
+			rent.setId(id);
+			rent.setBeds(beds);
+			rent.setBaths(baths);
+			rent.setPrice(price);
+			rent.setAddress(address);
+			rent.setPhonenumber(phonenumber);
 
 			rents.add(rent);
 		}

@@ -8,7 +8,7 @@
 					<b>Speak Details</b>
 				</div>
 				<div align="right">
-					<a href="getAllSpeaks">Speak List</a>
+					<a href="getUserSpeaks">Speak List</a>
 				</div>
 			</h3>
 		</div>
@@ -19,10 +19,19 @@
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">
-						<form:label path="title">Title</form:label>
+						<form:label path="author">Article Author</form:label>
 					</div>
 					<div class="col-xs-6">
 						<form:hidden path="id" value="${speakObject.id}" />
+						<form:input cssClass="form-control" path="author"
+							value="${speakObject.author}" />
+						<form:errors path="author" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="title" cssClass="control-label col-xs-3">Article Title</form:label>
+					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="title"
 							value="${speakObject.title}" />
 						<form:errors path="title" cssStyle="color: #ff0000;" />
@@ -30,20 +39,20 @@
 				</div>
 
 				<div class="form-group">
-					<form:label path="description" cssClass="control-label col-xs-3">Description</form:label>
-					<div class="col-xs-6">
-						<form:textarea cssClass="form-control" path="description" rows="5"
-							cols="50" value="${speakObject.description}" />
-						<form:errors path="description" cssStyle="color: #ff0000;" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="url" cssClass="control-label col-xs-3">URL</form:label>
+					<form:label path="url" cssClass="control-label col-xs-3">Article URL</form:label>
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="url"
 							value="${speakObject.url}" />
 						<form:errors path="url" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="description" cssClass="control-label col-xs-3">Article Description</form:label>
+					<div class="col-xs-6">
+						<form:textarea cssClass="form-control" path="description" rows="5"
+							cols="50" value="${speakObject.description}" />
+						<form:errors path="description" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 

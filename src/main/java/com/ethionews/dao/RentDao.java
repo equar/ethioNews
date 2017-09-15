@@ -13,6 +13,8 @@ public interface RentDao {
 
 	public List<Rent> getAllRents();
 
+	public List<Rent> getUserRents(long id);
+
 	public Rent getRent(long id);
 
 	public List<Rent> getAllRents(String search);

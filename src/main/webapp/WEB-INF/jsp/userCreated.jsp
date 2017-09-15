@@ -5,7 +5,7 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>User Signup Details</b>
+					<b>Contact Us Success</b>
 				</div>
 			</h3>
 		</div>

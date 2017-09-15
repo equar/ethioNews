@@ -36,11 +36,8 @@
 							<th>Beds</th>
 							<th>Baths</th>
 							<th>Price</th>
-							<th>Area</th>
-							<th>Available</th>
-							<th>Furnished</th>
-							<th>Date</th>
 							<th>Address</th>
+							<th>Phone Number</th>
 							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
@@ -48,17 +45,14 @@
 					<tbody>
 						<c:forEach items="${rentList}" var="rnt">
 							<tr>
-								<th><c:out value="${rnt.id}" /></th>
-								<th><c:out value="${rnt.beds}" /></th>
-								<th><c:out value="${rnt.baths}" /></th>
-								<th><c:out value="${rnt.price}" /></th>
-								<th><c:out value="${rnt.area}" /></th>
-								<th><c:out value="${rnt.available}" /></th>
-								<th><c:out value="${rnt.furnished}" /></th>
-								<th><c:out value="${rnt.availableDate}" /></th>
-								<th><c:out value="${rnt.address}" /></th>
-								<th><a href="editRent?id=<c:out value='${rnt.id}'/>">Edit</a></th>
-								<th><a href="deleteRent?id=<c:out value='${rnt.id}'/>">Delete</a></th>
+								<td><c:out value="${rnt.id}" /></td>
+								<td><c:out value="${rnt.beds}" /></td>
+								<td><c:out value="${rnt.baths}" /></td>
+								<td><c:out value="${rnt.price}" /></td>
+								<td><c:out value="${rnt.address}" /></td>
+								<td><c:out value="${rnt.phonenumber}" /></td>
+								<td><a href="editRent?id=<c:out value='${rnt.id}'/>">Edit</a></td>
+								<td><a href="deleteRent?id=<c:out value='${rnt.id}'/>">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

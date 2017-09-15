@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Random;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
@@ -179,5 +181,16 @@ public class EthioUtil {
 
 		return clientLocation;
 
+	}
+
+	public static boolean isValidEmailAddress(String email) {
+		boolean result = true;
+		try {
+			InternetAddress emailAddr = new InternetAddress(email);
+			emailAddr.validate();
+		} catch (AddressException ex) {
+			result = false;
+		}
+		return result;
 	}
 }

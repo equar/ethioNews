@@ -64,7 +64,9 @@ public class ContactController {
 			} else {
 				contactService.updateContact(contact);
 			}
-			return new ModelAndView(returnVal, "status", "You message has been added succesfully");
+			// return new ModelAndView(returnVal, "status", "You message has
+			// been added succesfully");
+			return new ModelAndView("contactSuccess");
 		}
 
 	}

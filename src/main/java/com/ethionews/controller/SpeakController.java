@@ -1,7 +1,5 @@
 package com.ethionews.controller;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -56,8 +54,7 @@ public class SpeakController {
 		logger.info("Saving the Media. Data : " + speak);
 		// if media id is 0 then creating the media other updating the
 		// media
-		String returnVal = "redirect:getAllSpeaks";
-		Date today = Calendar.getInstance().getTime();
+		String returnVal = "redirect:getUserSpeaks";
 
 		if (result.hasErrors()) {
 			return "speakForm";
@@ -80,10 +77,10 @@ public class SpeakController {
 		return new ModelAndView("redirect:getAllSpeaks");
 	}
 
-	@RequestMapping("getAllSpeaks")
-	public ModelAndView getAllSpeaks() {
+	@RequestMapping("getUserSpeaks")
+	public ModelAndView getUserSpeaks() {
 		logger.info("Getting the all Speaks.");
-		List<Speak> speakList = speakService.getAllSpeaks();
+		List<Speak> speakList = speakService.getUserSpeaks();
 		return new ModelAndView("speakList", "speakList", speakList);
 	}
 

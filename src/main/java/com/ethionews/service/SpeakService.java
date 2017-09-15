@@ -12,6 +12,8 @@ public interface SpeakService {
 	public void deleteSpeak(long id);
 
 	public List<Speak> getAllSpeaks();
+	
+	public List<Speak> getUserSpeaks();
 
 	public Speak getSpeak(long id);
 

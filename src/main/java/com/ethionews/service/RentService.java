@@ -11,6 +11,8 @@ public interface RentService {
 
 	public void deleteRent(long id);
 
+	public List<Rent> getUserRents();
+
 	public List<Rent> getAllRents();
 
 	public Rent getRent(long id);

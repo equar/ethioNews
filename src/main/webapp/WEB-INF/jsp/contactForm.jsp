@@ -46,8 +46,16 @@
 				<div class="form-group">
 					<form:label path="subject" cssClass="control-label col-xs-3">Subject</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="subject"
-							value="${contactObject.subject}" />
+						<form:select cssClass="form-control" path="subject"
+							value="${contactObject.subject}">
+							<option value="suggestion">Provide suggestions to
+								improve this website</option>
+							<option value="advertise">Advertise with us to promote
+								your product or the services you provide</option>
+							<option value="report">Report any inaccuracies in the
+								information presented on this website</option>
+							<option value="other">Other</option>
+						</form:select>
 						<form:errors path="subject" cssStyle="color: #ff0000;" />
 					</div>
 				</div>

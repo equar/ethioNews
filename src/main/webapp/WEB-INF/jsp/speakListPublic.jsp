@@ -18,7 +18,7 @@
             </c:if>
 			<c:if test="${not empty speakList}">
 
-				<form action="searchSpeak">
+				<!-- <form action="searchSpeak">
 					<div class="row">
 						<div class="col-md-4">
 							Search Speak: <input type='text' name='title' id='title' />
@@ -27,24 +27,33 @@
 							<input class="btn btn-success" type='submit' value='Search' />
 						</div>
 					</div>
-				</form>
+				</form> -->
 
-				<table class="table table-hover table-bordered">
-
+				<table class="table table-hover">
 					<tbody>
-						<c:forEach items="${speakList}" var="spk">
+						<c:forEach items="${speakList}" var="spk" varStatus="itr">
 							<tr>
+								<td>
+									<p>
+									<h4>
+										<a href="${spk.url}" target="_blank"> <c:out
+												value="${spk.title}" />
+										</a>
+									</h4>
+									</p>
 
-								<th><c:out value="${spk.title}" /></th>
-
-								<th><c:out value="${spk.description}" /></th>
-								
-								<th><c:out value="${spk.url}" /></th>
-
-							</tr>
+									<p>
+										By <span align="left">${spk.author}</span>&emsp; <span
+											align="right"><fmt:formatDate
+												value="${spk.updateDate}"
+												pattern="EEEE, MMMM dd,yyyy HH:mm a" /></span>
+									</p>
+									<p>${spk.description}</p>
+								</td><tr>
 						</c:forEach>
 					</tbody>
 				</table>
+
 				<tag:paginate max="10" offset="${offset}" count="${count}"
 					uri="getPublicSpeaks" next="&raquo;" previous="&laquo;" />
 			</c:if>

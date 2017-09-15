@@ -16,4 +16,6 @@ public interface SpeakDao {
 	public Speak getSpeak(long id);
 
 	public List<Speak> getAllSpeaks(String search);
+
+	public List<Speak> getUserSpeaks(long userId);
 }

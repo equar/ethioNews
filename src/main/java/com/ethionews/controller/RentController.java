@@ -64,8 +64,7 @@ public class RentController {
 		logger.info("Saving the Media. Data : " + rent);
 		// if media id is 0 then creating the media other updating the
 		// media
-		String returnVal = "redirect:getAllRents";
-		Date today = Calendar.getInstance().getTime();
+		String returnVal = "redirect:getUserRents";
 
 		if (result.hasErrors()) {
 			return "rentForm";
@@ -88,10 +87,10 @@ public class RentController {
 		return new ModelAndView("redirect:getAllRents");
 	}
 
-	@RequestMapping("getAllRents")
+	@RequestMapping("getUserRents")
 	public ModelAndView getAllRents() {
 		logger.info("Getting the all Rents.");
-		List<Rent> rentList = rentService.getAllRents();
+		List<Rent> rentList = rentService.getUserRents();
 		return new ModelAndView("rentList", "rentList", rentList);
 	}
 

@@ -1,6 +1,7 @@
 package com.ethionews.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "speak")
@@ -19,12 +25,15 @@ public class Speak implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private long id;
+	private String author;
 	private String title;
 	private String description;
 	private String url;
 	private int up;
 	private int down;
 	private User user;
+	private Date createDate;
+	private Date updateDate;
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -46,6 +55,15 @@ public class Speak implements Serializable {
 		this.title = title;
 	}
 
+	@Column(name = "author", nullable = false)
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
 	@Column(name = "description", nullable = false)
 	public String getDescription() {
 		return description;
@@ -63,6 +81,15 @@ public class Speak implements Serializable {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	/*
+	 * @Temporal(TemporalType.TIMESTAMP)
+	 * 
+	 * @Column(name = "date", nullable = false) public Date getDate() { return
+	 * date; }
+	 * 
+	 * public void setDate(Date date) { this.date = date; }
+	 */
 
 	@Column(name = "up", nullable = true)
 	public int getUp() {
@@ -90,6 +117,28 @@ public class Speak implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "createDate")
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "updateDate")
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 }

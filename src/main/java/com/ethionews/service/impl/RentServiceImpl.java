@@ -37,6 +37,12 @@ public class RentServiceImpl implements RentService {
 	}
 
 	@Override
+	public List<Rent> getUserRents() {
+		long userId = userService.findLoggedUser().getId();
+		return rentDao.getUserRents(userId);
+	}
+
+	@Override
 	public List<Rent> getAllRents() {
 		return rentDao.getAllRents();
 	}

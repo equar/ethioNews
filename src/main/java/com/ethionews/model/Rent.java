@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "rent")
@@ -23,12 +28,11 @@ public class Rent implements Serializable {
 	private int beds;
 	private int baths;
 	private double price;
-	private double area;
-	private boolean available;
-	private boolean furnished;
-	private Date availableDate;
 	private String address;
+	private String phonenumber;
 	private User user;
+	private Date createDate;
+	private Date updateDate;
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -68,42 +72,6 @@ public class Rent implements Serializable {
 		this.price = price;
 	}
 
-	@Column(name = "area", nullable = false)
-	public double getArea() {
-		return area;
-	}
-
-	public void setArea(double area) {
-		this.area = area;
-	}
-
-	@Column(name = "available", nullable = false)
-	public boolean isAvailable() {
-		return available;
-	}
-
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
-
-	@Column(name = "furnished", nullable = false)
-	public boolean isFurnished() {
-		return furnished;
-	}
-
-	public void setFurnished(boolean furnished) {
-		this.furnished = furnished;
-	}
-
-	@Column(name = "availableDate", nullable = false)
-	public Date getAvailableDate() {
-		return availableDate;
-	}
-
-	public void setAvailableDate(Date availableDate) {
-		this.availableDate = availableDate;
-	}
-
 	@Column(name = "address", nullable = false)
 	public String getAddress() {
 		return address;
@@ -111,6 +79,15 @@ public class Rent implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Column(name = "phonenumber", nullable = false)
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -121,6 +98,28 @@ public class Rent implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "createDate")
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "updateDate")
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 }

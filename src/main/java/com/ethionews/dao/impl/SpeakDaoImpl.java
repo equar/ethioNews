@@ -45,30 +45,45 @@ public class SpeakDaoImpl implements SpeakDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Speak> getAllSpeaks(String search) {
-		String query = "SELECT e.* FROM Speak e WHERE e.title like '%" + search + "%'";
+	public List<Speak> getUserSpeaks(long userId) {
+		String query = "SELECT e.* FROM Speak e WHERE e.userId=" + userId;
 		List<Object[]> speakObjects = hibernateUtil.fetchAll(query);
 		List<Speak> speaks = new ArrayList<Speak>();
 		long id;
+		String author;
 		String title;
+		String url;
 		String description;
-		String category;
-		String filename;
+		int up;
+		int down;
 		for (Object[] speakObject : speakObjects) {
 			Speak speak = new Speak();
 			id = ((BigInteger) speakObject[0]).longValue();
+			author = (String) speakObject[1];
 			title = (String) speakObject[5];
+			url = (String) speakObject[8];
 			description = (String) speakObject[3];
-			category = (String) speakObject[1];
-			filename = (String) speakObject[4];
+			up = (int) speakObject[6];
+			down = (int) speakObject[4];
 
 			speak.setId(id);
-			
+			speak.setAuthor(author);
+			speak.setTitle(title);
+			speak.setUrl(url);
+			speak.setDescription(description);
+			speak.setUp(up);
+			speak.setDown(down);
 
 			speaks.add(speak);
 		}
 
 		return speaks;
+	}
+
+	@Override
+	public List<Speak> getAllSpeaks(String search) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

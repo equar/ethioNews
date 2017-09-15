@@ -17,8 +17,10 @@ public class SpeakValidator implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors errors) {
-		ValidationUtils.rejectIfEmpty(errors, "title", "rent.title");
-		ValidationUtils.rejectIfEmpty(errors, "description", "rent.description");
-		ValidationUtils.rejectIfEmpty(errors, "url", "rent.filename");
+		ValidationUtils.rejectIfEmpty(errors, "author", "speak.author");
+		ValidationUtils.rejectIfEmpty(errors, "title", "speak.title");
+		ValidationUtils.rejectIfEmpty(errors, "url", "speak.url");
+		ValidationUtils.rejectIfEmpty(errors, "description", "speak.description");
+
 	}
 }

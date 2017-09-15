@@ -48,42 +48,6 @@
 				</div>
 
 				<div class="form-group">
-					<form:label path="price" cssClass="control-label col-xs-3">Area</form:label>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="area"
-							value="${rentObject.area}" />
-						<form:errors path="area" cssStyle="color: #ff0000;" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="available" cssClass="control-label col-xs-3">Is available</form:label>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="available"
-							value="${rentObject.available}" />
-						<form:errors path="available" cssStyle="color: #ff0000;" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="furnished" cssClass="control-label col-xs-3">Is Furnished</form:label>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="furnished"
-							value="${rentObject.furnished}" />
-						<form:errors path="furnished" cssStyle="color: #ff0000;" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="availableDate" cssClass="control-label col-xs-3">Available Date</form:label>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="availableDate"
-							value="${rentObject.availableDate}" />
-						<form:errors path="availableDate" cssStyle="color: #ff0000;" />
-					</div>
-				</div>
-
-				<div class="form-group">
 					<form:label path="address" cssClass="control-label col-xs-3">Address</form:label>
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="address"
@@ -91,6 +55,16 @@
 						<form:errors path="address" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
+
+				<div class="form-group">
+					<form:label path="phonenumber" cssClass="control-label col-xs-3">Phone Number</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="phonenumber"
+							value="${rentObject.phonenumber}" />
+						<form:errors path="phonenumber" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
 
 				<div class="form-group">
 					<div class="row">

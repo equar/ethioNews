@@ -35,8 +35,8 @@
 				<div class="form-group">
 					<form:label path="description" cssClass="control-label col-xs-3">Event Description</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="description"
-							value="${eventObject.description}" />
+						<form:textarea cssClass="form-control" path="description" rows="3"
+							cols="60" value="${eventObject.description}" />
 						<form:errors path="description" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 						<form:errors path="state" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
-				<script language="javascript">
+				<script>
 					populateCountries("country", "state");
 				</script>
 
@@ -120,7 +120,7 @@
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
 							<input type="submit" id="saveEvent" class="btn btn-primary"
-								value="Save" onclick="submitEventForm();" />
+								value="Save" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>

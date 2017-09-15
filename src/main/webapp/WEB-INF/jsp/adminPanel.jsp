@@ -26,7 +26,7 @@
 				<span><a href="getAllEvents">Event Mgt </a>|</span>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<span><a href="getAllRents">Rent Mgt </a>|</span>
+				<span><a href="getUserRents">Rent Mgt </a>|</span>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_USER')">
 				<span><a href="getAllRides">Ride Mgt </a>|</span>
@@ -38,7 +38,7 @@
 				<span><a href="getAllProfessions">Profession Mgt </a>|</span>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_USER')">
-				<span><a href="getAllSpeaks">Speak Mgt </a>|</span>
+				<span><a href="getUserSpeaks">Speak Mgt </a>|</span>
 			</sec:authorize>
 			<sec:authorize
 				access="hasAnyRole('ROLE_VIDEO','ROLE_ADMIN','ROLE_USER','ROLE_SPEAK')">

@@ -28,8 +28,8 @@
 				<div class="form-group">
 					<form:label path="password" cssClass="control-label col-xs-3">Password</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="password"
-							value="${user.password}" />
+						<form:input type="password" cssClass="form-control"
+							path="password" value="${user.password}" />
 						<form:errors path="password" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
@@ -38,8 +38,8 @@
 					<form:label path="passwordConfirm"
 						cssClass="control-label col-xs-3">Confirm Password</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="passwordConfirm"
-							value="${user.passwordConfirm}" />
+						<form:input type="password" cssClass="form-control"
+							path="passwordConfirm" value="${user.passwordConfirm}" />
 						<form:errors path="passwordConfirm" cssStyle="color: #ff0000;" />
 					</div>
 				</div>

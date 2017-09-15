@@ -9,11 +9,11 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.ethionews.model.Contact;
+import com.ethionews.model.User;
+import com.ethionews.util.EthioUtil;
 
 @Component("contactValidator")
 public class ContactValidator implements Validator {
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	@Override
 	public boolean supports(Class<?> paramClass) {
@@ -22,17 +22,15 @@ public class ContactValidator implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors errors) {
+		Contact contact = (Contact) obj;
+
 		ValidationUtils.rejectIfEmpty(errors, "name", "contact.name");
 		ValidationUtils.rejectIfEmpty(errors, "email", "contact.email");
 		ValidationUtils.rejectIfEmpty(errors, "subject", "contact.subject");
 		ValidationUtils.rejectIfEmpty(errors, "message", "contact.message");
-		/*if (obj != null) {
-			Contact contact = (Contact) obj;
-			Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-			Matcher matcher = pattern.matcher(contact.getEmail());
-			if (!matcher.matches()) {
-				errors.rejectValue("email", "Email is invalid");
-			}
-		}*/
+		if (!EthioUtil.isValidEmailAddress(contact.getName())) {
+			errors.rejectValue("email", "contact.email.valid");
+		}
+
 	}
 }
