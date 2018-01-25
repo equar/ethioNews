@@ -35,9 +35,10 @@
 							<th>Id</th>
 							<th>Name</th>
 							<th>Type</th>
-							<th>Sub Type</th>
-							<th>Email</th>
+							<th>Address</th>
 							<th>PhoneNumber</th>
+							<th>Web site</th>
+							<th>Description</th>
 							<th>Edit</th>
 							<th>Delete</th>
 						</tr>
@@ -45,14 +46,16 @@
 					<tbody>
 						<c:forEach items="${professionList}" var="prof">
 							<tr>
-								<th><c:out value="${prof.name}" /></th>
-								<th><c:out value="${prof.type}" /></th>
-								<th><c:out value="${prof.subType}" /></th>
-								<th><c:out value="${prof.email}" /></th>
-								<th><c:out value="${prof.phoneNumber}" /></th>
-								<th><a href="editProfession?id=<c:out value='${prof.id}'/>">Edit</a></th>
-								<th><a
-									href="deleteProfession?id=<c:out value='${prof.id}'/>">Delete</a></th>
+								<td><c:out value="${prof.id}" /></td>
+								<td><c:out value="${prof.name}" /></td>
+								<td><c:out value="${prof.type}" /></td>
+								<td><c:out value="${prof.address}" /></td>
+								<td><c:out value="${prof.phonenumber}" /></td>
+								<td><c:out value="${prof.website}" /></td>
+								<td><c:out value="${prof.description}" /></td>
+								<td><a href="editProfession?id=<c:out value='${prof.id}'/>">Edit</a></td>
+								<td><a
+									href="deleteProfession?id=<c:out value='${prof.id}'/>">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

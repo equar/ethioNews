@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ethionews.dao.ProfessionDao;
 import com.ethionews.model.Profession;
+import com.ethionews.model.Profession;
 import com.ethionews.util.HibernateUtil;
 
 @Repository("professionDao")
@@ -63,6 +64,43 @@ public class ProfessionDaoImpl implements ProfessionDao {
 			filename = (String) professionObject[4];
 
 			profession.setId(id);
+
+			professions.add(profession);
+		}
+
+		return professions;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Profession> getUserProfessions(long userId) {
+		String query = "SELECT e.* FROM Profession e WHERE e.userId=" + userId;
+		List<Object[]> professionObjects = hibernateUtil.fetchAll(query);
+		List<Profession> professions = new ArrayList<Profession>();
+		long id;
+		String address;
+		String description;
+		String name;
+		String phonenumber;
+		String type;
+		String website;
+		for (Object[] professionObject : professionObjects) {
+			Profession profession = new Profession();
+			id = ((BigInteger) professionObject[0]).longValue();
+			address = (String) professionObject[1];
+			description = (String) professionObject[2];
+			name = (String) professionObject[3];
+			phonenumber = (String) professionObject[4];
+			type = (String) professionObject[5];
+			website = (String) professionObject[6];
+
+			profession.setId(id);
+			profession.setAddress(address);
+			profession.setDescription(description);
+			profession.setName(name);
+			profession.setPhonenumber(phonenumber);
+			profession.setType(type);
+			profession.setWebsite(website);
 
 			professions.add(profession);
 		}

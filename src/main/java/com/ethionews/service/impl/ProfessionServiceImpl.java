@@ -38,6 +38,11 @@ public class ProfessionServiceImpl implements ProfessionService {
 		return professionDao.getAllProfessions();
 	}
 
+	public List<Profession> getUserProfessions() {
+		long userId = userService.findLoggedUser().getId();
+		return professionDao.getUserProfessions(userId);
+	}
+
 	public Profession getProfession(long id) {
 		return professionDao.getProfession(id);
 	}

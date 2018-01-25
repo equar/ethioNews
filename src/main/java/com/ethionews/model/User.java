@@ -28,6 +28,7 @@ public class User implements Serializable {
 	private String username;
 	private String password;
 	private String passwordConfirm;
+	private String passwordOld;
 	private boolean enabled;
 	private Set<UserRole> userRoles = new HashSet<>();
 	private Set<Video> videos = new HashSet<>();
@@ -74,6 +75,15 @@ public class User implements Serializable {
 
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
+	}
+
+	@Transient
+	public String getPasswordOld() {
+		return passwordOld;
+	}
+
+	public void setPasswordOld(String passwordOld) {
+		this.passwordOld = passwordOld;
 	}
 
 	@Column(name = "enabled", nullable = false)

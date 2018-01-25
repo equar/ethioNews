@@ -14,9 +14,7 @@
 
 		<div class="panel-body">
 
-			<div>We respect your privacy, so the information that you
-				provide remains confidential. We will never share your email address
-				or other personal information with anyone.</div>
+			<div>Under Construction</div>
 		</div>
 	</div>
 </div>

@@ -40,11 +40,8 @@ public class UserDaoImpl implements UserDao {
 	@SuppressWarnings("unchecked")
 	public User findByUsername(String userId) {
 		String Query = "From User U where U.username= '" + userId + "'";
-		// String Query = "select u from user u JOIN u.userrole r, UserAndRole
-		// ur where ur.userid=u.id and ur.roleid=r.id and u.username= '" +
-		// userId + "'";
 
-		List<User> userObjects = hibernateUtil.fetchAllHql(Query);
+		List<User> userObjects = hibernateUtil.fetchAllUser(Query);
 		User user = null;
 		for (User userObject : userObjects) {
 

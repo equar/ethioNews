@@ -21,10 +21,10 @@ public class Ride implements Serializable {
 	private long id;
 	private String from;
 	private String to;
-	private String price;
 	private String date;
 	private String time;
-	private String seats;
+	private String phonenumber;
+	private String description;
 	private User user;
 
 	@Id
@@ -56,15 +56,6 @@ public class Ride implements Serializable {
 		this.to = to;
 	}
 
-	@Column(name = "price", nullable = false)
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
 	@Column(name = "date", nullable = false)
 	public String getDate() {
 		return date;
@@ -83,13 +74,22 @@ public class Ride implements Serializable {
 		this.time = time;
 	}
 
-	@Column(name = "seats", nullable = false)
-	public String getSeats() {
-		return seats;
+	@Column(name = "phonenumber", nullable = false)
+	public String getPhonenumber() {
+		return phonenumber;
 	}
 
-	public void setSeats(String seats) {
-		this.seats = seats;
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	@Column(name = "description", nullable = false)
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

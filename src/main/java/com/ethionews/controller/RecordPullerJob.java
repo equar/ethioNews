@@ -27,7 +27,9 @@ public class RecordPullerJob {
 
 		try {
 			for (Media media : mediaList) {
-				recordService.createRecord(media);
+				if (media.getUrl() != null) {
+					recordService.createRecord(media);
+				}
 			}
 			System.out.println("Automatic crawling completed");
 

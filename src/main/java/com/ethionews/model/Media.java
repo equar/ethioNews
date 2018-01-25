@@ -27,9 +27,9 @@ public class Media implements Serializable {
 	private String type;
 	private String language;
 	private String country;
-	private boolean crawel;
+	private boolean crawel = true;
 	private Set<Record> record = new HashSet<>();
-	/*private Set<Subscription> subscription = new HashSet<>();*/
+	/* private Set<Subscription> subscription = new HashSet<>(); */
 
 	@Id
 	@Column(name = "id", nullable = false, unique = true)
@@ -60,7 +60,7 @@ public class Media implements Serializable {
 		this.url = url;
 	}
 
-	@Column(name = "type", nullable = false)
+	@Column(name = "type", nullable = true)
 	public String getType() {
 		return type;
 	}
@@ -69,7 +69,7 @@ public class Media implements Serializable {
 		this.type = type;
 	}
 
-	@Column(name = "language", nullable = false)
+	@Column(name = "language", nullable = true)
 	public String getLanguage() {
 		return language;
 	}
@@ -78,7 +78,7 @@ public class Media implements Serializable {
 		this.language = language;
 	}
 
-	@Column(name = "country", nullable = false)
+	@Column(name = "country", nullable = true)
 	public String getCountry() {
 		return country;
 	}
@@ -87,7 +87,7 @@ public class Media implements Serializable {
 		this.country = country;
 	}
 
-	@Column(name = "crawel", nullable = false)
+	@Column(name = "crawel", nullable = true)
 	public boolean isCrawel() {
 		return crawel;
 	}
@@ -106,14 +106,13 @@ public class Media implements Serializable {
 		this.record = record;
 	}
 
-	/*@ManyToMany(fetch = FetchType.LAZY, mappedBy = "media", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REMOVE })
-	public Set<Subscription> getSubscription() {
-		return subscription;
-	}
-
-	public void setSubscription(Set<Subscription> subscription) {
-		this.subscription = subscription;
-	}*/
+	/*
+	 * @ManyToMany(fetch = FetchType.LAZY, mappedBy = "media", cascade = {
+	 * CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE }) public
+	 * Set<Subscription> getSubscription() { return subscription; }
+	 * 
+	 * public void setSubscription(Set<Subscription> subscription) {
+	 * this.subscription = subscription; }
+	 */
 
 }

@@ -42,7 +42,7 @@ public class Event implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "type", nullable = false)
+	@Column(name = "type", nullable = true)
 	public String getType() {
 		return type;
 	}
@@ -78,7 +78,7 @@ public class Event implements Serializable {
 		this.city = city;
 	}
 
-	@Column(name = "state", nullable = false)
+	@Column(name = "state", nullable = true)
 	public String getState() {
 		return state;
 	}
@@ -96,7 +96,7 @@ public class Event implements Serializable {
 		this.zipCode = zipCode;
 	}
 
-	@Column(name = "country", nullable = false)
+	@Column(name = "country", nullable = true)
 	public String getCountry() {
 		return country;
 	}

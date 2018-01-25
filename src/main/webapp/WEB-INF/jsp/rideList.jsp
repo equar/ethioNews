@@ -32,15 +32,15 @@
 				<table class="table table-hover table-bordered">
 					<thead style="background-color: #bce8f1;">
 						<tr>
-							<th>Id</th>
-							<th>From</th>
-							<th>To</th>
-							<th>Price</th>
-							<th>Date</th>
-							<th>Time</th>
-							<th>Seats</th>
-							<th>Edit</th>
-							<th>Delete</th>
+							<td>Id</td>
+							<td>From</td>
+							<td>To</td>
+							<td>Date</td>
+							<td>Time</td>
+							<td>Phone number</td>
+							<td>Description</td>
+							<td>Edit</td>
+							<td>Delete</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -49,10 +49,10 @@
 								<th><c:out value="${rid.id}" /></th>
 								<th><c:out value="${rid.from}" /></th>
 								<th><c:out value="${rid.to}" /></th>
-								<th><c:out value="${rid.price}" /></th>
 								<th><c:out value="${rid.date}" /></th>
 								<th><c:out value="${rid.time}" /></th>
-								<th><c:out value="${rid.seats}" /></th>
+								<th><c:out value="${rid.phonenumber}" /></th>
+								<th><c:out value="${rid.description}" /></th>
 								<th><a href="editRide?id=<c:out value='${rid.id}'/>">Edit</a></th>
 								<th><a href="deleteRide?id=<c:out value='${rid.id}'/>">Delete</a></th>
 							</tr>

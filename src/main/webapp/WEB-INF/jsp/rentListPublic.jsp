@@ -18,7 +18,7 @@
             </c:if>
 			<c:if test="${not empty rentList}">
 
-				<!-- <form action="searchRent">
+				<form action="searchRent">
 					<div class="row">
 						<div class="col-md-4">
 							Search Rent: <input type='text' name='title' id='title' />
@@ -27,7 +27,7 @@
 							<input class="btn btn-success" type='submit' value='Search' />
 						</div>
 					</div>
-				</form> -->
+				</form>
 
 				<table class="table table-hover table-bordered">
 

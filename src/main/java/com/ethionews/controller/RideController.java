@@ -56,7 +56,7 @@ public class RideController {
 		logger.info("Saving the Media. Data : " + ride);
 		// if media id is 0 then creating the media other updating the
 		// media
-		String returnVal = "redirect:getAllRides";
+		String returnVal = "redirect:getUserRides";
 		Date today = Calendar.getInstance().getTime();
 		ride.setDate(today.toString());
 
@@ -81,24 +81,24 @@ public class RideController {
 		return new ModelAndView("redirect:getAllRides");
 	}
 
-	@RequestMapping("getAllRides")
-	public ModelAndView getAllRides() {
+	@RequestMapping("getUserRides")
+	public ModelAndView getUserRides() {
 		logger.info("Getting the all Rides.");
-		List<Ride> rideList = rideService.getAllRides();
+		List<Ride> rideList = rideService.getUserRides();
 		return new ModelAndView("rideList", "rideList", rideList);
 	}
 
 	@RequestMapping("getPublicRides")
 	public ModelAndView getPublicRides() {
 		logger.info("Getting the all Rides.");
-		List<Ride> rideList = rideService.getAllRides();
+		List<Ride> rideList = rideService.getPublicRides();
 		return new ModelAndView("rideListPublic", "rideList", rideList);
 	}
 
 	@RequestMapping("searchRide")
 	public ModelAndView searchRide(@RequestParam("title") String title) {
 		logger.info("Searching the Ride. Ride Names: " + title);
-		List<Ride> rideList = rideService.getAllRides(title);
+		List<Ride> rideList = rideService.getPublicRides(title);
 		return new ModelAndView("rideList", "rideList", rideList);
 	}
 

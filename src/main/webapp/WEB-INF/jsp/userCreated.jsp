@@ -12,8 +12,10 @@
 
 		<div class="panel-body">
 
-			<p>An account has been created for ${username} and an activation
-				email has been sent to your email.</p>
+			<p>
+				An account has been created for ${username} and you can <a
+					href="userLogin">Sign In</a>from here .
+			</p>
 
 		</div>
 	</div>

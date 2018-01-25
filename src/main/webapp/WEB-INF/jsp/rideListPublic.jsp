@@ -32,13 +32,33 @@
 				<table class="table table-hover table-bordered">
 
 					<tbody>
-						<c:forEach items="${rideList}" var="vid">
+						<c:forEach items="${rideList}" var="rid">
 							<tr>
+								<td>
+									<p>
+										From:
+										<c:out value="${rid.from}" />
+										&nbsp;&nbsp; &nbsp; &nbsp; To:
+										<c:out value="${rid.to}" />
+									</p>
+									<p>
+										Leaving on:
+										<c:out value="${rid.date}" />
+										at
+										<c:out value="${rid.time}" />
+									</p>
 
-								<th><c:out value="${vid.date}" /></th>
+									<p>
+										Contact Number:
+										<c:out value="${rid.phonenumber}" />
+									</p>
 
-								<th><c:out value="${vid.date}" /></th>
+									<p>
+										Description:
+										<c:out value="${rid.description}" />
+									</p>
 
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>

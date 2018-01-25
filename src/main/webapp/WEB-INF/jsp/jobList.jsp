@@ -46,15 +46,15 @@
 					<tbody>
 						<c:forEach items="${jobList}" var="job">
 							<tr>
-								<th><c:out value="${job.id}" /></th>
-								<th><c:out value="${job.title}" /></th>
-								<th><c:out value="${job.descritpion}" /></th>
-								<th><c:out value="${job.location}" /></th>
-								<th><c:out value="${job.phoneNumber}" /></th>
-								<th><c:out value="${job.email}" /></th>
-								<th><c:out value="${job.availabl}" /></th>
-								<th><a href="editJob?id=<c:out value='${job.id}'/>">Edit</a></th>
-								<th><a href="deleteJob?id=<c:out value='${job.id}'/>">Delete</a></th>
+								<td><c:out value="${job.id}" /></td>
+								<td><c:out value="${job.title}" /></td>
+								<td><c:out value="${job.description}" /></td>
+								<td><c:out value="${job.location}" /></td>
+								<td><c:out value="${job.phoneNumber}" /></td>
+								<td><c:out value="${job.email}" /></td>
+								<td><c:out value="${job.available}" /></td>
+								<td><a href="editJob?id=<c:out value='${job.id}'/>">Edit</a></td>
+								<td><a href="deleteJob?id=<c:out value='${job.id}'/>">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

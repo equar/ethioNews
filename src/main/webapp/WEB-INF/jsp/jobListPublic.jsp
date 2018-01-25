@@ -30,27 +30,40 @@
 				</form>
 
 				<table class="table table-hover table-bordered">
-					<tr>
-						<th>Title</th>
-						<th>Description</th>
-						<th>Location</th>
-						<th>Phone Number</th>
-						<th>Email</th>
-					</tr>
+
 					<tbody>
 						<c:forEach items="${jobList}" var="job">
 							<tr>
+								<td>
+									<p>
+										Job Title:
+										<c:out value="${job.title}" />
+									</p>
+									<p>
+										Job Address:
+										<c:out value="${job.location}" />
+									</p>
+									<p>
+										Job Description:
+										<c:out value="${job.description}" />
+									</p>
+									<p>
+										Contact Number:
+										<c:out value="${job.phoneNumber}" />
+									</p>
 
-								<th><c:out value="${vid.beds}" /></th>
+									<p>
+										Contact Email:
+										<c:out value="${job.email}" />
+									</p>
 
-								<th><c:out value="${vid.baths}" /></th>
-
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<tag:paginate max="10" offset="${offset}" count="${count}"
-					uri="getPublicJobs" next="&raquo;" previous="&laquo;" />
+					uri="getPublicRides" next="&raquo;" previous="&laquo;" />
 			</c:if>
 		</div>
 	</div>

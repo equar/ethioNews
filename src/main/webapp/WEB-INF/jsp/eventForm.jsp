@@ -15,8 +15,8 @@
 		<div id="error"></div>
 		<div class="panel-body">
 			<form:form id="eventForm" cssClass="form-horizontal"
-				modelAttribute="event" method="post" action="saveEvent"
-				enctype="multipart/form-data">
+				modelAttribute="event" method="post" action="saveEvent">
+				<%-- enctype="multipart/form-data"> --%>
 
 				<div class="form-group">
 					<form:label path="type" cssClass="control-label col-xs-3">Event Type</form:label>
@@ -68,15 +68,15 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<%-- <div class="form-group">
 					<form:label path="country" cssClass="control-label col-xs-3">Country</form:label>
 					<div class="col-xs-6">
 						<form:select cssClass="form-control" path="country"
 							value="${eventObject.country}"></form:select>
 						<form:errors path="country" cssStyle="color: #ff0000;" />
 					</div>
-				</div>
-				<div class="form-group">
+				</div> --%>
+				<%-- <div class="form-group">
 					<form:label path="state" cssClass="control-label col-xs-3">State</form:label>
 					<div class="col-xs-6">
 						<form:select cssClass="form-control" path="state"
@@ -86,7 +86,7 @@
 				</div>
 				<script>
 					populateCountries("country", "state");
-				</script>
+				</script> --%>
 
 				<div class="form-group">
 					<form:label path="date" cssClass="control-label col-xs-3">Event Date</form:label>
@@ -106,21 +106,21 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<%-- <div class="form-group">
 					<form:label path="imagePath" cssClass="control-label col-xs-3">Image to upload:</form:label>
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" type="file" path="imagePath"
 							name="file" value="${videoObject.imagePath}" />
 						<form:errors path="imagePath" cssStyle="color: #ff0000;" />
 					</div>
-				</div>
+				</div> --%>
 
 				<div class="form-group">
 					<div class="row">
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
 							<input type="submit" id="saveEvent" class="btn btn-primary"
-								value="Save" />
+								value="Save" onclick="submitEventForm();" />
 						</div>
 						<div class="col-xs-4"></div>
 					</div>

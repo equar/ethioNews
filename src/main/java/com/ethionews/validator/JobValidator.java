@@ -18,8 +18,6 @@ public class JobValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) {
 		ValidationUtils.rejectIfEmpty(errors, "title", "job.title");
-		ValidationUtils.rejectIfEmpty(errors, "description", "job.description");
-		ValidationUtils.rejectIfEmpty(errors, "category", "job.category");
-		ValidationUtils.rejectIfEmpty(errors, "filename", "job.filename");
+
 	}
 }

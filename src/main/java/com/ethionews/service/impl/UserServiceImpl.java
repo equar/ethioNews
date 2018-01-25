@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public long createUser(User user) {
-		List<UserRole> roleList = userRoleDao.getAllUserRoles();
+		List<UserRole> roleList = userRoleDao.getAllUserRoles("ROLE_USER");
 		user.setEnabled(true);
 		Set<UserRole> userRoles = new HashSet<UserRole>(roleList);
 		user.setUserRoles(userRoles);

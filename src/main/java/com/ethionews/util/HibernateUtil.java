@@ -9,6 +9,7 @@ import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ethionews.model.Media;
 import com.ethionews.model.Record;
 import com.ethionews.model.User;
 
@@ -68,7 +69,13 @@ public class HibernateUtil {
 	}
 
 	@SuppressWarnings({ "unchecked" })
-	public List<User> fetchAllHql(String query) {
+	public List<User> fetchAllUser(String query) {
+		return sessionFactory.getCurrentSession().createQuery(query).getResultList();
+
+	}
+
+	@SuppressWarnings({ "unchecked" })
+	public List<Media> fetchAllMedia(String query) {
 		return sessionFactory.getCurrentSession().createQuery(query).getResultList();
 
 	}

@@ -12,13 +12,13 @@
 				</div>
 			</h3>
 		</div>
-		<c:if test="${not empty message}">
+		<%-- <c:if test="${not empty message}">
 			<div>${message}</div>
-		</c:if>
+		</c:if> --%>
 		<div class="panel-body">
 
-			<form:form id="passwordEmailVerify" cssClass="form-horizontal"
-				modelAttribute="user" method="post" action="passwordEmailVerify">
+			<form:form id="passwordReset" cssClass="form-horizontal"
+				modelAttribute="user" method="post" action="passwordReset">
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">
@@ -27,6 +27,7 @@
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="username"
 							value="${user.username}" autofocus="true" />
+						<form:errors path="username" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
@@ -34,7 +35,7 @@
 					<div class="row">
 						<div class="col-xs-4"></div>
 						<div class="col-xs-4">
-							<input type="submit" id="saveUser" class="btn btn-primary"
+							<input type="submit" id="passwordReset" class="btn btn-primary"
 								value="Submit" onclick="return submitUserSignupForm();" />
 						</div>
 						<div class="col-xs-4"></div>

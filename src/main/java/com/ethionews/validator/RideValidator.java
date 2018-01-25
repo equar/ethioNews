@@ -17,9 +17,10 @@ public class RideValidator implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors errors) {
-		ValidationUtils.rejectIfEmpty(errors, "title", "ride.title");
-		ValidationUtils.rejectIfEmpty(errors, "description", "ride.description");
-		ValidationUtils.rejectIfEmpty(errors, "category", "ride.category");
-		ValidationUtils.rejectIfEmpty(errors, "filename", "ride.filename");
+		ValidationUtils.rejectIfEmpty(errors, "from", "ride.from");
+		ValidationUtils.rejectIfEmpty(errors, "to", "ride.to");
+		ValidationUtils.rejectIfEmpty(errors, "date", "ride.date");
+		ValidationUtils.rejectIfEmpty(errors, "time", "ride.time");
+		ValidationUtils.rejectIfEmpty(errors, "phonenumber", "ride.phonenumber");
 	}
 }

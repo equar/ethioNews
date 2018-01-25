@@ -37,8 +37,14 @@ public class RideServiceImpl implements RideService {
 	}
 
 	@Override
-	public List<Ride> getAllRides() {
-		return rideDao.getAllRides();
+	public List<Ride> getPublicRides() {
+		return rideDao.getPublicRides();
+	}
+
+	@Override
+	public List<Ride> getUserRides() {
+		long userId = userService.findLoggedUser().getId();
+		return rideDao.getUserRides(userId);
 	}
 
 	@Override
@@ -47,8 +53,8 @@ public class RideServiceImpl implements RideService {
 	}
 
 	@Override
-	public List<Ride> getAllRides(String search) {
-		return rideDao.getAllRides(search);
+	public List<Ride> getPublicRides(String search) {
+		return rideDao.getPublicRides(search);
 	}
 
 }

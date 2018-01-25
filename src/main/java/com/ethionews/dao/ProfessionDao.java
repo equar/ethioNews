@@ -13,6 +13,8 @@ public interface ProfessionDao {
 
 	public List<Profession> getAllProfessions();
 
+	public List<Profession> getUserProfessions(long userId);
+
 	public Profession getProfession(long id);
 
 	public List<Profession> getAllProfessions(String search);

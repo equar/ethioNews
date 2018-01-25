@@ -17,6 +17,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -55,19 +56,24 @@ public class EventController {
 		return new ModelAndView("eventForm", "eventObject", event);
 	}
 
-	@RequestMapping("saveEvent")
-	public String saveEvent(Model model, @Validated Event event, @RequestParam("file") MultipartFile file,
+	@RequestMapping(value = "saveEvent")
+	public String saveEvent(Model model,
+			@Validated Event event, /*
+									 * @RequestParam("file") MultipartFile file,
+									 */
 			BindingResult result) {
 		logger.info("Saving the Event. Data : " + event);
 		// if event id is 0 then creating the event other updating the
 		// event
-		String returnVal = "redirect:getAllEvents";
+		String returnVal = "redirect:getUserEvents";
 		if (result.hasErrors()) {
 			return "eventForm";
 		} else {
-			String filePath = EthioUtil.uploadFileToServer(file, "eventFiles");
-			event.setImagePath(filePath);
-			event.setStatus(false);
+			/*
+			 * String filePath = EthioUtil.uploadFileToServer(file,
+			 * "eventFiles"); event.setImagePath(filePath);
+			 */
+			event.setStatus(true);
 
 			if (event.getId() == 0) {
 				eventService.createEvent(event);
@@ -84,14 +90,22 @@ public class EventController {
 	public ModelAndView deleteEvent(@RequestParam long id) {
 		logger.info("Deleting the Event. Id : " + id);
 		eventService.deleteEvent(id);
-		return new ModelAndView("redirect:getAllEvents");
+		return new ModelAndView("redirect:getUserEvents");
 	}
 
-	@RequestMapping("getAllEvents")
-	public ModelAndView getAllEvents() {
+	@RequestMapping("getUserEvents")
+	public ModelAndView getUserEvents() {
 		logger.info("Getting the all Events.");
-		List<Event> eventList = eventService.getAllEvents();
+		List<Event> eventList = eventService.getUserEvents();
 		return new ModelAndView("eventList", "eventList", eventList);
+	}
+
+	@RequestMapping("getPublicEvents")
+	public ModelAndView getPublicEvents(HttpServletRequest request) {
+		logger.info("Getting the all Videos.");
+		List<Event> eventList = null;
+		eventList = eventService.getPublicEvents();
+		return new ModelAndView("eventListPublic", "eventList", eventList);
 	}
 
 	@RequestMapping("searchEvent")
@@ -99,21 +113,6 @@ public class EventController {
 		logger.info("Searching the Event. Event Names: " + roleType);
 		List<Event> eventList = eventService.getAllEvents(roleType);
 		return new ModelAndView("eventList", "evenList", eventList);
-	}
-
-	@RequestMapping("getPublicEvents")
-	public ModelAndView getPublicVideos(HttpServletRequest request) {
-		logger.info("Getting the all Videos.");
-		List<Event> eventList = null;
-		try {
-			String ipAddress = EthioUtil.getClientIpAddress(request);
-			ClientLocation client = EthioUtil.getLocation(ipAddress);
-
-			eventList = eventService.getAllPublicEvents();
-		} catch (IOException e) {
-			logger.info("There is an exception in file:" + e);
-		}
-		return new ModelAndView("eventListPublic", "eventList", eventList);
 	}
 
 }

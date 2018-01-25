@@ -11,9 +11,11 @@ public interface RideService {
 
 	public void deleteRide(long id);
 
-	public List<Ride> getAllRides();
+	public List<Ride> getPublicRides();
+
+	public List<Ride> getUserRides();
 
 	public Ride getRide(long id);
 
-	public List<Ride> getAllRides(String search);
+	public List<Ride> getPublicRides(String search);
 }

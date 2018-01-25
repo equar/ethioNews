@@ -18,7 +18,7 @@
             </c:if>
 			<c:if test="${not empty speakList}">
 
-				<!-- <form action="searchSpeak">
+				<form action="searchSpeak">
 					<div class="row">
 						<div class="col-md-4">
 							Search Speak: <input type='text' name='title' id='title' />
@@ -27,7 +27,7 @@
 							<input class="btn btn-success" type='submit' value='Search' />
 						</div>
 					</div>
-				</form> -->
+				</form>
 
 				<table class="table table-hover">
 					<tbody>
@@ -49,7 +49,8 @@
 												pattern="EEEE, MMMM dd,yyyy HH:mm a" /></span>
 									</p>
 									<p>${spk.description}</p>
-								</td><tr>
+								</td>
+							<tr>
 						</c:forEach>
 					</tbody>
 				</table>

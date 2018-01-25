@@ -17,7 +17,16 @@
 				modelAttribute="user" method="post" action="passwordChange">
 
 				<div class="form-group">
-					<form:label path="password" cssClass="control-label col-xs-3">Password</form:label>
+					<form:label path="passwordOld" cssClass="control-label col-xs-3">Old Password</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="passwordOld"
+							value="${user.passwordOld}" />
+						<form:errors path="passwordOld" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="password" cssClass="control-label col-xs-3">New Password</form:label>
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="password"
 							value="${user.password}" />

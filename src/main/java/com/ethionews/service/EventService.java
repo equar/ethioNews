@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.ethionews.model.Event;
+import com.ethionews.model.Job;
 
 public interface EventService {
 	public long createEvent(Event event);
@@ -27,4 +28,8 @@ public interface EventService {
 	public List<Event> getAllDisabledEvents();
 
 	List<Event> getAllPublicEvents() throws IOException;
+
+	public List<Event> getUserEvents();
+
+	public List<Event> getPublicEvents();
 }

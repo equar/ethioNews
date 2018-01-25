@@ -10,8 +10,8 @@ import com.ethionews.model.User;
 import com.ethionews.service.UserService;
 import com.ethionews.util.EthioUtil;
 
-@Component("userValidator")
-public class UserValidator implements Validator {
+@Component("userRegistrationValidator")
+public class UserRegistrationValidator implements Validator {
 
 	@Autowired
 	private UserService userService;
@@ -25,24 +25,21 @@ public class UserValidator implements Validator {
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-		if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
+		if (user.getUsername().isEmpty() || user.getUsername() == null) {
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
+		} else if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
 			errors.rejectValue("username", "user.username.size");
-		}
-
-		if (userService.findByUsername(user.getUsername()) != null) {
+		} else if (userService.findByUsername(user.getUsername()) != null) {
 			errors.rejectValue("username", "user.username.duplicate");
-		}
-		if (!EthioUtil.isValidEmailAddress(user.getUsername())) {
+		} else if (!EthioUtil.isValidEmailAddress(user.getUsername())) {
 			errors.rejectValue("username", "user.username.email");
 		}
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-		if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
+		if (user.getPassword().isEmpty() || user.getPassword() == null) {
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
+		} else if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
 			errors.rejectValue("password", "user.password.size");
-		}
-
-		if (!user.getPasswordConfirm().equals(user.getPassword())) {
+		} else if (!user.getPasswordConfirm().equals(user.getPassword())) {
 			errors.rejectValue("passwordConfirm", "user.passwordConfirm.diff");
 		}
 	}

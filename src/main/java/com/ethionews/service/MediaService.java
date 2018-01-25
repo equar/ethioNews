@@ -20,4 +20,6 @@ public interface MediaService {
 
 	public List<Media> getAllMediasToSubscribe();
 
+	public Media findByURL(String url);
+
 }

@@ -51,7 +51,7 @@ public class Record implements Serializable {
 		this.title = title;
 	}
 
-	@Column(name = "description", length = 500, nullable = true)
+	@Column(name = "description", length = 1000, nullable = true)
 	public String getDescription() {
 		return description;
 	}
@@ -61,7 +61,7 @@ public class Record implements Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date", nullable = false)
+	@Column(name = "date", nullable = true)
 	public Date getDate() {
 		return date;
 	}
@@ -79,7 +79,7 @@ public class Record implements Serializable {
 		this.link = link;
 	}
 
-	@Column(name = "content", nullable = false)
+	@Column(name = "content", nullable = true)
 	public String getContent() {
 		return content;
 	}

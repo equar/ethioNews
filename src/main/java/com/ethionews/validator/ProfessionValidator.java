@@ -17,9 +17,9 @@ public class ProfessionValidator implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors errors) {
-		ValidationUtils.rejectIfEmpty(errors, "title", "service.title");
-		ValidationUtils.rejectIfEmpty(errors, "description", "service.description");
-		ValidationUtils.rejectIfEmpty(errors, "category", "service.category");
-		ValidationUtils.rejectIfEmpty(errors, "filename", "service.filename");
+		ValidationUtils.rejectIfEmpty(errors, "name", "service.name");
+		ValidationUtils.rejectIfEmpty(errors, "type", "service.type");
+		ValidationUtils.rejectIfEmpty(errors, "address", "service.address");
+		ValidationUtils.rejectIfEmpty(errors, "phonenumber", "service.phonenumber");
 	}
 }

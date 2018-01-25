@@ -64,8 +64,7 @@ public class ProfessionController {
 		logger.info("Saving the Media. Data : " + profession);
 		// if media id is 0 then creating the media other updating the
 		// media
-		String returnVal = "redirect:getAllProfessions";
-		Date today = Calendar.getInstance().getTime();
+		String returnVal = "redirect:getUserProfessions";
 
 		if (result.hasErrors()) {
 			return "professionForm";
@@ -88,10 +87,10 @@ public class ProfessionController {
 		return new ModelAndView("redirect:getAllProfessions");
 	}
 
-	@RequestMapping("getAllProfessions")
+	@RequestMapping("getUserProfessions")
 	public ModelAndView getAllProfessions() {
 		logger.info("Getting the all Professions.");
-		List<Profession> professionList = professionService.getAllProfessions();
+		List<Profession> professionList = professionService.getUserProfessions();
 		return new ModelAndView("professionList", "professionList", professionList);
 	}
 

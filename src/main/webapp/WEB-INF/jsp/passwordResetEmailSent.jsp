@@ -15,11 +15,11 @@
 
 		<div class="panel-body">
 
-			<h4>
-				A restore message was sent to <span style="font-weight: bold">${username}</span><br>
-				Please follow the instructions in the message in order to set a new
-				password.
-			</h4>
+			<p>
+				A Password reset instructions has been sent to <span
+					style="font-weight: bold">${username}</span><br> Please follow
+				the instructions in the message in order to set a new password.
+			</p>
 		</div>
 	</div>
 </div>

@@ -89,16 +89,52 @@ public class MediaDaoImpl implements MediaDao {
 		String query = "SELECT e.* FROM Media e WHERE e.crawel = " + true;
 		List<Object[]> mediaObjects = hibernateUtil.fetchAll(query);
 		List<Media> medias = new ArrayList<Media>();
+		long id;
+		String name;
+		String url;
+		String type;
+		String language;
+		String country;
+		boolean crawel;
 		for (Object[] mediaObject : mediaObjects) {
 			Media media = new Media();
-			long id = ((BigInteger) mediaObject[0]).longValue();
-			String name = (String) mediaObject[4];
+			id = ((BigInteger) mediaObject[0]).longValue();
+			name = (String) mediaObject[4];
+			url = (String) mediaObject[6];
+			type = (String) mediaObject[5];
+			language = (String) mediaObject[3];
+			country = (String) mediaObject[1];
+			crawel = (Boolean) mediaObject[2];
+
 			media.setId(id);
 			media.setName(name);
+			media.setUrl(url);
+			media.setType(type);
+			media.setLanguage(language);
+			media.setCountry(country);
+			media.setCrawel(crawel);
+
 			medias.add(media);
 		}
-		System.out.println(medias);
+
 		return medias;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Media findByURL(String url) {
+		String Query = "From Media M where M.url= '" + url + "'";
+
+		List<Media> mediaObjects = hibernateUtil.fetchAllMedia(Query);
+		Media media = null;
+		for (Media mediaObject : mediaObjects) {
+
+			media = new Media();
+
+			media.setId(mediaObject.getId());
+			media.setUrl(mediaObject.getUrl());
+
+		}
+		return media;
 	}
 
 }

@@ -4,7 +4,7 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">
 				<div align="left">
-					<b>Site Map</b>
+					<b>Terms of Use</b>
 				</div>
 				<div align="right">
 					<!-- <a href="getAllContacts">Contact List</a> -->

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ethionews.model.Media;
 import com.ethionews.model.Subscription;
+import com.ethionews.model.User;
 
 public interface MediaDao {
 	public long createMedia(Media media);
@@ -20,5 +21,6 @@ public interface MediaDao {
 
 	public List<Media> getAllMediasToSubscribe();
 
-	
+	public Media findByURL(String url);
+
 }

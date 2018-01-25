@@ -6,16 +6,11 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,23 +18,23 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ethionews.model.Mail;
 import com.ethionews.model.User;
-import com.ethionews.model.UserRole;
 import com.ethionews.service.MailService;
 import com.ethionews.service.UserService;
 import com.ethionews.util.EthioUtil;
+import com.ethionews.validator.UserPasswordChangeValidator;
+import com.ethionews.validator.UserPasswordResetValidator;
+import com.ethionews.validator.UserRegistrationValidator;
 
 @Controller
 public class UserController {
 	private static final Logger logger = Logger.getLogger(UserController.class);
 
 	@Autowired
-	@Qualifier("userValidator")
-	private Validator validator;
-
-	@InitBinder
-	private void initBinder(WebDataBinder binder) {
-		binder.setValidator(validator);
-	}
+	private UserRegistrationValidator userRegistrationValidator;
+	@Autowired
+	private UserPasswordResetValidator userPasswordResetValidator;
+	@Autowired
+	private UserPasswordChangeValidator userPasswordChangeValidator;
 
 	@Autowired
 	private MailService mailService;
@@ -58,6 +53,7 @@ public class UserController {
 		logger.info("Saving the Media. Data : " + user);
 		// if media id is 0 then creating the media other updating the
 		// media
+		userRegistrationValidator.validate(user, result);
 
 		if (result.hasErrors()) {
 			return new ModelAndView("userForm");
@@ -173,26 +169,30 @@ public class UserController {
 		return new ModelAndView("invalidSession");
 	}
 
-	@RequestMapping(value = "/passwordEmailVerify", method = RequestMethod.GET)
+	@RequestMapping(value = "/passwordReset", method = RequestMethod.GET)
 	public ModelAndView passwordEmailVerify(@ModelAttribute User user) {
-		return new ModelAndView("passwordEmailVerify");
+		return new ModelAndView("passwordReset");
 	}
 
-	@RequestMapping(value = "/passwordEmailVerify", method = RequestMethod.POST)
-	public ModelAndView passwordEmailVerify(Model model, @ModelAttribute User user) {
-		User loggedUser = userService.findByUsername(user.getUsername());
-		if (null == loggedUser) {
-			return new ModelAndView("passwordEmailVerify", "message", "Your email doesn't exist in our system");
+	@RequestMapping(value = "/passwordReset", method = RequestMethod.POST)
+	public ModelAndView passwordEmailVerify(Model model, @Validated User user, BindingResult result) {
+		userPasswordResetValidator.validate(user, result);
+
+		if (result.hasErrors()) {
+			return new ModelAndView("passwordReset");
 		}
-		String templateName = "restorePassword.vm";
-		Mail mail = new Mail();
-		mail.setMailFrom("from@gmail.com");
-		mail.setMailTo(loggedUser.getUsername());
-		mail.setMailSubject("Password Reset Instructions");
-		mail.setTemplateName("restorePassword.vm");
-		mail.setMailContent(mailService.getMailBody(templateName, loggedUser.getUsername()));
-		mailService.sendEmail(mail);
-		return new ModelAndView("passwordRestoreEmailSent", "username", user.getUsername());
+
+		// update the user with the new password
+		String newPassword = EthioUtil.generatePassword();
+		// update old password with the new one
+		User updatedUser = userService.findByUsername(user.getUsername());
+		updatedUser.setPassword(newPassword);
+		userService.updateUser(updatedUser);
+
+		// send password reset instruction mail to user
+		mailService.sendPasswordResetEmail(user, newPassword);
+
+		return new ModelAndView("passwordResetEmailSent", "username", user.getUsername());
 	}
 
 	@RequestMapping(value = "/passwordChange", method = RequestMethod.GET)
@@ -202,13 +202,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/passwordChange", method = RequestMethod.POST)
-	public ModelAndView passwordChange(Model model, @ModelAttribute User user) {
+	public ModelAndView passwordChange(Model model, @Validated User user, BindingResult result) {
 		logger.info("Updating password for : " + user);
 
-		/*
-		 * if (result.hasErrors()) { return new ModelAndView("passwordChange");
-		 * }
-		 */
+		userPasswordChangeValidator.validate(user, result);
+
+		if (result.hasErrors()) {
+			return new ModelAndView("passwordChange");
+		}
 
 		String username = userService.findLoggedInUsername();
 		if (null == username) {

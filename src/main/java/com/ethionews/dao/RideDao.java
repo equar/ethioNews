@@ -11,9 +11,11 @@ public interface RideDao {
 
 	public void deleteRide(long id);
 
-	public List<Ride> getAllRides();
+	public List<Ride> getPublicRides();
+
+	public List<Ride> getUserRides(long userId);
 
 	public Ride getRide(long id);
 
-	public List<Ride> getAllRides(String search);
+	public List<Ride> getPublicRides(String search);
 }

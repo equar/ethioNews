@@ -16,6 +16,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import com.ethionews.model.Mail;
+import com.ethionews.model.User;
 import com.ethionews.service.MailService;
 import com.ethionews.util.EthioUtil;
 
@@ -57,21 +58,33 @@ public class MailServiceImpl implements MailService {
 		return preparator;
 	}
 
-	public String getMailBody(String templateName, String emailId) {
+	public String getPasswordResetBody(String templateName, String newPassword) {
 		velocityEngine.init();
 		Template template = velocityEngine.getTemplate("./mailTemplates/" + templateName);
-		String encodedEmail = EthioUtil.getEncodedToBase64(emailId);
-		String url = "http://localhost:8080/newPassword?newPassword=" + encodedEmail;
+		// String encodedEmail = EthioUtil.getEncodedToBase64(emailId);
+		// String url = "http://localhost:8080/newPassword?newPassword=" +
+		// encodedEmail;
 
 		VelocityContext velocityContext = new VelocityContext();
 		velocityContext.put("name", "EthioNews  User");
-		velocityContext.put("url", url);
+		velocityContext.put("newPassword", newPassword);
 
 		StringWriter stringWriter = new StringWriter();
 
 		template.merge(velocityContext, stringWriter);
 
 		return stringWriter.toString();
+	}
+
+	public void sendPasswordResetEmail(User user, String newPassword) {
+		String templateName = "resetPassword.vm";
+		Mail mail = new Mail();
+		mail.setMailFrom("support@sidrabook.com");
+		mail.setMailTo(user.getUsername());
+		mail.setMailSubject("Password Reset Instructions");
+		mail.setTemplateName("resetPassword.vm");
+		mail.setMailContent(getPasswordResetBody(templateName, newPassword));
+		sendEmail(mail);
 	}
 
 }

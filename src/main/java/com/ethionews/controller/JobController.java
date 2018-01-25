@@ -64,8 +64,8 @@ public class JobController {
 		logger.info("Saving the Media. Data : " + job);
 		// if media id is 0 then creating the media other updating the
 		// media
-		String returnVal = "redirect:getAllJobs";
-		Date today = Calendar.getInstance().getTime();
+		String returnVal = "redirect:getUserJobs";
+		// Date today = Calendar.getInstance().getTime();
 
 		if (result.hasErrors()) {
 			return "jobForm";
@@ -88,24 +88,24 @@ public class JobController {
 		return new ModelAndView("redirect:getAllJobs");
 	}
 
-	@RequestMapping("getAllJobs")
-	public ModelAndView getAllJobs() {
+	@RequestMapping("getUserJobs")
+	public ModelAndView getUserJobs() {
 		logger.info("Getting the all Jobs.");
-		List<Job> jobList = jobService.getAllJobs();
+		List<Job> jobList = jobService.getUserJobs();
 		return new ModelAndView("jobList", "jobList", jobList);
 	}
 
 	@RequestMapping("getPublicJobs")
 	public ModelAndView getPublicJobs() {
 		logger.info("Getting the all Jobs.");
-		List<Job> jobList = jobService.getAllJobs();
+		List<Job> jobList = jobService.getPublicJobs();
 		return new ModelAndView("jobListPublic", "jobList", jobList);
 	}
 
 	@RequestMapping("searchJob")
 	public ModelAndView searchJob(@RequestParam("title") String title) {
 		logger.info("Searching the Job. Job Names: " + title);
-		List<Job> jobList = jobService.getAllJobs(title);
+		List<Job> jobList = jobService.getPublicJobs(title);
 		return new ModelAndView("jobList", "jobList", jobList);
 	}
 

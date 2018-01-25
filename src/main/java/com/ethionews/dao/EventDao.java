@@ -25,4 +25,10 @@ public interface EventDao {
 
 	public List<Event> getAllDisabledEvents();
 
+	public List<Event> getPublicEvents();
+
+	public List<Event> getPublicEvents(String search);
+
+	public List<Event> getUserEvents(long userId);
+
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld"%>
@@ -50,23 +51,24 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">ethioNews</a>
+			<a class="navbar-brand" href="#">sidraBook</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="news">News</a></li>
-				<li><a href="getPublicVideos">Video</a></li>
-				<li><a href="getPublicEvents">Events</a></li>
-				<li><a href="getMediasToSubscribe">Subscribe</a></li>
-				<li><a href=getPublicJobs>Jobs</a></li>
+				<!-- <li><a href="getPublicVideos">Video</a></li> -->
+				 <li><a href="getPublicEvents">Events</a></li> 
+				<!-- <li><a href="getMediasToSubscribe">Subscribe</a></li> -->
+				 <li><a href=getPublicJobs>Jobs</a></li>
 				<li><a href=getPublicProfessions>Professional Services</a></li>
 				<li><a href=getPublicRides>Ride Sharing</a></li>
 				<li><a href=getPublicRents>Rent Sharing</a></li>
-				<li><a href=getPublicSpeaks>Speak Up</a></li>
-				<li><a href=createContact>Contact Us</a></li>
+				<li><a href=getPublicSpeaks>Speak Up</a></li> 
+				 <li><a href=createContact>Contact Us</a></li> 
 			</ul>
 			<c:if test="${pageContext.request.userPrincipal.name == null}">
 				<ul class="nav navbar-nav navbar-right">
+					<!-- <li><a href=createContact>Contact Us</a></li> -->
 					<li><a href="userLogin"><span
 							class="glyphicon glyphicon-log-in"></span> Sign Up/Sign In</a></li>
 				</ul>
@@ -79,6 +81,7 @@
 			</form>
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
 				<ul class="nav navbar-nav navbar-right">
+					<!-- <li><a href=createContact>Contact Us</a></li> -->
 					<li><a
 						href="javascript:document.getElementById('logout').submit()"><span
 							class="glyphicon glyphicon-log-in"></span> Logout</a></li>

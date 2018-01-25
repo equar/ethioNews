@@ -8,7 +8,7 @@
 					<b>Ride Details</b>
 				</div>
 				<div align="right">
-					<a href="getAllRides">Ride List</a>
+					<a href="getPublicRides">Ride List</a>
 				</div>
 			</h3>
 		</div>
@@ -39,16 +39,7 @@
 				</div>
 
 				<div class="form-group">
-					<form:label path="price" cssClass="control-label col-xs-3">Price</form:label>
-					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="price"
-							value="${rideObject.price}" />
-						<form:errors path="price" cssStyle="color: #ff0000;" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<form:label path="date" cssClass="control-label col-xs-3">Date</form:label>
+					<form:label path="date" cssClass="control-label col-xs-3">Leaving Date</form:label>
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="date"
 							value="${rideObject.date}" />
@@ -57,7 +48,7 @@
 				</div>
 
 				<div class="form-group">
-					<form:label path="time" cssClass="control-label col-xs-3">Time</form:label>
+					<form:label path="time" cssClass="control-label col-xs-3">Leaving Time</form:label>
 					<div class="col-xs-6">
 						<form:input cssClass="form-control" path="time"
 							value="${rideObject.time}" />
@@ -66,11 +57,20 @@
 				</div>
 
 				<div class="form-group">
-					<form:label path="seats" cssClass="control-label col-xs-3">Available Seats</form:label>
+					<form:label path="phonenumber" cssClass="control-label col-xs-3">Contact Number</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="seats"
-							value="${rideObject.seats}" />
-						<form:errors path="seats" cssStyle="color: #ff0000;" />
+						<form:input cssClass="form-control" path="phonenumber"
+							value="${rideObject.phonenumber}" />
+						<form:errors path="phonenumber" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="description" cssClass="control-label col-xs-3">Description</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="description"
+							value="${rideObject.description}" />
+						<form:errors path="description" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 

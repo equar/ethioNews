@@ -52,4 +52,8 @@ public class MediaServiceImpl implements MediaService {
 		return mediaDao.getAllMediasToSubscribe();
 	}
 
+	public Media findByURL(String url) {
+		return mediaDao.findByURL(url);
+	}
+
 }

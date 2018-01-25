@@ -8,7 +8,7 @@
 					<b>Profession Details</b>
 				</div>
 				<div align="right">
-					<a href="getAllProfessions">Profession List</a>
+					<a href="getUserProfessions">Profession List</a>
 				</div>
 			</h3>
 		</div>
@@ -19,7 +19,7 @@
 
 				<div class="form-group">
 					<div class="control-label col-xs-3">
-						<form:label path="name">Full Name</form:label>
+						<form:label path="name">Business/Person Name</form:label>
 					</div>
 					<div class="col-xs-6">
 						<form:hidden path="id" value="${professionObject.id}" />
@@ -39,29 +39,38 @@
 				</div>
 
 				<div class="form-group">
-					<form:label path="subType" cssClass="control-label col-xs-3">Profession SubType</form:label>
+					<form:label path="address" cssClass="control-label col-xs-3">Address</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="subType"
-							value="${professionObject.subType}" />
-						<form:errors path="subType" cssStyle="color: #ff0000;" />
+						<form:input cssClass="form-control" path="address"
+							value="${professionObject.address}" />
+						<form:errors path="address" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<form:label path="phoneNumber" cssClass="control-label col-xs-3">PhoneNumber</form:label>
+					<form:label path="phonenumber" cssClass="control-label col-xs-3">Phone Number</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="phoneNumber"
-							value="${professionObject.phoneNumber}" />
-						<form:errors path="phoneNumber" cssStyle="color: #ff0000;" />
+						<form:input cssClass="form-control" path="phonenumber"
+							value="${professionObject.phonenumber}" />
+						<form:errors path="phonenumber" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<form:label path="email" cssClass="control-label col-xs-3">Email</form:label>
+					<form:label path="website" cssClass="control-label col-xs-3">Web Site</form:label>
 					<div class="col-xs-6">
-						<form:input cssClass="form-control" path="email"
-							value="${professionObject.email}" />
-						<form:errors path="email" cssStyle="color: #ff0000;" />
+						<form:input cssClass="form-control" path="website"
+							value="${professionObject.website}" />
+						<form:errors path="website" cssStyle="color: #ff0000;" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<form:label path="description" cssClass="control-label col-xs-3">Description</form:label>
+					<div class="col-xs-6">
+						<form:input cssClass="form-control" path="description"
+							value="${professionObject.description}" />
+						<form:errors path="description" cssStyle="color: #ff0000;" />
 					</div>
 				</div>
 

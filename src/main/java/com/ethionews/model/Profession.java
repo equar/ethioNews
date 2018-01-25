@@ -21,9 +21,10 @@ public class Profession implements Serializable {
 	private long id;
 	private String name;
 	private String type;
-	private String subType;
-	private String email;
-	private String phoneNumber;
+	private String address;
+	private String phonenumber;
+	private String website;
+	private String description;
 	private User user;
 
 	@Id
@@ -55,31 +56,40 @@ public class Profession implements Serializable {
 		this.type = type;
 	}
 
-	@Column(name = "subType", nullable = true)
-	public String getSubType() {
-		return subType;
+	@Column(name = "phonenumber", nullable = false)
+	public String getPhonenumber() {
+		return phonenumber;
 	}
 
-	public void setSubType(String subType) {
-		this.subType = subType;
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 
-	@Column(name = "email", nullable = true)
-	public String getEmail() {
-		return email;
+	@Column(name = "address", nullable = false)
+	public String getAddress() {
+		return address;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	@Column(name = "phoneNUmber", nullable = false)
-	public String getPhoneNumber() {
-		return phoneNumber;
+	@Column(name = "website", nullable = false)
+	public String getWebsite() {
+		return website;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	@Column(name = "description", nullable = false)
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

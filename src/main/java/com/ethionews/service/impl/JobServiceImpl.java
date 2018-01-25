@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ethionews.dao.JobDao;
 import com.ethionews.model.Job;
+import com.ethionews.model.Ride;
 import com.ethionews.service.JobService;
 import com.ethionews.service.UserService;
 
@@ -37,8 +38,14 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public List<Job> getAllJobs() {
-		return jobDao.getAllJobs();
+	public List<Job> getPublicJobs() {
+		return jobDao.getPublicJobs();
+	}
+
+	@Override
+	public List<Job> getUserJobs() {
+		long userId = userService.findLoggedUser().getId();
+		return jobDao.getUserJobs(userId);
 	}
 
 	@Override
@@ -47,8 +54,8 @@ public class JobServiceImpl implements JobService {
 	}
 
 	@Override
-	public List<Job> getAllJobs(String search) {
-		return jobDao.getAllJobs(search);
+	public List<Job> getPublicJobs(String search) {
+		return jobDao.getPublicJobs(search);
 	}
 
 }

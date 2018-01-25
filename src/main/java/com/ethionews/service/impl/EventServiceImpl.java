@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ethionews.dao.EventDao;
 import com.ethionews.dao.MediaDao;
 import com.ethionews.model.Event;
+import com.ethionews.model.Event;
 import com.ethionews.service.EventService;
 import com.ethionews.service.UserService;
 import com.ethionews.util.EthioUtil;
@@ -60,12 +61,6 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public Event getEvent(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public long enableEvent(long id) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -110,6 +105,26 @@ public class EventServiceImpl implements EventService {
 			imageEvents.add(event);
 		}
 		return imageEvents;
+	}
+
+	@Override
+	public List<Event> getPublicEvents() {
+		return eventDao.getPublicEvents();
+	}
+
+	@Override
+	public List<Event> getUserEvents() {
+		long userId = userService.findLoggedUser().getId();
+		return eventDao.getUserEvents(userId);
+	}
+
+	@Override
+	public Event getEvent(long id) {
+		return eventDao.getEvent(id);
+	}
+
+	public List<Event> getPublicEvents(String search) {
+		return eventDao.getPublicEvents(search);
 	}
 
 }

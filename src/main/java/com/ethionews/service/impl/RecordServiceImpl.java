@@ -43,10 +43,10 @@ public class RecordServiceImpl implements RecordService {
 		Document doc = null;
 		Record record = null;
 		String imageURL = null;
-		URL url = new URL("http://feeds.bbci.co.uk/news/world/rss.xml?edition=uk#");
 
-		// URL url = new
-		// URL("https://news.google.com/news?q=Ethiopia&output=rss");
+		// URL url = new URL(media.getUrl());
+
+		URL url = new URL("http://www.dailystar.com.lb/RSS.aspx?id=113");
 
 		HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
 		// Reading the feed
@@ -63,15 +63,20 @@ public class RecordServiceImpl implements RecordService {
 		for (int i = 0; i < drRecords.size(); i++) {
 			links.add(drRecords.get(i).getLink());
 		}
+		String title = null;
+		String descr = null;
 
 		while (itEntries.hasNext()) {
 			SyndEntry entry = itEntries.next();
 
 			if (!links.contains(entry.getLink())) {
+				title = entry.getTitle();
+				descr = entry.getDescription().getValue();
+
 				record = new Record();
-				record.setTitle(entry.getTitle());
+				record.setTitle(title);
+				record.setDescription(descr);
 				record.setLink(entry.getLink());
-				record.setDescription(entry.getDescription().getValue());
 				record.setDate(entry.getPublishedDate());
 				// doc =
 				// Jsoup.connect(entry.getLink()).ignoreContentType(true).timeout(10
@@ -82,11 +87,14 @@ public class RecordServiceImpl implements RecordService {
 				record.setMedia(media);
 				records.add(record);
 
-				List<Element> foreignMarkups = (List<Element>) entry.getForeignMarkup();
-				for (Element foreignMarkup : foreignMarkups) {
-					imageURL = foreignMarkup.getAttribute("url").getValue();
-					// read width and height
-				}
+				/*
+				 * List<Element> foreignMarkups = (List<Element>)
+				 * entry.getForeignMarkup(); for (Element foreignMarkup :
+				 * foreignMarkups) { imageURL =
+				 * foreignMarkup.getAttribute("url").getValue(); // read width
+				 * and height }
+				 */
+				imageURL = null;
 				record.setImageURL(imageURL);
 			}
 		}

@@ -27,6 +27,10 @@ import com.maxmind.geoip.regionName;
 public class EthioUtil {
 	private static final Logger logger = Logger.getLogger(EthioUtil.class);
 
+	private EthioUtil() {
+		throw new IllegalStateException("EthioUtil class");
+	}
+
 	public static String passwordEncoder(String password) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(11);
 		String hashedPassword = passwordEncoder.encode(password);
@@ -192,5 +196,22 @@ public class EthioUtil {
 			result = false;
 		}
 		return result;
+	}
+
+	public static String generatePassword() {
+		StringBuilder newPassword = new StringBuilder();
+		String capitalChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String smallChars = "abcdefghijklmnopqrstuvwxyz";
+		String numbers = "0123456789";
+		// String symbols = "!@#$%^&*_=+-/.?<>)";
+		String candidateChars = capitalChars + smallChars + numbers;
+
+		Random random = new Random();
+		for (int i = 0; i < 8; i++) {
+			newPassword.append(candidateChars.charAt(random.nextInt(candidateChars.length())));
+		}
+
+		return newPassword.toString();
+
 	}
 }

@@ -11,9 +11,11 @@ public interface JobService {
 
 	public void deleteJob(long id);
 
-	public List<Job> getAllJobs();
+	public List<Job> getUserJobs();
+
+	public List<Job> getPublicJobs();
 
 	public Job getJob(long id);
 
-	public List<Job> getAllJobs(String search);
+	public List<Job> getPublicJobs(String search);
 }
